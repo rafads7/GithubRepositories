@@ -22,7 +22,7 @@ object AppModule {
     @Provides
     @Singleton
     @ApiAccessToken
-    fun provideApiAccessTokenKey(): String = Constants.api_access_token
+    fun provideApiAccessTokenKey(): String = Constants.api_access_token + Constants.api_access_token_ending
 
     @Provides
     @Singleton
