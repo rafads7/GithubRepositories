@@ -2,12 +2,12 @@ package com.rafaelduransaez.domain
 
 data class RemoteReposResult(
     val incomplete_results: Boolean,
-    val items: List<Item>,
+    val items: List<RemoteRepo>,
     val total_count: Int
 )
 
 
-data class Item(
+data class RemoteRepo(
     val allow_forking: Boolean,
     val archive_url: String,
     val archived: Boolean,

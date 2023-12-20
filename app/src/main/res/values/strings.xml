@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">GithubRepositories</string>
+    <string name="str_go_to_github">GO TO GITHUB</string>
 </resources>
