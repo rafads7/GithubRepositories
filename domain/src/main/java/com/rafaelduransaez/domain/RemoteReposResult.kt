@@ -1,8 +1,10 @@
 package com.rafaelduransaez.domain
 
+import com.google.gson.annotations.SerializedName
+
 data class RemoteReposResult(
     val incomplete_results: Boolean,
-    val items: List<RemoteRepo>,
+    @SerializedName("items") val repos: List<RemoteRepo>,
     val total_count: Int
 )
 

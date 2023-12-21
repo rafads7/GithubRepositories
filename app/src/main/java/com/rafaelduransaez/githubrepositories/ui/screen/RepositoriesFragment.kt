@@ -6,11 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.rafaelduransaez.githubrepositories.databinding.FragmentRepositoriesBinding
 import com.rafaelduransaez.githubrepositories.ui.adapters.RepositoriesAdapter
 import com.rafaelduransaez.githubrepositories.ui.toast
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class RepositoriesFragment: Fragment() {
@@ -29,7 +33,14 @@ class RepositoriesFragment: Fragment() {
         val binding = FragmentRepositoriesBinding.inflate(inflater, container, false)
         binding.recycler.adapter = adapter
 
-        return binding.root
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.state.collect {
+                    adapter.submitList(it.repositories)
+                }
+            }
+        }
 
+        return binding.root
     }
 }

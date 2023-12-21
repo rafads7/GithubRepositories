@@ -29,7 +29,7 @@ class RepositoriesAdapter(private val listener: (Repository) -> Unit) :
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val binding = RepositoryListItemLayoutBinding.bind(view)
         fun bind(repository: Repository) {
-            //binding.repository = repository
+            binding.repo = repository
         }
     }
 }
