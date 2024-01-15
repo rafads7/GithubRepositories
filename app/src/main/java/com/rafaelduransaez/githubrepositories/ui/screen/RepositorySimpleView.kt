@@ -16,6 +16,9 @@ class RepositorySimpleView @JvmOverloads constructor(
     fun setRepo(repo: Repository) = repo.apply {
         text = buildSpannedString {
 
+            bold { append("ID: ") }
+            appendLine(id.toString())
+
             bold { append("Name: ") }
             appendLine(name)
 

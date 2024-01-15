@@ -1,4 +1,4 @@
-package com.rafaelduransaez.domain
+package com.rafaelduransaez.githubrepositories.framework.remote
 
 import com.google.gson.annotations.SerializedName
 

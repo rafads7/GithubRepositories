@@ -10,6 +10,10 @@ import com.rafaelduransaez.githubrepositories.databinding.RepositoryListItemLayo
 import com.rafaelduransaez.githubrepositories.ui.basicDiffUtil
 import com.rafaelduransaez.githubrepositories.ui.inflate
 
+/**
+ *
+ * NOT USED. See PagedReposAdapter
+ */
 class RepositoriesAdapter(private val listener: (Repository) -> Unit) :
     ListAdapter<Repository, RepositoriesAdapter.ViewHolder>(
         basicDiffUtil { old, new -> old.id == new.id }) {
@@ -27,6 +31,13 @@ class RepositoriesAdapter(private val listener: (Repository) -> Unit) :
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        private val binding = RepositoryListItemLayoutBinding.bind(view)
+        fun bind(repository: Repository) {
+            binding.repo = repository
+        }
+    }
+
+    class SeparatorViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val binding = RepositoryListItemLayoutBinding.bind(view)
         fun bind(repository: Repository) {
             binding.repo = repository

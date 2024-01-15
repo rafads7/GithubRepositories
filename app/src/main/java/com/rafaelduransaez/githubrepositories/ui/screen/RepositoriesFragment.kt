@@ -1,46 +1,55 @@
 package com.rafaelduransaez.githubrepositories.ui.screen
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import com.rafaelduransaez.githubrepositories.R
 import com.rafaelduransaez.githubrepositories.databinding.FragmentRepositoriesBinding
-import com.rafaelduransaez.githubrepositories.ui.adapters.RepositoriesAdapter
+import com.rafaelduransaez.githubrepositories.ui.adapters.PagedReposAdapter
+import com.rafaelduransaez.githubrepositories.ui.adapters.ReposLoadStateAdapter
 import com.rafaelduransaez.githubrepositories.ui.toast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class RepositoriesFragment: Fragment() {
+class RepositoriesFragment: Fragment(R.layout.fragment_repositories) {
 
     private val viewModel: RepositoriesViewModel by viewModels()
-    private val adapter = RepositoriesAdapter {
+    private val adapter = PagedReposAdapter {
         toast("Clicked repo: ${it.id}: ${it.name}")
         findNavController().navigate(RepositoriesFragmentDirections.toDetail(it.id))
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        val binding = FragmentRepositoriesBinding.inflate(inflater, container, false)
-        binding.recycler.adapter = adapter
+        val binding = FragmentRepositoriesBinding.bind(view)
+        binding.bindState()
 
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.state.collect {
-                    adapter.submitList(it.repositories)
+                    adapter.submitData(it.dataSource)
+                    binding.error = it.error
+                    binding.loading = it.loading
                 }
             }
         }
+    }
 
-        return binding.root
+    private fun FragmentRepositoriesBinding.bindState() {
+        list.adapter = adapter.withLoadStateHeaderAndFooter(
+            ReposLoadStateAdapter {
+                adapter.retry()
+            },
+            ReposLoadStateAdapter {
+                adapter.retry()
+            }
+        )
     }
 }

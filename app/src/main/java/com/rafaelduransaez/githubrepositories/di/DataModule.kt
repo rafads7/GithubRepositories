@@ -1,8 +1,10 @@
 package com.rafaelduransaez.githubrepositories.di
 
 import com.rafaelduransaez.data.datasources.GithubRemoteDataSource
-import com.rafaelduransaez.githubrepositories.framework.api.RepositoriesService
-import com.rafaelduransaez.githubrepositories.framework.data.GithubRemoteDataSourceImpl
+import com.rafaelduransaez.data.datasources.RepositoriesMediatorDataSource
+import com.rafaelduransaez.githubrepositories.framework.mediator.GithubReposMediatorDataSource
+import com.rafaelduransaez.githubrepositories.framework.mediator.ReposRemoteMediator
+import com.rafaelduransaez.githubrepositories.framework.remote.GithubRemoteDataSourceImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -14,4 +16,7 @@ abstract class DataModule {
 
     @Binds
     abstract fun bindRemoteDataSource(remoteDataSource: GithubRemoteDataSourceImpl): GithubRemoteDataSource
+
+    @Binds
+    abstract fun bindMediatorDataSource(remoteDataSource: GithubReposMediatorDataSource): RepositoriesMediatorDataSource
 }

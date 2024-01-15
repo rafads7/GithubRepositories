@@ -1,12 +1,11 @@
-package com.rafaelduransaez.githubrepositories.framework.data
+package com.rafaelduransaez.githubrepositories.framework.remote
 
 import com.rafaelduransaez.data.datasources.GithubRemoteDataSource
-import com.rafaelduransaez.domain.toRepository
-import com.rafaelduransaez.githubrepositories.framework.api.RepositoriesService
+import com.rafaelduransaez.githubrepositories.utils.toRepository
 import javax.inject.Inject
 
 class GithubRemoteDataSourceImpl @Inject constructor(
-    private val apiService: RepositoriesService
+    private val apiService: RepositoriesService,
 ) : GithubRemoteDataSource {
     override suspend fun getBestRatedRepositories() =
         apiService.bestRatedRepos()

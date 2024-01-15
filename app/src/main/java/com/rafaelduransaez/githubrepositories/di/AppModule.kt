@@ -1,8 +1,15 @@
 package com.rafaelduransaez.githubrepositories.di
 
 import android.app.Application
+import androidx.paging.ExperimentalPagingApi
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.room.Room
 import com.rafaelduransaez.githubrepositories.GithubRepositoriesApp
-import com.rafaelduransaez.githubrepositories.framework.api.RepositoriesService
+import com.rafaelduransaez.githubrepositories.framework.database.GithubReposDatabase
+import com.rafaelduransaez.githubrepositories.framework.database.entities.RepoEntity
+import com.rafaelduransaez.githubrepositories.framework.mediator.ReposRemoteMediator
+import com.rafaelduransaez.githubrepositories.framework.remote.RepositoriesService
 import com.rafaelduransaez.githubrepositories.utils.Constants
 import dagger.Module
 import dagger.Provides
@@ -60,5 +67,28 @@ object AppModule {
             .build()
             .create()
     }
+
+    @OptIn(ExperimentalPagingApi::class)
+    @Provides
+    @Singleton
+    fun provideReposPager(database: GithubReposDatabase, apiService: RepositoriesService): Pager<Int, RepoEntity> =
+        Pager(
+            config = PagingConfig(RepositoriesService.per_page.toInt()),
+            remoteMediator = ReposRemoteMediator(database, apiService),
+            pagingSourceFactory = { database.reposDao().pagingSource() }
+        )
+
+
+    @Provides
+    @Singleton
+    fun provideDatabase(app: Application): GithubReposDatabase = Room.databaseBuilder(
+        app,
+        GithubReposDatabase::class.java,
+        "github_repos_database"
+    ).build()
+
+    @Provides
+    @Singleton
+    fun provideGithubReposDao(db: GithubReposDatabase) = db.reposDao()
 
 }

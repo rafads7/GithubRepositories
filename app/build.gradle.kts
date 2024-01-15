@@ -44,12 +44,6 @@ android {
         }
     }
 
-    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KaptGenerateStubs>().configureEach {
-        kotlinOptions {
-            jvmTarget="1.8"
-        }
-    }
-
     /*
     //Just in case to use ksp instead of kapt
     tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
@@ -87,8 +81,9 @@ dependencies {
     val retrofitVersion = "2.9.0"
     val okhttpVersion = "4.11.0"
     val fragmentVersion = "1.5.5"
-    val roomVersion = "2.5.1"
-
+    val roomVersion = "2.6.1"
+    val paging_version = "3.1.1"
+    
     implementation(project(mapOf("path" to ":domain")))
     implementation(project(mapOf("path" to ":data")))
     implementation(project(mapOf("path" to ":usecases")))
@@ -149,8 +144,12 @@ dependencies {
     //Room
     kapt("androidx.room:room-compiler:$roomVersion")
     implementation("androidx.room:room-runtime:$roomVersion")
-    annotationProcessor("androidx.room:room-compiler:$roomVersion")
+    //annotationProcessor("androidx.room:room-compiler:$roomVersion")
     implementation("androidx.room:room-ktx:$roomVersion")
+
+    //Paging
+    api ("androidx.paging:paging-runtime:$paging_version")
+    implementation ("androidx.room:room-paging:$roomVersion")
 }
 
 // Allow references to generated code
