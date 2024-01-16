@@ -41,7 +41,6 @@ class ReposRemoteMediator @Inject constructor(
                 }
 
                 LoadType.APPEND -> {
-
                     val remoteKeys = getRemoteKeyForLastItem(state)
                     // If remoteKeys is null, that means the refresh result is not in the database yet.
                     // We can return Success with endOfPaginationReached = false because Paging
@@ -92,10 +91,11 @@ class ReposRemoteMediator @Inject constructor(
             MediatorResult.Success(
                 endOfPaginationReached = repos.isEmpty()
             )
+
         } catch (e: IOException) {
-            MediatorResult.Error(Throwable("hola rafa"))
+            MediatorResult.Error(e)
         } catch (e: HttpException) {
-            MediatorResult.Error(Throwable("hola rafa"))
+            MediatorResult.Error(e)
         }
     }
 

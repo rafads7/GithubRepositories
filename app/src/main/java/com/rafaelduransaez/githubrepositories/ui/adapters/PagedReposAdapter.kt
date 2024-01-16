@@ -32,6 +32,8 @@ class PagedReposAdapter(private val listener: (Repository) -> Unit):
             binding.repo = repository
         }
     }
+
+    fun isEmpty() = itemCount == 0
 }
 
 
