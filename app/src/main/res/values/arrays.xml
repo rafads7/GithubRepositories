@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer-array name="random_colors">
+        <item>@color/pastelBlue</item>
+        <item>@color/pastelGreen</item>
+        <item>@color/pastelOrange</item>
+        <item>@color/pastelYellow</item>
+        <item>@color/pastelPurple</item>
+        <item>@color/pastelPink</item>
+        <item>@color/pastelTurquoise</item>
+        <item>@color/pastelRed</item>
+    </integer-array>
+</resources>

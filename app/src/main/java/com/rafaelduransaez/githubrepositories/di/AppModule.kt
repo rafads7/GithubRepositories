@@ -6,6 +6,7 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.room.Room
 import com.rafaelduransaez.githubrepositories.GithubRepositoriesApp
+import com.rafaelduransaez.githubrepositories.R
 import com.rafaelduransaez.githubrepositories.framework.database.GithubReposDatabase
 import com.rafaelduransaez.githubrepositories.framework.database.entities.RepoEntity
 import com.rafaelduransaez.githubrepositories.framework.mediator.ReposRemoteMediator
@@ -90,5 +91,12 @@ object AppModule {
     @Provides
     @Singleton
     fun provideGithubReposDao(db: GithubReposDatabase) = db.reposDao()
+
+    @ColorArray
+    @Provides
+    fun provideColorsArray(): IntArray {
+        return intArrayOf(R.array.random_colors)
+    }
+
 
 }

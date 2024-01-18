@@ -9,21 +9,25 @@ import androidx.recyclerview.widget.RecyclerView
 import com.rafaelduransaez.githubrepositories.R
 import com.rafaelduransaez.githubrepositories.databinding.ReposLoadStateFooterViewItemBinding
 import com.rafaelduransaez.githubrepositories.ui.inflate
+import com.rafaelduransaez.githubrepositories.ui.screen.MainState
+import com.rafaelduransaez.githubrepositories.utils.toError
 
 class ReposLoadStateAdapter(
+    private val mainState: MainState,
     private val retry: () -> Unit
 ) : LoadStateAdapter<ReposLoadStateAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, loadState: LoadState): ViewHolder {
         val view = parent.inflate(R.layout.repos_load_state_footer_view_item)
-        return ViewHolder(view, retry)
+        return ViewHolder(view, retry, mainState)
     }
     override fun onBindViewHolder(holder: ViewHolder, loadState: LoadState) {
         holder.bind(loadState)
     }
     class ViewHolder(
         view: View,
-        retry: () -> Unit
+        retry: () -> Unit,
+        private val mainState: MainState
     ) : RecyclerView.ViewHolder(view) {
 
         private val binding = ReposLoadStateFooterViewItemBinding.bind(view)
@@ -34,7 +38,8 @@ class ReposLoadStateAdapter(
 
         fun bind(loadState: LoadState) {
             if (loadState is LoadState.Error) {
-                binding.errorMsg.text = loadState.error.localizedMessage
+                //binding.errorMsg.text = mainState.throwableToStringError(loadState.error)
+                binding.errorMsg.text = mainState.errorToMessage(loadState.error.toError())
             }
             binding.progressBar.isVisible = loadState is LoadState.Loading
             binding.retryButton.isVisible = loadState is LoadState.Error

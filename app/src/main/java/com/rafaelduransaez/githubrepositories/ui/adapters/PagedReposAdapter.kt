@@ -7,10 +7,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.rafaelduransaez.domain.Repository
 import com.rafaelduransaez.githubrepositories.R
 import com.rafaelduransaez.githubrepositories.databinding.RepositoryListItemLayoutBinding
+import com.rafaelduransaez.githubrepositories.di.ColorArray
 import com.rafaelduransaez.githubrepositories.ui.basicDiffUtil
 import com.rafaelduransaez.githubrepositories.ui.inflate
+import javax.inject.Inject
 
-class PagedReposAdapter(private val listener: (Repository) -> Unit):
+
+class PagedReposAdapter @Inject constructor(
+    @ColorArray val colors: IntArray? = null,
+    private val listener: (Repository) -> Unit
+) :
     PagingDataAdapter<Repository, PagedReposAdapter.ViewHolder>(
         basicDiffUtil { old, new -> old.id == new.id }) {
 
@@ -21,21 +27,21 @@ class PagedReposAdapter(private val listener: (Repository) -> Unit):
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         getItem(position)?.let { repo ->
-            holder.bind(repo)
+            holder.bind(repo, colors)
             holder.itemView.setOnClickListener { listener(repo) }
         }
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val binding = RepositoryListItemLayoutBinding.bind(view)
-        fun bind(repository: Repository?) {
+        fun bind(repository: Repository?, colors: IntArray?) {
             binding.repo = repository
+            binding.randomColors = colors
         }
     }
 
     fun isEmpty() = itemCount == 0
 }
-
 
 
 /*

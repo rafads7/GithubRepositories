@@ -4,6 +4,7 @@ plugins {
     id ("kotlin-kapt")
     id("com.google.dagger.hilt.android")
     id("androidx.navigation.safeargs.kotlin")
+
     //id("com.google.devtools.ksp")
 }
 
@@ -150,6 +151,10 @@ dependencies {
     //Paging
     api ("androidx.paging:paging-runtime:$paging_version")
     implementation ("androidx.room:room-paging:$roomVersion")
+
+    //Serialization
+    //implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.1")
+
 }
 
 // Allow references to generated code

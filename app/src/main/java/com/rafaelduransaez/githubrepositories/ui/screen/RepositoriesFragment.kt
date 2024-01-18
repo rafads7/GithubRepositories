@@ -8,33 +8,33 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import com.rafaelduransaez.githubrepositories.R
 import com.rafaelduransaez.githubrepositories.databinding.FragmentRepositoriesBinding
+import com.rafaelduransaez.githubrepositories.di.ColorArray
 import com.rafaelduransaez.githubrepositories.ui.adapters.PagedReposAdapter
 import com.rafaelduransaez.githubrepositories.ui.adapters.ReposLoadStateAdapter
 import com.rafaelduransaez.githubrepositories.ui.toast
+import com.rafaelduransaez.githubrepositories.utils.toError
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class RepositoriesFragment : Fragment(R.layout.fragment_repositories) {
 
     private val viewModel: RepositoriesViewModel by viewModels()
-    private val adapter = PagedReposAdapter {
-        toast("Clicked repo: ${it.id}: ${it.name}")
-        findNavController().navigate(RepositoriesFragmentDirections.toDetail(it.id))
-    }
+    private lateinit var mainState: MainState
 
-    private val header = ReposLoadStateAdapter { adapter.retry() }
-    private val footer = ReposLoadStateAdapter { adapter.retry() }
+    private val adapter = PagedReposAdapter() { mainState.onRepoClicked(it)}
+    private val header by lazy { ReposLoadStateAdapter(mainState) { adapter.retry() } }
+    private val footer by lazy { ReposLoadStateAdapter(mainState) { adapter.retry() } }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        mainState = buildMainState()
         val binding = FragmentRepositoriesBinding.bind(view)
+
         binding.bindState()
 
         viewLifecycleOwner.lifecycleScope.launch {
@@ -64,8 +64,12 @@ class RepositoriesFragment : Fragment(R.layout.fragment_repositories) {
                         loadState.refresh is LoadState.NotLoading && adapter.isEmpty()
 
                     // Show the retry state if initial load or refresh fails.
-                    errorLayout.isVisible =
-                        loadState.mediator?.refresh is LoadState.Error && adapter.isEmpty()
+                    val refreshError = loadState.mediator?.refresh as? LoadState.Error
+                    errorLayout.isVisible = refreshError != null && adapter.isEmpty()
+
+                    refreshError?.error?.let {
+                        errorMsg.text = mainState.errorToMessage(it.toError())
+                    }
 
                     // Only show the list if refresh succeeds, either from the the local db or the remote.
                     list.isVisible =

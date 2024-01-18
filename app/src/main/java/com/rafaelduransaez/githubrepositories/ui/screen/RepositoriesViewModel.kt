@@ -32,7 +32,7 @@ class RepositoriesViewModel @Inject constructor(
                 .catch { _state.update {
                     it.copy(error = true, loading = false) }
                 }
-                .collect() { repos ->
+                .collect { repos ->
                     _state.update { it.copy(dataSource = repos,
                         loading = false, error = false) }
                 }

@@ -8,8 +8,9 @@ import androidx.room.PrimaryKey
 data class RepoEntity(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     @ColumnInfo(defaultValue = "") val name: String,
-    val description: String,
+    @ColumnInfo(defaultValue = "") val description: String,
     val starsCount: Int = 0,
     val forksCount: Int = 0,
-    @ColumnInfo(defaultValue = "") val language: String
+    @ColumnInfo(defaultValue = "") val language: String,
+    @ColumnInfo(defaultValue = "") val url: String
 )

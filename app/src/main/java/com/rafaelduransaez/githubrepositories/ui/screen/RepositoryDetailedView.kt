@@ -7,6 +7,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.text.bold
 import androidx.core.text.buildSpannedString
 import com.rafaelduransaez.domain.Repository
+import com.rafaelduransaez.domain.RepositoryDetail
 
 class RepositoryDetailedView @JvmOverloads constructor(
     context: Context,
@@ -14,7 +15,7 @@ class RepositoryDetailedView @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : AppCompatTextView(context, attrs, defStyleAttr) {
 
-    fun setRepo(repo: Repository) = repo.apply {
+    fun setRepo(repo: RepositoryDetail) = repo.apply {
         text = buildSpannedString {
 
             bold { append("Name: ") }

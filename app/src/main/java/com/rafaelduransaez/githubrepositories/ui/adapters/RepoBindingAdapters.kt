@@ -1,12 +1,16 @@
 package com.rafaelduransaez.githubrepositories.ui.adapters
 
+import android.graphics.drawable.GradientDrawable
 import android.view.View
+import android.widget.ImageView
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.databinding.BindingAdapter
-import androidx.paging.PagingData
-import androidx.recyclerview.widget.RecyclerView
 import com.rafaelduransaez.domain.Repository
+import com.rafaelduransaez.domain.RepositoryDetail
+import com.rafaelduransaez.githubrepositories.ui.loadUrl
 import com.rafaelduransaez.githubrepositories.ui.screen.RepositoryDetailedView
 import com.rafaelduransaez.githubrepositories.ui.screen.RepositorySimpleView
+
 
 @BindingAdapter("repository")
 fun RepositorySimpleView.setRepo(repository: Repository?) {
@@ -16,7 +20,7 @@ fun RepositorySimpleView.setRepo(repository: Repository?) {
 }
 
 @BindingAdapter("repository")
-fun RepositoryDetailedView.setRepo(repository: Repository?) {
+fun RepositoryDetailedView.setRepo(repository: RepositoryDetail?) {
     if (repository != null) {
         setRepo(repository)
     }
@@ -25,4 +29,16 @@ fun RepositoryDetailedView.setRepo(repository: Repository?) {
 @BindingAdapter("visible")
 fun View.setVisible(visible: Boolean) {
     visibility = if (visible == true) View.VISIBLE else View.GONE
+}
+
+@BindingAdapter("url")
+fun ImageView.bindUrl(url: String?) {
+    if (url != null) loadUrl(url)
+}
+
+@BindingAdapter("randomBackgroundColor")
+fun RepositorySimpleView.setRandomBackgroundColor(colorArray: IntArray?) {
+    colorArray?.random()?.let {
+        setBackgroundColor(it)
+    }
 }

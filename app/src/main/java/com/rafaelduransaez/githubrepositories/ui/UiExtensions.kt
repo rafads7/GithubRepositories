@@ -8,8 +8,19 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.DiffUtil
 import com.bumptech.glide.Glide
+import com.google.gson.Gson
+import com.google.gson.JsonParseException
+import com.rafaelduransaez.domain.Error
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.launch
+import retrofit2.HttpException
+import java.io.IOException
 
 fun Context.toast(message: String, lenght: Int = Toast.LENGTH_LONG) {
     Toast.makeText(this, message, lenght).show()
@@ -47,4 +58,25 @@ inline fun <T : Any> basicDiffUtil(
 
     override fun areContentsTheSame(oldItem: T, newItem: T): Boolean =
         areContentsTheSame(oldItem, newItem)
+}
+
+fun LifecycleOwner.launchWhenStarted(
+    block: () -> Unit) {
+    lifecycleScope.launch {
+        repeatOnLifecycle(Lifecycle.State.STARTED) {
+            block()
+        }
+    }
+}
+
+fun <T> LifecycleOwner.launchAndCollect(
+    flow: Flow<T>,
+    state: Lifecycle.State = Lifecycle.State.STARTED,
+    body: (T) -> Unit
+) {
+    lifecycleScope.launch {
+        this@launchAndCollect.repeatOnLifecycle(state) {
+            flow.collect(body)
+        }
+    }
 }
