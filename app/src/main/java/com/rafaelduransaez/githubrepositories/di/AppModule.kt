@@ -9,6 +9,7 @@ import com.rafaelduransaez.githubrepositories.GithubRepositoriesApp
 import com.rafaelduransaez.githubrepositories.R
 import com.rafaelduransaez.githubrepositories.framework.database.GithubReposDatabase
 import com.rafaelduransaez.githubrepositories.framework.database.entities.RepoEntity
+import com.rafaelduransaez.githubrepositories.framework.database.entities.RepoUser
 import com.rafaelduransaez.githubrepositories.framework.mediator.ReposRemoteMediator
 import com.rafaelduransaez.githubrepositories.framework.remote.RepositoriesService
 import com.rafaelduransaez.githubrepositories.utils.Constants
@@ -76,7 +77,7 @@ object AppModule {
         Pager(
             config = PagingConfig(RepositoriesService.per_page.toInt()),
             remoteMediator = ReposRemoteMediator(database, apiService),
-            pagingSourceFactory = { database.reposDao().pagingSource() }
+            pagingSourceFactory = { database.reposDao().pagingRepos() }
         )
 
 
@@ -91,6 +92,7 @@ object AppModule {
     @Provides
     @Singleton
     fun provideGithubReposDao(db: GithubReposDatabase) = db.reposDao()
+
 
     @ColorArray
     @Provides

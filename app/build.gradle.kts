@@ -76,6 +76,7 @@ android {
 
 dependencies {
 
+    implementation("androidx.palette:palette-ktx:1.0.0")
     val navVersion = "2.7.5"
     val lifecycleVersion = "2.6.2"
     val hiltVersion = "2.48"

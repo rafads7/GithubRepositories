@@ -1,7 +1,7 @@
 package com.rafaelduransaez.githubrepositories.di
 
 import androidx.lifecycle.SavedStateHandle
-import com.rafaelduransaez.githubrepositories.ui.screen.RepositoryDetailFragmentArgs
+import com.rafaelduransaez.githubrepositories.ui.screen.detail.RepositoryDetailFragmentArgs
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

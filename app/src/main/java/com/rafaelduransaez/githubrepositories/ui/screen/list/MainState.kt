@@ -1,4 +1,4 @@
-package com.rafaelduransaez.githubrepositories.ui.screen
+package com.rafaelduransaez.githubrepositories.ui.screen.list
 
 import android.content.Context
 import androidx.fragment.app.Fragment

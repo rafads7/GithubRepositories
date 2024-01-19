@@ -1,4 +1,4 @@
-package com.rafaelduransaez.githubrepositories.ui.screen
+package com.rafaelduransaez.githubrepositories.ui.screen.list
 
 import android.os.Bundle
 import android.view.View
@@ -11,14 +11,12 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.paging.LoadState
 import com.rafaelduransaez.githubrepositories.R
 import com.rafaelduransaez.githubrepositories.databinding.FragmentRepositoriesBinding
-import com.rafaelduransaez.githubrepositories.di.ColorArray
 import com.rafaelduransaez.githubrepositories.ui.adapters.PagedReposAdapter
 import com.rafaelduransaez.githubrepositories.ui.adapters.ReposLoadStateAdapter
 import com.rafaelduransaez.githubrepositories.ui.toast
 import com.rafaelduransaez.githubrepositories.utils.toError
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class RepositoriesFragment : Fragment(R.layout.fragment_repositories) {

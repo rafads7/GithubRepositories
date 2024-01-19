@@ -7,5 +7,5 @@ data class RepositoryDetail(
     val forksCount: Int = 0,
     val language: String = "",
     val url: String,
-    val userPic: String ?= null
+    val owner: UserDetail
 )

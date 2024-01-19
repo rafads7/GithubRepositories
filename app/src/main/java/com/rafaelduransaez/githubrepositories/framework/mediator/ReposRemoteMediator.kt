@@ -12,6 +12,7 @@ import com.rafaelduransaez.githubrepositories.framework.database.entities.Remote
 import com.rafaelduransaez.githubrepositories.framework.database.entities.RepoEntity
 import com.rafaelduransaez.githubrepositories.framework.remote.RepositoriesService
 import com.rafaelduransaez.githubrepositories.utils.toRepoEntity
+import com.rafaelduransaez.githubrepositories.utils.toUserEntity
 import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
@@ -23,6 +24,7 @@ class ReposRemoteMediator @Inject constructor(
 ) : RemoteMediator<Int, RepoEntity>() {
 
     private val reposDao = database.reposDao()
+    private val usersDao = database.usersDao()
     private val remoteKeyDao = database.remoteKeyDao()
 
     override suspend fun load(loadType: LoadType, state: PagingState<Int, RepoEntity>)
@@ -68,6 +70,7 @@ class ReposRemoteMediator @Inject constructor(
 
             val apiResponse = apiService.bestRatedRepos(page) //state.config.pageSize
             val repos = apiResponse.repos.map { it.toRepoEntity() }
+            val users = apiResponse.repos.distinctBy { it.owner.id }.map { it.owner.toUserEntity() }
 
             // We use withTransaction in order to assure all previous transactions
             // before each transaction are executed successfully.
@@ -75,6 +78,7 @@ class ReposRemoteMediator @Inject constructor(
                 if (loadType == LoadType.REFRESH) {
                     remoteKeyDao.clearAll()
                     reposDao.clearAll()
+                    usersDao.clearAll()
                 }
 
                 // Insert new repos into database, which invalidates the
@@ -86,6 +90,7 @@ class ReposRemoteMediator @Inject constructor(
                     RemoteKey(repoId = it.id, prevKey = prevKey, nextKey = nextKey)
                 }
 
+                usersDao.upsert(users)
                 reposDao.upsert(repos)
                 remoteKeyDao.upsert(keys)
             }

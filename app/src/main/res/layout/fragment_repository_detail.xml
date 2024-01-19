@@ -4,6 +4,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
+
+        <variable
+            name="state"
+            type="com.rafaelduransaez.githubrepositories.ui.screen.detail.DetailState" />
         <variable
             name="repo"
             type="com.rafaelduransaez.domain.RepositoryDetail" />
@@ -23,6 +27,7 @@
                 android:fitsSystemWindows="true">
 
                 <com.google.android.material.appbar.CollapsingToolbarLayout
+                    android:id="@+id/collapsingToolbarLayout"
                     android:layout_width="match_parent"
                     android:layout_height="250dp"
                     app:contentScrim="?attr/colorPrimary"
@@ -36,11 +41,12 @@
                         android:fitsSystemWindows="true"
                         android:scaleType="centerCrop"
                         app:layout_collapseMode="parallax"
-                        app:url="@{repo.userPic}"
+                        app:imageUrl="@{repo.owner.avatarUrl}"
+                        app:collapsingToolbarLayout="@{collapsingToolbarLayout}"
                         tools:src="@mipmap/ic_launcher" />
 
                     <androidx.appcompat.widget.Toolbar
-                        android:id="@+id/repo_detail_toolbar"
+                        android:id="@+id/toolbar"
                         android:layout_width="match_parent"
                         android:layout_height="?attr/actionBarSize"
                         app:navigationIcon="@drawable/ic_back"
@@ -61,7 +67,7 @@
                     android:orientation="vertical"
                     android:transitionGroup="true">
 
-                    <com.rafaelduransaez.githubrepositories.ui.screen.RepositoryDetailedView
+                    <com.rafaelduransaez.githubrepositories.ui.screen.detail.RepositoryDetailedView
                         android:id="@+id/repository"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -73,20 +79,19 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:repository="@{repo}"/>
 
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/action_button"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        android:layout_margin="16dp"
-                        android:backgroundTint="@color/purple_700"
-                        android:text="@string/str_go_to_github" />
-
                 </LinearLayout>
 
             </androidx.core.widget.NestedScrollView>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/action_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_margin="16dp"
+                android:backgroundTint="@color/purple_700"
+                app:onClick="@{() -> state.navigateToGithub(repo.url)}"
+                android:text="@string/str_go_to_github" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/repo_detail_favorite"

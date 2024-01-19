@@ -1,5 +1,6 @@
 package com.rafaelduransaez.githubrepositories.framework.remote
 
+import com.rafaelduransaez.githubrepositories.framework.remote.entities.RemoteReposResult
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -14,5 +15,6 @@ interface RepositoriesService {
 
     @GET("search/repositories?q=stars:>0&sort=stars&order=desc&per_page=$per_page")
     suspend fun bestRatedRepos(@Query("page") page: Int): RemoteReposResult
+
 }
 

@@ -1,4 +1,4 @@
-package com.rafaelduransaez.githubrepositories.ui.screen
+package com.rafaelduransaez.githubrepositories.ui.screen.detail
 
 
 import android.content.Context
@@ -6,7 +6,6 @@ import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.text.bold
 import androidx.core.text.buildSpannedString
-import com.rafaelduransaez.domain.Repository
 import com.rafaelduransaez.domain.RepositoryDetail
 
 class RepositoryDetailedView @JvmOverloads constructor(
@@ -18,8 +17,8 @@ class RepositoryDetailedView @JvmOverloads constructor(
     fun setRepo(repo: RepositoryDetail) = repo.apply {
         text = buildSpannedString {
 
-            bold { append("Name: ") }
-            appendLine(name)
+            bold { append("User name: ") }
+            appendLine(owner.userName)
 
             bold { append("Description: ") }
             appendLine(description)

@@ -1,4 +1,4 @@
-package com.rafaelduransaez.githubrepositories.framework.remote
+package com.rafaelduransaez.githubrepositories.framework.remote.entities
 
 import com.google.gson.annotations.SerializedName
 
@@ -66,7 +66,7 @@ data class RemoteRepo(
     val notifications_url: String,
     val open_issues: Int,
     val open_issues_count: Int,
-    val owner: Owner,
+    val owner: RemoteOwner,
     val private: Boolean,
     val pulls_url: String,
     val pushed_at: String,
@@ -100,8 +100,8 @@ data class License(
     val url: String
 )
 
-data class Owner(
-    val avatar_url: String,
+data class RemoteOwner(
+    @SerializedName("avatar_url") val avatarUrl: String,
     val events_url: String,
     val followers_url: String,
     val following_url: String,

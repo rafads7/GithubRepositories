@@ -12,5 +12,6 @@ data class RepoEntity(
     val starsCount: Int = 0,
     val forksCount: Int = 0,
     @ColumnInfo(defaultValue = "") val language: String,
-    @ColumnInfo(defaultValue = "") val url: String
+    @ColumnInfo(defaultValue = "") val url: String,
+    val ownerId: Int
 )

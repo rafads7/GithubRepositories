@@ -1,4 +1,4 @@
-package com.rafaelduransaez.githubrepositories.ui.screen
+package com.rafaelduransaez.githubrepositories.ui.screen.detail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

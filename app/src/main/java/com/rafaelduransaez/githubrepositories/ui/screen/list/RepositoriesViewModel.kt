@@ -1,11 +1,10 @@
-package com.rafaelduransaez.githubrepositories.ui.screen
+package com.rafaelduransaez.githubrepositories.ui.screen.list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.rafaelduransaez.domain.Repository
-import com.rafaelduransaez.usecases.GetBestRatedReposUseCase
 import com.rafaelduransaez.usecases.GetPagedBestRatedReposUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers

@@ -3,13 +3,14 @@ package com.rafaelduransaez.githubrepositories.utils
 import com.rafaelduransaez.domain.Error
 import com.rafaelduransaez.domain.Repository
 import com.rafaelduransaez.domain.RepositoryDetail
+import com.rafaelduransaez.domain.UserDetail
 import com.rafaelduransaez.githubrepositories.framework.database.entities.RepoEntity
-import com.rafaelduransaez.githubrepositories.framework.remote.RemoteRepo
+import com.rafaelduransaez.githubrepositories.framework.database.entities.RepoUser
+import com.rafaelduransaez.githubrepositories.framework.database.entities.UserEntity
+import com.rafaelduransaez.githubrepositories.framework.remote.entities.RemoteOwner
+import com.rafaelduransaez.githubrepositories.framework.remote.entities.RemoteRepo
 import retrofit2.HttpException
 import java.io.IOException
-
-fun RemoteRepo.toRepository() =
-    Repository(id, name, description ?: "", stargazers_count, forks_count, language ?: "")
 
 fun RemoteRepo.toRepoEntity() =
     RepoEntity(name = name,
@@ -17,14 +18,20 @@ fun RemoteRepo.toRepoEntity() =
         starsCount = stargazers_count,
         forksCount = forks_count,
         language = language ?: "",
-        url = url
+        url = html_url,
+        ownerId = owner.id
     )
+
+fun RemoteOwner.toUserEntity() = UserEntity(id, avatarUrl, login, repos_url, type, url)
 
 fun RepoEntity.toRepository() =
     Repository(id, name, description ?: "", starsCount, forksCount, language ?: "")
 
-fun RepoEntity.toRepoDetail() =
-    RepositoryDetail(name, description ?: "", starsCount, forksCount, language ?: "", url ?: "")
+fun RepoUser.toRepositoryDetail() = RepositoryDetail(
+    repo.name, repo.description, repo.starsCount, repo.forksCount, repo.language, repo.url,
+    UserDetail(user.userName, user.avatarUrl)
+)
+
 
 fun String.truncate(limit: Int): String {
     return if (length > limit) {
