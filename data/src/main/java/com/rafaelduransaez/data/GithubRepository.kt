@@ -12,8 +12,10 @@ class GithubRepository @Inject constructor(
 ) {
     suspend fun getPagedBestRatedRepositories() = mediatorDataSource.reposPager()
 
-    fun getRepoDetailById(id: Int): Flow<RepositoryDetail> {
-        return localDataSource.getRepoDetailById(id)
-    }
+    fun getRepoDetailById(id: Int) =
+        localDataSource.getRepoDetailById(id)
+
+    suspend fun updateFavRepo(repo: RepositoryDetail) =
+        localDataSource.updateFavRepo(repo)
 
 }

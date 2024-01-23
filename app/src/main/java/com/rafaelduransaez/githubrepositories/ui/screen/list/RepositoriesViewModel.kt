@@ -1,5 +1,6 @@
 package com.rafaelduransaez.githubrepositories.ui.screen.list
 
+import android.view.View
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData

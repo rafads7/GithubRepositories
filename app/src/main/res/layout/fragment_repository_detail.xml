@@ -11,6 +11,9 @@
         <variable
             name="repo"
             type="com.rafaelduransaez.domain.RepositoryDetail" />
+        <variable
+            name="error"
+            type="com.rafaelduransaez.domain.Error" />
     </data>
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -59,13 +62,8 @@
             <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                app:visible="@{error == null}"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:transitionGroup="true">
 
                     <com.rafaelduransaez.githubrepositories.ui.screen.detail.RepositoryDetailedView
                         android:id="@+id/repository"
@@ -79,8 +77,6 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:repository="@{repo}"/>
 
-                </LinearLayout>
-
             </androidx.core.widget.NestedScrollView>
 
             <com.google.android.material.button.MaterialButton
@@ -90,16 +86,26 @@
                 android:layout_gravity="bottom|end"
                 android:layout_margin="16dp"
                 android:backgroundTint="@color/purple_700"
+                android:enabled="@{error == null &amp;&amp; repo != null &amp;&amp; !repo.url.isEmpty}"
                 app:onClick="@{() -> state.navigateToGithub(repo.url)}"
                 android:text="@string/str_go_to_github" />
 
+            <com.rafaelduransaez.githubrepositories.ui.common.ErrorLayoutView
+                android:id="@+id/errorView"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:visible="@{error != null}"
+                app:error_message="@{state.errorToMessage(error)}"/>
+
             <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/repo_detail_favorite"
+                android:id="@+id/fav_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:src="@drawable/ic_back"
+                android:src="@{repo.favourite ? @drawable/ic_fav : @drawable/ic_no_fav}"
                 app:layout_anchor="@id/appBarLayout"
+                app:visible="@{error == null}"
                 app:layout_anchorGravity="bottom|end"/>
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -30,8 +30,20 @@ interface ReposDao {
     @Query("SELECT * FROM repositories WHERE id = :id")
     fun getRepoDetail(id: Int): Flow<RepoUser>
 
+    /*
+    @Query("SELECT * FROM repositories WHERE id = :id")
+    fun getRepoDetail(id: Int): Flow<RepoEntity>
+     */
+
     @Query("DELETE FROM repositories")
     fun clearAll(): Int
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun upsert(repos: List<RepoEntity>): List<Long>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun upsert(repos: RepoEntity): Long
+
+    @Query("UPDATE repositories SET favourite = :favourite WHERE id = :id")
+    suspend fun update(id: Int, favourite: Boolean): Int
 }

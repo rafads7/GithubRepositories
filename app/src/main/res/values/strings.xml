@@ -4,7 +4,10 @@
     <string name="str_alt_retry">RETRY</string>
     <string name="str_unexpected_error">Unexpected error.</string>
     <string name="str_no_results">No results found.</string>
-    <string name="connection_error">Connection error.</string>
-    <string name="server_error">"Server error: %1$d"</string>
-    <string name="unknown_error">"Unknown error: %1$s"</string>
+    <string name="str_connection_error">Connection error.</string>
+    <string name="str_server_error">"Server error: %1$d"</string>
+    <string name="str_unknown_error">"Unknown error: %1$s"</string>
+    <string name="str_database_error">Error querying database.</string>
+    <string name="str_error_updating_fav">Unexpected error: could not update favourite property.</string>
+    <string name="str_error_reason">"Error reason: %1$s"</string>
 </resources>

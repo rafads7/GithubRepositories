@@ -1,4 +1,4 @@
-package com.rafaelduransaez.githubrepositories.ui.adapters
+package com.rafaelduransaez.githubrepositories.ui.screen.list
 
 import android.view.View
 import android.view.ViewGroup

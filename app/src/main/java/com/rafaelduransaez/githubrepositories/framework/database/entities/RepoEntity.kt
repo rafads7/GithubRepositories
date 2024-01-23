@@ -13,5 +13,6 @@ data class RepoEntity(
     val forksCount: Int = 0,
     @ColumnInfo(defaultValue = "") val language: String,
     @ColumnInfo(defaultValue = "") val url: String,
-    val ownerId: Int
+    val ownerId: Int,
+    val favourite: Boolean = false
 )

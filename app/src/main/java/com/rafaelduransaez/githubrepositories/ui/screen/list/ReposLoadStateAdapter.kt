@@ -1,4 +1,4 @@
-package com.rafaelduransaez.githubrepositories.ui.adapters
+package com.rafaelduransaez.githubrepositories.ui.screen.list
 
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.rafaelduransaez.githubrepositories.R
 import com.rafaelduransaez.githubrepositories.databinding.ReposLoadStateFooterViewItemBinding
 import com.rafaelduransaez.githubrepositories.ui.inflate
-import com.rafaelduransaez.githubrepositories.ui.screen.list.MainState
 import com.rafaelduransaez.githubrepositories.utils.toError
 
 class ReposLoadStateAdapter(

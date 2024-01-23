@@ -7,6 +7,7 @@ import com.rafaelduransaez.domain.RepositoryDetail
 import com.rafaelduransaez.githubrepositories.di.RepoId
 import com.rafaelduransaez.githubrepositories.utils.toError
 import com.rafaelduransaez.usecases.GetRepoDetailByIdUseCase
+import com.rafaelduransaez.usecases.UpdateFavReposUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -19,7 +20,8 @@ import javax.inject.Inject
 @HiltViewModel
 class RepositoryDetailViewModel @Inject constructor(
     @RepoId private val repoId: Int,
-    private val getRepoDetailByIdUseCase: GetRepoDetailByIdUseCase
+    getRepoDetailByIdUseCase: GetRepoDetailByIdUseCase,
+    private val updateFavReposUseCase: UpdateFavReposUseCase
 ): ViewModel() {
 
     private val _state = MutableStateFlow(UiState())
@@ -28,11 +30,23 @@ class RepositoryDetailViewModel @Inject constructor(
     init {
         viewModelScope.launch {
             getRepoDetailByIdUseCase(repoId)
-                .catch { t -> _state.update { UiState(error = t.toError()) } }
-                .collect { repo -> _state.update { UiState(repo) }}
+                .catch { t -> _state.update { it.copy(error = t.toError()) } }
+                .collect { repo -> _state.update { UiState(repo = repo) }}
         }
     }
 
-    data class UiState(val repo: RepositoryDetail? = null, val error: Error? = null)
+    fun onFavButtonClicked() {
+        _state.value.repo?.let { repo ->
+            viewModelScope.launch {
+                val error = updateFavReposUseCase(repo.copy(favourite = !repo.favourite))
+                _state.update { state -> state.copy(actionError = error) }
+            }
+        }
+    }
+
+    data class UiState(
+        val repo: RepositoryDetail? = null,
+        val error: Error? = null,
+        val actionError: Error? = null)
 
 }
