@@ -31,6 +31,7 @@ fun RepoEntity.toRepository() =
 
 fun RepoUser.toRepositoryDetail() = RepositoryDetail(
     repo.id, repo.name, repo.description, repo.starsCount, repo.forksCount, repo.language, repo.url,
+    favourite = repo.favourite,
     owner = UserDetail(user.userName, user.avatarUrl)
 )
 
