@@ -10,4 +10,10 @@
     <string name="str_database_error">Error querying database.</string>
     <string name="str_error_updating_fav">Unexpected error: could not update favourite property.</string>
     <string name="str_error_reason">"Error reason: %1$s"</string>
+    <string name="title_activity_github_repositories_compose">GithubRepositoriesComposeActivity
+    </string>
+    <string name="str_loading">Loading</string>
+    <string name="str_all">All</string>
+    <string name="str_favourites">Favourites</string>
+    <string name="str_best_rated_repos">Best rated repos</string>
 </resources>

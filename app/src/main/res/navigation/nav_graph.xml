@@ -21,7 +21,7 @@
         tools:layout="@layout/fragment_repository_detail">
         <argument
             android:name="repoId"
-            android:defaultValue="0"
+            android:defaultValue="-1"
             app:argType="integer" />
 
     </fragment>

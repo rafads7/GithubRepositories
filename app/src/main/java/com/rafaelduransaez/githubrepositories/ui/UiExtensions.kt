@@ -7,16 +7,22 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.annotation.LayoutRes
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.paging.compose.LazyPagingItems
 import androidx.recyclerview.widget.DiffUtil
 import com.bumptech.glide.Glide
 import com.google.gson.Gson
 import com.google.gson.JsonParseException
 import com.rafaelduransaez.domain.Error
+import com.rafaelduransaez.domain.Repository
+import com.rafaelduransaez.githubrepositories.ui.compose.ui.components.MAX_CHAR
+import com.rafaelduransaez.githubrepositories.utils.truncate
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
@@ -61,7 +67,8 @@ inline fun <T : Any> basicDiffUtil(
 }
 
 fun LifecycleOwner.launchWhenStarted(
-    block: () -> Unit) {
+    block: () -> Unit
+) {
     lifecycleScope.launch {
         repeatOnLifecycle(Lifecycle.State.STARTED) {
             block()
@@ -80,3 +87,21 @@ fun <T> LifecycleOwner.launchAndCollect(
         }
     }
 }
+
+fun <T: Any> LazyPagingItems<T>.isEmpty() = itemCount == 0
+
+fun Repository.toAnnotatedString(maxChar: Int = MAX_CHAR) = buildAnnotatedString {
+        append("ID: ")
+        appendLine(id.toString())
+
+        append("Name: ")
+        appendLine(name)
+
+        append("Description: ")
+        appendLine(description.truncate(maxChar))
+
+        //withStyle(style = MaterialTheme.typography.h6.toSpanStyle()) {
+        append("Number of stars: ")
+        //}
+        append(starsCount.toString())
+    }

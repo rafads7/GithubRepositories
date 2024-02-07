@@ -35,7 +35,6 @@ fun RepoUser.toRepositoryDetail() = RepositoryDetail(
     owner = UserDetail(user.userName, user.avatarUrl)
 )
 
-
 fun String.truncate(limit: Int): String {
     return if (length > limit) {
         substring(0, limit - 1) + "..."

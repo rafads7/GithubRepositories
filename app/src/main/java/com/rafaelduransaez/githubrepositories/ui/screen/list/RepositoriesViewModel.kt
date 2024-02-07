@@ -25,16 +25,28 @@ class RepositoriesViewModel @Inject constructor(
     private var _state: MutableStateFlow<UiState> = MutableStateFlow(UiState(loading = true))
     val state: StateFlow<UiState> = _state.asStateFlow()
 
+    private var _data: MutableStateFlow<PagingData<Repository>> =
+        MutableStateFlow(PagingData.empty())
+    val data: StateFlow<PagingData<Repository>> = _data.asStateFlow()
+
     init {
         viewModelScope.launch(Dispatchers.IO) {
             _state.value = UiState(loading = true)
-            getPagedBestRatedReposUseCase().cachedIn(viewModelScope)
-                .catch { _state.update {
-                    it.copy(error = true, loading = false) }
+            getPagedBestRatedReposUseCase()
+                .cachedIn(viewModelScope)
+                .catch {
+                    _state.update {
+                        it.copy(error = true, loading = false)
+                    }
                 }
                 .collect { repos ->
-                    _state.update { it.copy(dataSource = repos,
-                        loading = false, error = false) }
+                    _state.update {
+                        it.copy(
+                            dataSource = repos,
+                            loading = false, error = false
+                        )
+                    }
+                    _data.update { repos }
                 }
         }
     }

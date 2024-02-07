@@ -70,7 +70,7 @@ class RepositoriesFragment : Fragment(R.layout.fragment_repositories) {
                         loadState.source.refresh is LoadState.NotLoading ||
                                 loadState.mediator?.refresh is LoadState.NotLoading
 
-                    // Show loading spinner during initial load or refresh.
+                    // DONE Show loading spinner during initial load or refresh.
                     progressBar.isVisible = loadState.mediator?.refresh is LoadState.Loading
 
                     // Toast on any error, regardless of whether it came from RemoteMediator or Paging
