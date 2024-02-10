@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 
 @Entity("favourite_repo")
 data class FavouriteRepoEntity(
-    @PrimaryKey(autoGenerate = true) val id: Int = 0,
+    @PrimaryKey @ColumnInfo(defaultValue = "0") val githubId: Int = 0,
     @ColumnInfo(defaultValue = "") val name: String,
     @ColumnInfo(defaultValue = "") val description: String,
     val starsCount: Int = 0,

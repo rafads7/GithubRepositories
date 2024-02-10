@@ -4,6 +4,7 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
+import androidx.room.Transaction
 import androidx.room.withTransaction
 import com.google.gson.Gson
 import com.rafaelduransaez.domain.Error
@@ -91,7 +92,8 @@ class ReposRemoteMediator @Inject constructor(
                 }
 
                 usersDao.upsert(users)
-                reposDao.upsert(repos)
+                //reposDao.upsert(repos)
+                insertOrUpdateReposWithFavorites(repos)
                 remoteKeyDao.upsert(keys)
             }
 
@@ -104,6 +106,14 @@ class ReposRemoteMediator @Inject constructor(
         } catch (e: HttpException) {
             MediatorResult.Error(e)
         }
+    }
+
+    @Transaction
+    suspend fun insertOrUpdateReposWithFavorites(repos: List<RepoEntity>) {
+        // Insert all repositories
+        reposDao.upsert(repos)
+        // Update favorite status based on the existence in the favorite_repo table
+        reposDao.updateFavoriteStatus(repos.map { it.githubId })
     }
 
     private suspend fun getRemoteKeyForLastItem(state: PagingState<Int, RepoEntity>): RemoteKey? {

@@ -6,5 +6,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface RepositoriesMediatorDataSource
 {
-    suspend fun reposPager(): Flow<PagingData<Repository>>
+    fun reposPager(): Flow<PagingData<Repository>>
 }

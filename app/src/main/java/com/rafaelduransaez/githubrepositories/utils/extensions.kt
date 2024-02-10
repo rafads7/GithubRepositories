@@ -6,6 +6,7 @@ import com.rafaelduransaez.domain.Repository
 import com.rafaelduransaez.domain.RepositoryDetail
 import com.rafaelduransaez.domain.UserDetail
 import com.rafaelduransaez.githubrepositories.R
+import com.rafaelduransaez.githubrepositories.framework.database.entities.FavouriteRepoEntity
 import com.rafaelduransaez.githubrepositories.framework.database.entities.RepoEntity
 import com.rafaelduransaez.githubrepositories.framework.database.entities.RepoUser
 import com.rafaelduransaez.githubrepositories.framework.database.entities.UserEntity
@@ -15,7 +16,9 @@ import retrofit2.HttpException
 import java.io.IOException
 
 fun RemoteRepo.toRepoEntity() =
-    RepoEntity(name = name,
+    RepoEntity(
+        name = name,
+        githubId = id,
         description = description ?: "",
         starsCount = stargazers_count,
         forksCount = forks_count,
@@ -27,7 +30,19 @@ fun RemoteRepo.toRepoEntity() =
 fun RemoteOwner.toUserEntity() = UserEntity(id, avatarUrl, login, repos_url, type, url)
 
 fun RepoEntity.toRepository() =
-    Repository(id, name, description ?: "", starsCount, forksCount, language ?: "")
+    Repository(id, name, description ?: "", starsCount, forksCount, language ?: "", favourite)
+
+fun RepoEntity.toFavouriteRepo() =
+    FavouriteRepoEntity(
+        githubId = githubId,
+        name = name,
+        description = description,
+        starsCount = starsCount,
+        forksCount = forksCount,
+        language = language,
+        url = url,
+        ownerId = ownerId
+    )
 
 fun RepoUser.toRepositoryDetail() = RepositoryDetail(
     repo.id, repo.name, repo.description, repo.starsCount, repo.forksCount, repo.language, repo.url,

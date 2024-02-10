@@ -7,5 +7,6 @@ import kotlinx.coroutines.flow.Flow
 interface GithubLocalDataSource {
 
     fun getRepoDetailById(id: Int): Flow<RepositoryDetail>
+    fun getFavouriteRepositories(): Flow<List<RepositoryDetail>>
     suspend fun updateFavRepo(repo: RepositoryDetail): Error?
 }

@@ -7,6 +7,7 @@ import androidx.room.PrimaryKey
 @Entity("repositories")
 data class RepoEntity(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
+    @ColumnInfo(defaultValue = "0") val githubId: Int = 0,
     @ColumnInfo(defaultValue = "") val name: String,
     @ColumnInfo(defaultValue = "") val description: String,
     val starsCount: Int = 0,

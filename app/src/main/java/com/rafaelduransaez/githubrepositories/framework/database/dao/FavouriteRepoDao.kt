@@ -17,4 +17,6 @@ interface FavouriteRepoDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun upsert(repo: FavouriteRepoEntity): Long
+    @Query("DELETE FROM favourite_repo WHERE githubId = :githubId")
+    suspend fun delete(githubId: Int): Int
 }

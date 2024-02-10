@@ -34,8 +34,8 @@ class RepositoriesFragment : Fragment(R.layout.fragment_repositories) {
 
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.state.collect {
-                    adapter.submitData(it.dataSource)
+                viewModel.bestRatedRepos.collect {
+                    adapter.submitData(it)
                 }
             }
         }

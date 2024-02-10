@@ -15,8 +15,7 @@ import javax.inject.Inject
 class GithubReposMediatorDataSource @Inject constructor(
     private val reposPager: Pager<Int, RepoEntity>
 ) : RepositoriesMediatorDataSource {
-    override suspend fun reposPager(): Flow<PagingData<Repository>> {
-        delay(2000)
+    override fun reposPager(): Flow<PagingData<Repository>> {
         return reposPager.flow.map { pagingData ->
             pagingData.map {
                 it.toRepository()

@@ -1,13 +1,15 @@
 package com.rafaelduransaez.githubrepositories.ui
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.annotation.LayoutRes
-import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
@@ -17,19 +19,21 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.paging.compose.LazyPagingItems
 import androidx.recyclerview.widget.DiffUtil
 import com.bumptech.glide.Glide
-import com.google.gson.Gson
-import com.google.gson.JsonParseException
-import com.rafaelduransaez.domain.Error
 import com.rafaelduransaez.domain.Repository
 import com.rafaelduransaez.githubrepositories.ui.compose.ui.components.MAX_CHAR
+import com.rafaelduransaez.githubrepositories.ui.compose.ui.components.Property
 import com.rafaelduransaez.githubrepositories.utils.truncate
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
-import retrofit2.HttpException
-import java.io.IOException
 
 fun Context.toast(message: String, lenght: Int = Toast.LENGTH_LONG) {
     Toast.makeText(this, message, lenght).show()
+}
+
+fun Context.navigateTo(url: String) {
+    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+    startActivity(intent)
 }
 
 fun Fragment.toast(message: String, lenght: Int = Toast.LENGTH_LONG) {
@@ -88,20 +92,27 @@ fun <T> LifecycleOwner.launchAndCollect(
     }
 }
 
-fun <T: Any> LazyPagingItems<T>.isEmpty() = itemCount == 0
+fun <T : Any> LazyPagingItems<T>.isEmpty() = itemCount == 0
+
+@Composable
+fun Repository.toComposableAnnotatedString(maxChar: Int = MAX_CHAR) = buildAnnotatedString {
+    Property(name = "Name", value = name)
+    Property(name = "Description", value = description.truncate(maxChar))
+    Property(name = "Stars count", value = starsCount.toString())
+}
 
 fun Repository.toAnnotatedString(maxChar: Int = MAX_CHAR) = buildAnnotatedString {
-        append("ID: ")
-        appendLine(id.toString())
+    append("ID: ")
+    appendLine(id.toString())
 
-        append("Name: ")
-        appendLine(name)
+    append("Name: ")
+    appendLine(name)
 
-        append("Description: ")
-        appendLine(description.truncate(maxChar))
+    append("Description: ")
+    appendLine(description.truncate(maxChar))
 
-        //withStyle(style = MaterialTheme.typography.h6.toSpanStyle()) {
-        append("Number of stars: ")
-        //}
-        append(starsCount.toString())
-    }
+    //withStyle(style = MaterialTheme.typography.h6.toSpanStyle()) {
+    append("Number of stars: ")
+    //}
+    append(starsCount.toString())
+}

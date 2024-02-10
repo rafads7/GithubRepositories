@@ -16,4 +16,6 @@
     <string name="str_all">All</string>
     <string name="str_favourites">Favourites</string>
     <string name="str_best_rated_repos">Best rated repos</string>
+    <string name="str_fav_repos">Favourite repositories</string>
+    <string name="str_repo_detail_title">%1$s</string>
 </resources>
