@@ -19,22 +19,30 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.paging.compose.LazyPagingItems
 import androidx.recyclerview.widget.DiffUtil
 import com.bumptech.glide.Glide
+import com.rafaelduransaez.domain.Error
 import com.rafaelduransaez.domain.Repository
-import com.rafaelduransaez.githubrepositories.ui.compose.ui.components.MAX_CHAR
 import com.rafaelduransaez.githubrepositories.ui.compose.ui.components.Property
+import com.rafaelduransaez.githubrepositories.ui.compose.ui.screens.MAX_CHAR
+import com.rafaelduransaez.githubrepositories.utils.toError
 import com.rafaelduransaez.githubrepositories.utils.truncate
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
+import java.lang.Exception
 
 fun Context.toast(message: String, lenght: Int = Toast.LENGTH_LONG) {
     Toast.makeText(this, message, lenght).show()
 }
 
-fun Context.navigateTo(url: String) {
-    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-    startActivity(intent)
-}
+fun Context.navigateTo(url: String): Error? =
+    try {
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        startActivity(intent)
+        null
+    } catch (e: Exception) {
+        e.toError()
+    }
+
 
 fun Fragment.toast(message: String, lenght: Int = Toast.LENGTH_LONG) {
     Toast.makeText(requireContext(), message, lenght).show()

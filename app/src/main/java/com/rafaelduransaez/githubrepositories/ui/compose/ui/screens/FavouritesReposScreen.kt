@@ -1,15 +1,19 @@
 package com.rafaelduransaez.githubrepositories.ui.compose.ui.screens
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Card
+import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -19,7 +23,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.rafaelduransaez.domain.RepositoryDetail
 import com.rafaelduransaez.githubrepositories.ui.compose.ui.components.toAnnotatedString
@@ -27,18 +30,30 @@ import com.rafaelduransaez.githubrepositories.ui.screen.list.RepositoriesViewMod
 
 @Composable
 fun FavouritesReposScreen(
+    minimizedGrid: Boolean = false,
     viewModel: RepositoriesViewModel = hiltViewModel(),
     onRepoClicked: (Int) -> Unit
 ) {
     val repos by viewModel.favRepos.collectAsState(initial = emptyList())
 
-    LazyColumn {
-        items(repos) {
-            FavRepoItem(it) { repoId ->
-                onRepoClicked(repoId)
+    AnimatedVisibility(visible = true,
+        enter = fadeIn() + slideInVertically(),
+        exit = fadeOut() + slideOutVertically()
+    ) {
+        LazyVerticalGrid(
+            columns = GridCells.Fixed(
+                if (minimizedGrid) 2 else 1
+            )
+        ) {
+            items(repos) {
+                FavRepoItem(it) { repoId ->
+                    onRepoClicked(repoId)
+                }
             }
         }
     }
+
+
 }
 
 @Composable
@@ -47,7 +62,7 @@ fun FavRepoItem(
     modifier: Modifier = Modifier,
     onRepoClicked: (Int) -> Unit
 ) {
-    Card(
+    ElevatedCard(
         modifier = modifier
             .padding(8.dp)
             .fillMaxWidth()

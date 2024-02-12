@@ -20,18 +20,22 @@ import javax.inject.Inject
 @HiltViewModel
 class RepositoryDetailViewModel @Inject constructor(
     @RepoId private val repoId: Int,
-    getRepoDetailByIdUseCase: GetRepoDetailByIdUseCase,
+    private val getRepoDetailByIdUseCase: GetRepoDetailByIdUseCase,
     private val updateFavReposUseCase: UpdateFavReposUseCase
-): ViewModel() {
+) : ViewModel() {
 
     private val _state = MutableStateFlow(UiState())
     val state: StateFlow<UiState> = _state.asStateFlow()
 
     init {
+        getRepository()
+    }
+
+    private fun getRepository() {
         viewModelScope.launch {
             getRepoDetailByIdUseCase(repoId)
                 .catch { t -> _state.update { it.copy(error = t.toError()) } }
-                .collect { repo -> _state.update { UiState(repo = repo) }}
+                .collect { repo -> _state.update { UiState(repo = repo) } }
         }
     }
 
@@ -44,9 +48,13 @@ class RepositoryDetailViewModel @Inject constructor(
         }
     }
 
+    fun onRetryClicked() {
+        getRepository()
+    }
+
     data class UiState(
         val repo: RepositoryDetail? = null,
         val error: Error? = null,
-        val actionError: Error? = null)
-
+        val actionError: Error? = null
+    )
 }

@@ -4,7 +4,11 @@ import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.GridView
+import androidx.compose.material.icons.filled.ListAlt
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -13,10 +17,16 @@ import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavDestination.Companion.hierarchy
@@ -29,6 +39,7 @@ import com.rafaelduransaez.domain.Repository
 import com.rafaelduransaez.githubrepositories.R
 import com.rafaelduransaez.githubrepositories.ui.compose.utils.Routes
 
+@OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun RepositoriesScaffold(
@@ -36,11 +47,19 @@ fun RepositoriesScaffold(
     repos: LazyPagingItems<Repository>,
     onAppNavigateTo: (String) -> Unit
 ) {
+    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
     val snackBarHostState = remember { SnackbarHostState() }
     val backStackEntryState by bottomNavBarController.currentBackStackEntryAsState()
+    var minimizeGrid by rememberSaveable { mutableStateOf(false) }
 
     Scaffold(
-        topBar = { TopReposAppBar() },
+        topBar = {
+            TopReposAppBar(scrollBehavior = scrollBehavior,
+                backStackEntryState = backStackEntryState,
+                minimizedGrid = minimizeGrid) {
+                minimizeGrid = !minimizeGrid
+            }
+        },
         snackbarHost = { SnackbarHost(snackBarHostState) },
         bottomBar = {
             BottomNavigationBar(navBackStackEntry = backStackEntryState) { route ->
@@ -52,7 +71,8 @@ fun RepositoriesScaffold(
                     restoreState = true
                 }
             }
-        }
+        },
+        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection)
     ) {
         Box(
             modifier = Modifier
@@ -62,6 +82,7 @@ fun RepositoriesScaffold(
             RepositoriesNavGraph(
                 bottomNavBarController = bottomNavBarController,
                 onAppNavigateTo = onAppNavigateTo,
+                minimizedGrid = minimizeGrid,
                 repos = repos
             )
         }
@@ -71,9 +92,28 @@ fun RepositoriesScaffold(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TopReposAppBar() {
+fun TopReposAppBar(
+    backStackEntryState: NavBackStackEntry?,
+    minimizedGrid: Boolean = false,
+    scrollBehavior: TopAppBarScrollBehavior,
+    onChangeGridSizeButtonClicked: () -> Unit
+) {
     TopAppBar(
-        title = { Text(text = stringResource(id = R.string.str_best_rated_repos)) })
+        title = { Text(text = stringResource(id = R.string.str_best_rated_repos)) },
+        actions = {
+            backStackEntryState?.let {
+                if (it.destination.route == Routes.FavouritesReposScreen.route)
+                    IconButton(onClick = { onChangeGridSizeButtonClicked() }) {
+                        IconComponent(
+                            imageVector =
+                            if (minimizedGrid) Icons.Default.ListAlt
+                            else Icons.Default.GridView
+                        )
+                    }
+            }
+        },
+        scrollBehavior = scrollBehavior
+    )
 }
 
 
@@ -86,8 +126,9 @@ fun BottomNavigationBar(
 ) {
 
     NavigationBar(
-        contentColor = MaterialTheme.colorScheme.primary,
         modifier = modifier,
+        contentColor = MaterialTheme.colorScheme.primary,
+        containerColor = MaterialTheme.colorScheme.surfaceVariant
     ) {
 
         val currentDestination = navBackStackEntry?.destination
@@ -99,7 +140,8 @@ fun BottomNavigationBar(
                 onClick = {
                     onBottomNavItemClicked(screen.route)
                 },
-                icon = { screen.icon?.let { IconComponent(imageVector = it) } })
+                icon = { screen.icon?.let { IconComponent(imageVector = it) } }
+            )
         }
     }
 }

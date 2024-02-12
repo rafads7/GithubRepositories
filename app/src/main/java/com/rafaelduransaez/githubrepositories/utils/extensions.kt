@@ -1,6 +1,9 @@
 package com.rafaelduransaez.githubrepositories.utils
 
+import android.content.ActivityNotFoundException
 import android.content.Context
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
 import com.rafaelduransaez.domain.Error
 import com.rafaelduransaez.domain.Repository
 import com.rafaelduransaez.domain.RepositoryDetail
@@ -61,6 +64,7 @@ fun String.truncate(limit: Int): String {
 fun Throwable.toError(): Error = when (this) {
     is IOException -> Error.Connection
     is HttpException -> Error.Server(code())
+    is ActivityNotFoundException -> Error.Activity
     else -> Error.Unknown(message ?: "")
 }
 
@@ -68,5 +72,15 @@ fun Error.toString(context: Context) = when (this) {
     is Error.Connection -> context.getString(R.string.str_connection_error)
     is Error.Server -> context.getString(R.string.str_server_error, code)
     is Error.Unknown -> context.getString(R.string.str_unknown_error, message)
+    is Error.Activity -> context.getString(R.string.str_activity_error)
     is Error.Database -> context.getString(R.string.str_database_error)
+}
+
+@Composable
+fun Error.toComposableString() = when (this) {
+    is Error.Connection -> stringResource(id = R.string.str_connection_error)
+    is Error.Server -> stringResource(id = R.string.str_server_error, code)
+    is Error.Unknown -> stringResource(id = R.string.str_unknown_error, message)
+    is Error.Activity -> stringResource(id = R.string.str_activity_error)
+    is Error.Database -> stringResource(id = R.string.str_database_error)
 }

@@ -1,7 +1,6 @@
 package com.rafaelduransaez.githubrepositories.ui.compose.ui.components
 
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -17,23 +16,22 @@ import com.rafaelduransaez.githubrepositories.ui.compose.ui.screens.RepoDetailSc
 import com.rafaelduransaez.githubrepositories.ui.compose.ui.screens.ReposListScreen
 import com.rafaelduransaez.githubrepositories.ui.compose.utils.NavArgs
 import com.rafaelduransaez.githubrepositories.ui.compose.utils.Routes
-import com.rafaelduransaez.githubrepositories.ui.navigateTo
 import com.rafaelduransaez.githubrepositories.ui.screen.list.RepositoriesViewModel
 
 @Composable
 fun AppNavGraph(
-    appNavController: NavHostController = rememberNavController()
+    appNavController: NavHostController = rememberNavController(),
+    reposViewModel: RepositoriesViewModel = hiltViewModel()
+
 ) {
-    val context = LocalContext.current
-    val viewModel: RepositoriesViewModel = hiltViewModel()
-    val repos = viewModel.bestRatedRepos.collectAsLazyPagingItems()
+    val repos = reposViewModel.bestRatedRepos.collectAsLazyPagingItems()
 
     NavHost(
         navController = appNavController,
-        startDestination = "main"
+        startDestination = Routes.ReposListScreen.route
     ) {
 
-        composable("main") {
+        composable(Routes.ReposListScreen.route) {
             RepositoriesScaffold(repos = repos) { route ->
                 appNavController.navigate(route)
             }
@@ -52,9 +50,6 @@ fun AppNavGraph(
                 actions = object : RepoDetailScreenNavActions {
                     override val onBackClicked: () -> Unit
                         get() = { appNavController.popBackStack() }
-                    override val onOpenRepoInBrowserButtonClicked: (String) -> Unit
-                        get() = { context.navigateTo(it) }
-
                 }
             )
         }
@@ -66,6 +61,7 @@ fun AppNavGraph(
 fun RepositoriesNavGraph(
     bottomNavBarController: NavHostController,
     repos: LazyPagingItems<Repository>,
+    minimizedGrid: Boolean = false,
     onAppNavigateTo: (String) -> Unit
 ) {
 
@@ -76,58 +72,18 @@ fun RepositoriesNavGraph(
         composable(Routes.ReposListScreen.route) {
             ReposListScreen(repos) { repoId ->
                 onAppNavigateTo(Routes.RepoDetailScreen.createRoute(repoId))
-                //bottomNavBarController.navigate(Routes.RepoDetailScreen.createRoute(repoId))
             }
         }
         composable(Routes.FavouritesReposScreen.route) {
-            FavouritesReposScreen() { repoId ->
+            FavouritesReposScreen(minimizedGrid) { repoId ->
                 onAppNavigateTo(Routes.RepoDetailScreen.createRoute(repoId))
-                //bottomNavBarController.navigate(Routes.RepoDetailScreen.createRoute(repoId))
             }
         }
-
-        /*composable(
-            Routes.RepoDetailScreen.route,
-            arguments = listOf(
-                navArgument(NavArgs.RepoId.key) {
-                    defaultValue = -1
-                    NavType.IntType
-                }
-            )
-        ) {
-            RepoDetailScreen(navController)
-        }*/
     }
 }
 
 
-/*
-@Composable
-fun MainNavGraph(
-    navController: NavHostController,
-    viewModel: RepositoriesViewModel = hiltViewModel()
-) {
-    val repos = viewModel.bestRatedRepos.collectAsLazyPagingItems()
-
-    NavHost(navController = navController, startDestination = Routes.ReposListScreen.route) {
-        composable(Routes.ReposListScreen.route) { ReposListScreen(navController, repos) }
-        composable(Routes.FavouritesReposScreen.route) { FavouritesReposScreen(navController) }
-        composable(
-            Routes.RepoDetailScreen.route,
-            arguments = listOf(
-                navArgument(NavArgs.RepoId.key) {
-                    defaultValue = -1
-                    NavType.IntType
-                }
-            )
-        ) {
-            RepoDetailScreen(navController)
-        }
-    }
-}*/
-
 interface RepoDetailScreenNavActions {
 
     val onBackClicked: () -> Unit
-    val onOpenRepoInBrowserButtonClicked: (String) -> Unit
 }
