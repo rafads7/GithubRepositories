@@ -39,7 +39,6 @@ fun AnnotatedString.Builder.Property(name: String, value: String, end: Boolean =
 
 @Composable
 fun RepositoryDetail.toAnnotatedString() = buildAnnotatedString {
-    Property(name = "Name", value = name)
     Property(name = "Description", value = description)
     Property(name = "Stars count", value = starsCount.toString())
     Property(name = "Forks count", value = forksCount.toString())

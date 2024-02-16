@@ -33,6 +33,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -179,11 +180,13 @@ fun LikeFloatingActionButton(
 
     FloatingActionButton(
         onClick = { onFabClicked() },
-        shape = ShapeDefaults.ExtraLarge
+        shape = ShapeDefaults.ExtraLarge,
+        modifier = Modifier.testTag("fab_like")
     ) {
         IconComponent(
             imageVector = imageVector,
             contentDescription = "Mark as favourite",
+            modifier = Modifier.testTag("fab_like_icon")
         )
     }
 }
