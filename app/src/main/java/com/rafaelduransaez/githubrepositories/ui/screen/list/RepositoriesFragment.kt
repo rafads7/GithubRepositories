@@ -11,6 +11,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.paging.LoadState
 import com.rafaelduransaez.githubrepositories.R
 import com.rafaelduransaez.githubrepositories.databinding.FragmentRepositoriesBinding
+import com.rafaelduransaez.githubrepositories.ui.launchAndCollect
 import com.rafaelduransaez.githubrepositories.ui.toast
 import com.rafaelduransaez.githubrepositories.utils.toError
 import dagger.hilt.android.AndroidEntryPoint

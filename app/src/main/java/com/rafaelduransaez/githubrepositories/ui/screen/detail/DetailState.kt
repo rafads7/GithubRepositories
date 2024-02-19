@@ -9,7 +9,6 @@ import com.rafaelduransaez.githubrepositories.ui.navigateTo
 import com.rafaelduransaez.githubrepositories.ui.toast
 import com.rafaelduransaez.githubrepositories.utils.toString
 
-
 fun Fragment.buildDetailState() = DetailState(requireContext())
 
 class DetailState(

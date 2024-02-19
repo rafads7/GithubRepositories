@@ -8,6 +8,9 @@
       <entry key="compose">
         <State />
       </entry>
+      <entry key="testIconChangesOnFavButtonClicked()">
+        <State />
+      </entry>
     </value>
   </component>
 </project>

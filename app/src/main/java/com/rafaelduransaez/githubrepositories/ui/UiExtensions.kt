@@ -10,7 +10,6 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
@@ -28,7 +27,6 @@ import com.rafaelduransaez.githubrepositories.utils.toError
 import com.rafaelduransaez.githubrepositories.utils.truncate
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
-import java.lang.Exception
 
 fun Context.toast(message: String, lenght: Int = Toast.LENGTH_LONG) {
     Toast.makeText(this, message, lenght).show()
@@ -111,8 +109,6 @@ fun Repository.toComposableAnnotatedString(maxChar: Int = MAX_CHAR) = buildAnnot
 }
 
 fun Repository.toAnnotatedString(maxChar: Int = MAX_CHAR) = buildAnnotatedString {
-    append("ID: ")
-    appendLine(id.toString())
 
     append("Name: ")
     appendLine(name)

@@ -37,7 +37,6 @@ class ReposLoadStateAdapter(
 
         fun bind(loadState: LoadState) {
             if (loadState is LoadState.Error) {
-                //binding.errorMsg.text = mainState.throwableToStringError(loadState.error)
                 binding.errorMsg.text = mainState.errorToMessage(loadState.error.toError())
             }
             binding.progressBar.isVisible = loadState is LoadState.Loading
