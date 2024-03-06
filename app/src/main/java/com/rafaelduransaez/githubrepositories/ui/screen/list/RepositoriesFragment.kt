@@ -11,6 +11,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.paging.LoadState
 import com.rafaelduransaez.githubrepositories.R
 import com.rafaelduransaez.githubrepositories.databinding.FragmentRepositoriesBinding
+import com.rafaelduransaez.githubrepositories.ui.launchAndCollect
 import com.rafaelduransaez.githubrepositories.ui.toast
 import com.rafaelduransaez.githubrepositories.utils.toError
 import dagger.hilt.android.AndroidEntryPoint
@@ -34,8 +35,8 @@ class RepositoriesFragment : Fragment(R.layout.fragment_repositories) {
 
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.state.collect {
-                    adapter.submitData(it.dataSource)
+                viewModel.bestRatedRepos.collect {
+                    adapter.submitData(it)
                 }
             }
         }
@@ -70,7 +71,7 @@ class RepositoriesFragment : Fragment(R.layout.fragment_repositories) {
                         loadState.source.refresh is LoadState.NotLoading ||
                                 loadState.mediator?.refresh is LoadState.NotLoading
 
-                    // Show loading spinner during initial load or refresh.
+                    // DONE Show loading spinner during initial load or refresh.
                     progressBar.isVisible = loadState.mediator?.refresh is LoadState.Loading
 
                     // Toast on any error, regardless of whether it came from RemoteMediator or Paging

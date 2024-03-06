@@ -30,10 +30,9 @@ interface ReposDao {
     @Query("SELECT * FROM repositories WHERE id = :id")
     fun getRepoDetail(id: Int): Flow<RepoUser>
 
-    /*
-    @Query("SELECT * FROM repositories WHERE id = :id")
-    fun getRepoDetail(id: Int): Flow<RepoEntity>
-     */
+    @Transaction
+    @Query("SELECT * FROM repositories WHERE favourite = 1")
+    fun getFavouriteRepos(): Flow<List<RepoUser>>
 
     @Query("DELETE FROM repositories")
     fun clearAll(): Int
@@ -46,4 +45,18 @@ interface ReposDao {
 
     @Query("UPDATE repositories SET favourite = :favourite WHERE id = :id")
     suspend fun update(id: Int, favourite: Boolean): Int
+
+    @Query(
+        """
+        UPDATE repositories
+        SET favourite = 
+            (CASE WHEN EXISTS 
+            (SELECT 1 FROM favourite_repo fav 
+                WHERE repositories.githubId = fav.githubId AND fav.githubId IN (:reposGithubIds))
+            THEN 1 ELSE 0 END) 
+        WHERE githubId IN (:reposGithubIds)
+        """
+    )
+    suspend fun updateFavoriteStatus(reposGithubIds: List<Int>): Int
+
 }

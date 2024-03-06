@@ -36,7 +36,6 @@ class PagedReposAdapter @Inject constructor(
         private val binding = RepositoryListItemLayoutBinding.bind(view)
         fun bind(repository: Repository?, colors: IntArray?) {
             binding.repo = repository
-            binding.randomColors = colors
         }
     }
 

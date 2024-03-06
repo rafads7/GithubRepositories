@@ -6,6 +6,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.text.bold
 import androidx.core.text.buildSpannedString
 import com.rafaelduransaez.domain.Repository
+import com.rafaelduransaez.githubrepositories.ui.toAnnotatedString
 import com.rafaelduransaez.githubrepositories.utils.truncate
 
 class RepositorySimpleView @JvmOverloads constructor(
@@ -19,19 +20,6 @@ class RepositorySimpleView @JvmOverloads constructor(
     }
 
     fun setRepo(repo: Repository) = repo.apply {
-        text = buildSpannedString {
-
-            bold { append("ID: ") }
-            appendLine(id.toString())
-
-            bold { append("Name: ") }
-            appendLine(name)
-
-            bold { append("Description: ") }
-            appendLine(description.truncate(MAX_CHAR))
-
-            bold { append("Number of stars: ") }
-            appendLine(starsCount.toString())
-        }
+        text = toAnnotatedString(MAX_CHAR)
     }
 }

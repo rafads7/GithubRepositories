@@ -77,6 +77,8 @@ android {
 dependencies {
 
     implementation("androidx.palette:palette-ktx:1.0.0")
+    implementation(platform("androidx.compose:compose-bom:2023.08.00"))
+    androidTestImplementation(platform("androidx.compose:compose-bom:2023.08.00"))
     val navVersion = "2.7.5"
     val lifecycleVersion = "2.6.2"
     val hiltVersion = "2.48"
@@ -113,6 +115,7 @@ dependencies {
     //Hilt
     implementation("com.google.dagger:hilt-android:$hiltVersion")
     kapt("com.google.dagger:hilt-android-compiler:$hiltVersion")
+    implementation ("androidx.hilt:hilt-navigation-compose:1.1.0")
 
     //Glide
     implementation("com.github.bumptech.glide:glide:4.15.1")
@@ -150,8 +153,15 @@ dependencies {
     implementation("androidx.room:room-ktx:$roomVersion")
 
     //Paging
-    api ("androidx.paging:paging-runtime:$paging_version")
+    api ("androidx.paging:paging-runtime-ktx:$paging_version")
     implementation ("androidx.room:room-paging:$roomVersion")
+
+    //Compose
+    implementation ("androidx.paging:paging-compose:3.3.0-alpha02")
+    implementation("androidx.compose.material:material-icons-extended:1.5.4")
+
+    //Coil
+    implementation("io.coil-kt:coil-compose:2.2.0")
 
     //Serialization
     //implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.1")

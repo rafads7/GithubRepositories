@@ -6,5 +6,6 @@ data class Repository(
     val description: String = "",
     val starsCount: Int = 0,
     val forksCount: Int = 0,
-    val language: String = ""
+    val language: String = "",
+    var favourite: Boolean = false
 )

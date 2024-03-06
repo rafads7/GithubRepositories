@@ -10,7 +10,9 @@ class GithubRepository @Inject constructor(
     private val localDataSource: GithubLocalDataSource,
     private val mediatorDataSource: RepositoriesMediatorDataSource,
 ) {
-    suspend fun getPagedBestRatedRepositories() = mediatorDataSource.reposPager()
+    fun getPagedBestRatedRepositories() = mediatorDataSource.reposPager()
+
+    fun getFavouriteRepositories() = localDataSource.getFavouriteRepositories()
 
     fun getRepoDetailById(id: Int) =
         localDataSource.getRepoDetailById(id)

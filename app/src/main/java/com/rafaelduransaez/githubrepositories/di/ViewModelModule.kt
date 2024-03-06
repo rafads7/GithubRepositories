@@ -1,6 +1,7 @@
 package com.rafaelduransaez.githubrepositories.di
 
 import androidx.lifecycle.SavedStateHandle
+import com.rafaelduransaez.githubrepositories.ui.compose.utils.NavArgs
 import com.rafaelduransaez.githubrepositories.ui.screen.detail.RepositoryDetailFragmentArgs
 import dagger.Module
 import dagger.Provides
@@ -15,7 +16,12 @@ class ViewModelModule {
     @Provides
     @ViewModelScoped
     @RepoId
-    fun provideMovieId(savedStateHandle: SavedStateHandle) =
-        RepositoryDetailFragmentArgs.fromSavedStateHandle(savedStateHandle).repoId
+    fun provideRepoId(savedStateHandle: SavedStateHandle): Int {
+
+        val repoId = RepositoryDetailFragmentArgs.fromSavedStateHandle(savedStateHandle).repoId //nav component
+        return if (repoId > -1) repoId
+        else savedStateHandle[NavArgs.RepoId.key] ?: -1 //compose nav
+    }
 
 }
+

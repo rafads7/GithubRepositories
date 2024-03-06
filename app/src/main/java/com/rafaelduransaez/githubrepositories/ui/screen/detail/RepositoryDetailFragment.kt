@@ -29,7 +29,7 @@ class RepositoryDetailFragment : Fragment(R.layout.fragment_repository_detail) {
         viewLifecycleOwner.launchAndCollect(viewModel.state) {
             binding.repo = it.repo
             binding.error = it.error
-            state.manageError(it)
+            state.handleError(it)
         }
     }
 }

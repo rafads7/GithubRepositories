@@ -4,10 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
-        <variable
-            name="randomColors"
-            type="int[]" />
+        <import type="android.view.View"/>
         <variable
             name="repo"
             type="com.rafaelduransaez.domain.Repository" />
@@ -17,6 +14,8 @@
         android:id="@+id/card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/md_theme_dark_onSurface"
+        app:contentPadding="16dp"
         android:layout_margin="8dp"
         android:elevation="2dp">
 
@@ -25,11 +24,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:lineSpacingMultiplier="1.5"
-            app:randomBackgroundColor="@{randomColors}"
-            android:padding="16dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             app:repository="@{repo}"
             tools:text="Lorem ipsum" />
+
+        <ImageView
+            android:id="@+id/like"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|end"
+            android:src="@drawable/ic_fav"
+            android:visibility="@{repo.favourite ? View.VISIBLE : View.GONE}"
+            tools:visibility="visible" />
 
     </androidx.cardview.widget.CardView>
 </layout>

@@ -93,6 +93,10 @@ object AppModule {
     @Singleton
     fun provideGithubReposDao(db: GithubReposDatabase) = db.reposDao()
 
+    @Provides
+    @Singleton
+    fun provideFavReposDao(db: GithubReposDatabase) = db.favouriteRepoDao()
+
 
     @ColorArray
     @Provides

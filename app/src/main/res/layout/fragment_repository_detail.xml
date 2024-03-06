@@ -85,7 +85,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|end"
                 android:layout_margin="16dp"
-                android:backgroundTint="@color/purple_700"
                 android:enabled="@{error == null &amp;&amp; repo != null &amp;&amp; !repo.url.isEmpty}"
                 app:onClick="@{() -> state.navigateToGithub(repo.url)}"
                 android:text="@string/str_go_to_github" />

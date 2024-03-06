@@ -18,9 +18,6 @@ class MainState(
     private val context: Context,
     private val navController: NavController
 ) {
-
-    val colors = context.resources.getIntArray(R.array.random_colors)
-
     fun errorToMessage(error: Error) = error.toString(context)
 
     fun onRepoClicked(it: Repository) {
