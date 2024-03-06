@@ -62,14 +62,20 @@ fun setDynamicTitleColor(
             .load(imageUrl)
             .listener(object : RequestListener<Bitmap> {
                 override fun onLoadFailed(
-                    e: GlideException?, model: Any?, target: Target<Bitmap>?,
-                    isFirstResource: Boolean): Boolean {
+                    e: GlideException?,
+                    model: Any?,
+                    target: Target<Bitmap>,
+                    isFirstResource: Boolean
+                ): Boolean {
                     return false
                 }
 
                 override fun onResourceReady(
-                    resource: Bitmap?, model: Any?, target: Target<Bitmap>?,
-                    dataSource: DataSource?, isFirstResource: Boolean
+                    resource: Bitmap,
+                    model: Any,
+                    target: Target<Bitmap>?,
+                    dataSource: DataSource,
+                    isFirstResource: Boolean
                 ): Boolean {
                     resource?.let {
                         Palette.from(it).generate { palette ->
@@ -77,7 +83,7 @@ fun setDynamicTitleColor(
                             collapsingToolbarLayout.setExpandedTitleColor(titleColor)
                         }
                     }
-                    return false                }
+                    return false                    }
 
             })
             .into(imageView)
