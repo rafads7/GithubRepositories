@@ -17,9 +17,9 @@ dependencies {
     implementation(project(mapOf("path" to ":domain")))
 
     //JavaX
-    implementation ("javax.inject:javax.inject:1")
+    implementation (libs.javax.inject)
 
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
-    implementation("androidx.paging:paging-common-ktx:3.2.1")
+    implementation (libs.kotlinx.coroutines.android)
+    implementation (libs.kotlinx.coroutines.core)
+    implementation(libs.androidx.paging.common.ktx)
 }
