@@ -1,5 +1,6 @@
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id("com.android.application")
+    alias(libs.plugins.androidGradlePlugin)
     id("org.jetbrains.kotlin.android")
     id ("kotlin-kapt")
     id("com.google.dagger.hilt.android")
@@ -76,32 +77,24 @@ android {
 
 dependencies {
 
-    implementation("androidx.palette:palette-ktx:1.0.0")
+    implementation(libs.androidx.palette.ktx)
     implementation(platform("androidx.compose:compose-bom:2023.08.00"))
     androidTestImplementation(platform("androidx.compose:compose-bom:2023.08.00"))
-    val navVersion = "2.7.5"
-    val lifecycleVersion = "2.6.2"
-    val hiltVersion = "2.48"
-    val retrofitVersion = "2.9.0"
-    val okhttpVersion = "4.11.0"
-    val fragmentVersion = "1.5.5"
-    val roomVersion = "2.6.1"
-    val paging_version = "3.1.1"
     
     implementation(project(mapOf("path" to ":domain")))
     implementation(project(mapOf("path" to ":data")))
     implementation(project(mapOf("path" to ":usecases")))
 
-    implementation("androidx.legacy:legacy-support-v4:1.0.0")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
-    implementation("androidx.core:core-ktx:1.12.0")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
-    implementation ("androidx.activity:activity-ktx:1.8.1")
-    implementation ("androidx.recyclerview:recyclerview:1.3.2")
+    implementation(libs.androidx.legacy.support.v4)
+    implementation(libs.androidx.lifecycle.livedata.ktx)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation (libs.androidx.activity.ktx)
+    implementation (libs.androidx.recyclerview)
 
-    implementation("androidx.activity:activity-compose:1.8.1")
-    implementation("androidx.fragment:fragment-ktx:$fragmentVersion")
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.fragment.ktx)
     implementation(platform("androidx.compose:compose-bom:2023.03.00"))
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")
@@ -113,55 +106,54 @@ dependencies {
     //kapt("com.google.dagger:dagger-compiler:$daggerVersion")
 
     //Hilt
-    implementation("com.google.dagger:hilt-android:$hiltVersion")
-    kapt("com.google.dagger:hilt-android-compiler:$hiltVersion")
-    implementation ("androidx.hilt:hilt-navigation-compose:1.1.0")
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
+    implementation (libs.androidx.hilt.navigation.compose)
 
     //Glide
-    implementation("com.github.bumptech.glide:glide:4.15.1")
-    kapt("com.github.bumptech.glide:compiler:4.15.1")
+    implementation(libs.glide)
+    kapt(libs.compiler)
 
     //Test
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform("androidx.compose:compose-bom:2023.03.00"))
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
     //Navigation
-    implementation ("androidx.navigation:navigation-compose:$navVersion")
-    implementation("androidx.navigation:navigation-fragment-ktx:$navVersion")
-    implementation("androidx.navigation:navigation-ui-ktx:$navVersion")
+    implementation (libs.androidx.navigation.compose)
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
 
     //Location
-    implementation ("com.google.android.gms:play-services-location:21.0.1")
+    implementation (libs.play.services.location)
 
     //Retrofit
-    implementation ("com.squareup.retrofit2:retrofit:$retrofitVersion")
-    implementation ("com.squareup.retrofit2:converter-gson:$retrofitVersion")
+    implementation (libs.retrofit)
+    implementation (libs.converter.gson)
 
     //OkHttp
-    implementation ("com.squareup.okhttp3:okhttp:$okhttpVersion")
-    implementation ("com.squareup.okhttp3:logging-interceptor:$okhttpVersion")
+    implementation (libs.okhttp)
+    implementation (libs.logging.interceptor)
 
     //Room
-    kapt("androidx.room:room-compiler:$roomVersion")
-    implementation("androidx.room:room-runtime:$roomVersion")
-    //annotationProcessor("androidx.room:room-compiler:$roomVersion")
-    implementation("androidx.room:room-ktx:$roomVersion")
+    kapt(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
 
     //Paging
-    api ("androidx.paging:paging-runtime-ktx:$paging_version")
-    implementation ("androidx.room:room-paging:$roomVersion")
+    api (libs.androidx.paging.runtime.ktx)
+    implementation (libs.androidx.room.paging)
 
     //Compose
-    implementation ("androidx.paging:paging-compose:3.3.0-alpha02")
-    implementation("androidx.compose.material:material-icons-extended:1.5.4")
+    implementation (libs.androidx.paging.compose)
+    implementation(libs.androidx.material.icons.extended)
 
     //Coil
-    implementation("io.coil-kt:coil-compose:2.2.0")
+    implementation(libs.coil.compose)
 
     //Serialization
     //implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.1")

@@ -83,7 +83,8 @@ fun setDynamicTitleColor(
                             collapsingToolbarLayout.setExpandedTitleColor(titleColor)
                         }
                     }
-                    return false                    }
+                    return false
+                }
 
             })
             .into(imageView)

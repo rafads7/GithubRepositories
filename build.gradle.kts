@@ -1,21 +1,38 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id("com.android.application") version "8.1.2" apply false
+//androidGradlePlugin
+    alias(libs.plugins.androidGradlePlugin) apply false
+    alias(libs.plugins.androidLibrary) apply false
+//kotlin compiler
     id("org.jetbrains.kotlin.android") version "1.8.10" apply false
     id("org.jetbrains.kotlin.jvm") version "1.8.10" apply false
-    id("com.android.library") version "8.1.2" apply false
+//hilt
     id("com.google.dagger.hilt.android") version "2.48" apply false
-    //id("org.jetbrains.kotlin.plugin.serialization") version "1.9.22" apply false
-    //id("com.google.devtools.ksp") version "1.8.10-1.0.9" apply false
 }
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+/*buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath(libs.androidGradlePlugin)
+        classpath(libs.Kotlin.gradlePlugin)
+        classpath(libs.Jetpack.Navigation.navPlugin)
+        classpath(libs.DependencyInjection.hiltPlugin)
+    }
+}*/
+
 
 buildscript {
     dependencies {
-        val nav_version = "2.7.5"
-        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version")
+        classpath(libs.androidx.navigation.safe.args.gradle.plugin)
+    }
+    repositories {
+        google()
+        mavenCentral()
     }
 }
-
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KaptGenerateStubs>().configureEach {
     kotlinOptions {
