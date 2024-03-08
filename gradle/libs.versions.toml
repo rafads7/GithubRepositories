@@ -9,14 +9,16 @@ core-ktx = "1.12.0"
 espressoCore = "3.5.1"
 fragmentVersion = "1.6.2"
 glide = "4.16.0"
+hiltAndroidPlugin = "2.48"
 hiltNavigationCompose = "1.2.0"
 hiltVersion = "2.48.1"
 junit = "4.13.2"
+kotlin = "1.8.10"
 legacy-support-v4 = "1.0.0"
 lifecycle-livedata-ktx = "2.7.0"
 lifecycleVersion = "2.7.0"
 materialIconsExtended = "1.5.4"
-navigation-safe-args-gradle-plugin = "2.7.7"
+navSafeArgs = "2.7.7"
 navVersion = "2.7.7"
 okhttpVersion = "4.12.0"
 pagingCompose = "3.3.0-alpha03"
@@ -50,7 +52,6 @@ androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-view
 androidx-material-icons-extended = { module = "androidx.compose.material:material-icons-extended", version.ref = "materialIconsExtended" }
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navVersion" }
 androidx-navigation-fragment-ktx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navVersion" }
-androidx-navigation-safe-args-gradle-plugin = { module = "androidx.navigation:navigation-safe-args-gradle-plugin", version.ref = "navigation-safe-args-gradle-plugin" }
 androidx-navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navVersion" }
 androidx-paging-compose = { module = "androidx.paging:paging-compose", version.ref = "pagingCompose" }
 androidx-paging-runtime-ktx = { module = "androidx.paging:paging-runtime-ktx", version.ref = "pagingRuntimeKtx" }
@@ -73,5 +74,9 @@ play-services-location = { module = "com.google.android.gms:play-services-locati
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofitVersion" }
 
 [plugins]
-androidGradlePlugin = { id = "com.android.application", version.ref = "agp"}
+androidGradle = { id = "com.android.application", version.ref = "agp"}
 androidLibrary = { id = "com.android.library" , version.ref = "agp" }
+kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+hiltAndroid= {id = "com.google.dagger.hilt.android", version.ref = "hiltAndroidPlugin"}
+kotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin"}
+navSafeArgs = { id = "androidx.navigation.safeargs.kotlin", version.ref = "navSafeArgs"}

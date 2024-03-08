@@ -1,11 +1,10 @@
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    alias(libs.plugins.androidGradlePlugin)
-    id("org.jetbrains.kotlin.android")
+    alias(libs.plugins.androidGradle)
+    alias(libs.plugins.kotlinAndroid)
+    alias(libs.plugins.hiltAndroid)
+    alias(libs.plugins.navSafeArgs)
     id ("kotlin-kapt")
-    id("com.google.dagger.hilt.android")
-    id("androidx.navigation.safeargs.kotlin")
-
     //id("com.google.devtools.ksp")
 }
 
@@ -80,7 +79,7 @@ dependencies {
     implementation(libs.androidx.palette.ktx)
     implementation(platform("androidx.compose:compose-bom:2023.08.00"))
     androidTestImplementation(platform("androidx.compose:compose-bom:2023.08.00"))
-    
+
     implementation(project(mapOf("path" to ":domain")))
     implementation(project(mapOf("path" to ":data")))
     implementation(project(mapOf("path" to ":usecases")))
@@ -95,15 +94,12 @@ dependencies {
 
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.fragment.ktx)
-    implementation(platform("androidx.compose:compose-bom:2023.03.00"))
-    implementation("androidx.compose.ui:ui")
-    implementation("androidx.compose.ui:ui-graphics")
-    implementation("androidx.compose.ui:ui-tooling-preview")
-    implementation("androidx.compose.material3:material3")
-
-    //Dagger
-    //implementation("com.google.dagger:dagger:$daggerVersion")
-    //kapt("com.google.dagger:dagger-compiler:$daggerVersion")
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.compose.ui)
+    implementation(libs.androidx.compose.ui.graphics)
+    implementation(libs.androidx.compose.ui.tooling.preview)
+    implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.palette.ktx)
 
     //Hilt
     implementation(libs.hilt.android)
