@@ -1,6 +1,6 @@
 [versions]
 activityKtx = "1.8.1"
-agp = "8.1.2"
+agp = "8.2.1"
 androidx-junit = "1.1.5"
 coilCompose = "2.5.0"
 compiler = "4.15.1"
