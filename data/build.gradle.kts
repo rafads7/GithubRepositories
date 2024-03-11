@@ -4,22 +4,23 @@ plugins {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
 kotlin {
-    jvmToolchain(8)
+    jvmToolchain(17)
 }
 
 dependencies {
 
     implementation(project(mapOf("path" to ":domain")))
 
-    //JavaX
     implementation (libs.javax.inject)
-
     implementation (libs.kotlinx.coroutines.android)
     implementation (libs.kotlinx.coroutines.core)
     implementation(libs.androidx.paging.common.ktx)
+    testImplementation(libs.junit)
+    testImplementation (libs.mockito.kotlin)
+    testImplementation (libs.mockito.inline)
 }

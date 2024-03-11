@@ -20,6 +20,6 @@ buildscript {
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KaptGenerateStubs>().configureEach {
     kotlinOptions {
-        jvmTarget="1.8"
+        jvmTarget="17"
     }
 }
