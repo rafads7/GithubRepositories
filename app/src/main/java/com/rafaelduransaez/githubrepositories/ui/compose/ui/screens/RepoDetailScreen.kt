@@ -45,8 +45,8 @@ import com.rafaelduransaez.githubrepositories.R
 import com.rafaelduransaez.githubrepositories.ui.compose.ui.components.IconComponent
 import com.rafaelduransaez.githubrepositories.ui.compose.ui.components.RepoDetailScreenNavActions
 import com.rafaelduransaez.githubrepositories.ui.compose.ui.components.toAnnotatedString
-import com.rafaelduransaez.githubrepositories.ui.navigateTo
-import com.rafaelduransaez.githubrepositories.ui.screen.detail.RepositoryDetailViewModel
+import com.rafaelduransaez.githubrepositories.ui.common.navigateTo
+import com.rafaelduransaez.githubrepositories.ui.classical.detail.RepositoryDetailViewModel
 import com.rafaelduransaez.githubrepositories.utils.toComposableString
 import com.rafaelduransaez.githubrepositories.utils.toString
 import kotlinx.coroutines.launch

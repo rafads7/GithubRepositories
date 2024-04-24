@@ -2,7 +2,7 @@ package com.rafaelduransaez.githubrepositories.di
 
 import androidx.lifecycle.SavedStateHandle
 import com.rafaelduransaez.githubrepositories.ui.compose.utils.NavArgs
-import com.rafaelduransaez.githubrepositories.ui.screen.detail.RepositoryDetailFragmentArgs
+import com.rafaelduransaez.githubrepositories.ui.classical.detail.RepositoryDetailFragmentArgs
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,8 +19,12 @@ class ViewModelModule {
     fun provideRepoId(savedStateHandle: SavedStateHandle): Int {
 
         val repoId = RepositoryDetailFragmentArgs.fromSavedStateHandle(savedStateHandle).repoId //nav component
-        return if (repoId > -1) repoId
-        else savedStateHandle[NavArgs.RepoId.key] ?: -1 //compose nav
+        return if (repoId > INVALID_ID) repoId
+        else savedStateHandle[NavArgs.RepoId.key] ?: INVALID_ID //compose nav
+    }
+
+    companion object {
+        private const val INVALID_ID = -1
     }
 
 }

@@ -9,31 +9,18 @@ import com.rafaelduransaez.domain.Repository
 import com.rafaelduransaez.domain.RepositoryDetail
 import com.rafaelduransaez.domain.UserDetail
 import com.rafaelduransaez.githubrepositories.R
-import com.rafaelduransaez.githubrepositories.framework.database.entities.FavouriteRepoEntity
-import com.rafaelduransaez.githubrepositories.framework.database.entities.RepoEntity
-import com.rafaelduransaez.githubrepositories.framework.database.entities.RepoUser
-import com.rafaelduransaez.githubrepositories.framework.database.entities.UserEntity
-import com.rafaelduransaez.githubrepositories.framework.remote.entities.RemoteOwner
-import com.rafaelduransaez.githubrepositories.framework.remote.entities.RemoteRepo
+import com.rafaelduransaez.githubrepositories.framework.local.database.entities.FavouriteRepoEntity
+import com.rafaelduransaez.githubrepositories.framework.local.database.entities.RepoEntity
+import com.rafaelduransaez.githubrepositories.framework.local.database.entities.RepoUserEntity
+import com.rafaelduransaez.githubrepositories.framework.local.database.entities.UserEntity
+import com.rafaelduransaez.githubrepositories.framework.remote.entities.GithubRepoRemoteOwnerEntity
 import retrofit2.HttpException
 import java.io.IOException
 
-fun RemoteRepo.toRepoEntity() =
-    RepoEntity(
-        name = name,
-        githubId = id,
-        description = description ?: "",
-        starsCount = stargazers_count,
-        forksCount = forks_count,
-        language = language ?: "",
-        url = html_url,
-        ownerId = owner.id
-    )
-
-fun RemoteOwner.toUserEntity() = UserEntity(id, avatarUrl, login, repos_url, type, url)
+fun GithubRepoRemoteOwnerEntity.toUserEntity() = UserEntity(id, avatarUrl, login, repos_url, type, url)
 
 fun RepoEntity.toRepository() =
-    Repository(id, name, description ?: "", starsCount, forksCount, language ?: "", favourite)
+    Repository(id, name, description.orEmpty(), starsCount, forksCount, language.orEmpty(), favourite)
 
 fun RepoEntity.toFavouriteRepo() =
     FavouriteRepoEntity(
@@ -47,7 +34,7 @@ fun RepoEntity.toFavouriteRepo() =
         ownerId = ownerId
     )
 
-fun RepoUser.toRepositoryDetail() = RepositoryDetail(
+fun RepoUserEntity.toRepositoryDetail() = RepositoryDetail(
     repo.id, repo.name, repo.description, repo.starsCount, repo.forksCount, repo.language, repo.url,
     favourite = repo.favourite,
     owner = UserDetail(user.userName, user.avatarUrl)
@@ -65,7 +52,7 @@ fun Throwable.toError(): Error = when (this) {
     is IOException -> Error.Connection
     is HttpException -> Error.Server(code())
     is ActivityNotFoundException -> Error.Activity
-    else -> Error.Unknown(message ?: "")
+    else -> Error.Unknown(message.orEmpty())
 }
 
 fun Error.toString(context: Context) = when (this) {

@@ -25,8 +25,8 @@ import com.rafaelduransaez.githubrepositories.ui.compose.ui.components.ErrorMess
 import com.rafaelduransaez.githubrepositories.ui.compose.ui.components.IconComponent
 import com.rafaelduransaez.githubrepositories.ui.compose.ui.components.LoadingNextPageItem
 import com.rafaelduransaez.githubrepositories.ui.compose.ui.components.PageLoader
-import com.rafaelduransaez.githubrepositories.ui.isEmpty
-import com.rafaelduransaez.githubrepositories.ui.toComposableAnnotatedString
+import com.rafaelduransaez.githubrepositories.ui.common.isEmpty
+import com.rafaelduransaez.githubrepositories.ui.common.toComposableAnnotatedString
 
 const val MAX_CHAR = 200
 

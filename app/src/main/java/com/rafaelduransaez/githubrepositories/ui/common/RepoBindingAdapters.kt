@@ -14,9 +14,8 @@ import com.bumptech.glide.request.target.Target
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.rafaelduransaez.domain.Repository
 import com.rafaelduransaez.domain.RepositoryDetail
-import com.rafaelduransaez.githubrepositories.ui.loadUrl
-import com.rafaelduransaez.githubrepositories.ui.screen.detail.RepositoryDetailedView
-import com.rafaelduransaez.githubrepositories.ui.screen.list.RepositorySimpleView
+import com.rafaelduransaez.githubrepositories.ui.classical.detail.RepositoryDetailedView
+import com.rafaelduransaez.githubrepositories.ui.classical.list.RepositorySimpleView
 
 
 @BindingAdapter("repository")

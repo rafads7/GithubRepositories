@@ -6,14 +6,14 @@
     <data>
         <variable
             name="state"
-            type="com.rafaelduransaez.githubrepositories.ui.screen.list.MainState" />
+            type="com.rafaelduransaez.githubrepositories.ui.classical.list.MainState" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
-        tools:context=".ui.screen.list.RepositoriesFragment">
+        tools:context=".ui.classical.list.RepositoriesFragment">
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"

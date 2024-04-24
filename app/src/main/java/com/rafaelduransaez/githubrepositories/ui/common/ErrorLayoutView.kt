@@ -39,7 +39,6 @@ class ErrorLayoutView @JvmOverloads constructor(
         val errorMessage = typedArray.getString(R.styleable.ErrorLayoutView_error_message)
         typedArray.recycle()
 
-        // Set error message if provided in XML layout
         errorMessage?.let { this.errorMessage = it }
     }
 

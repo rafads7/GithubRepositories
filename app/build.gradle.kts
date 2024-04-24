@@ -4,7 +4,7 @@ plugins {
     alias(libs.plugins.kotlinAndroid)
     alias(libs.plugins.hiltAndroid)
     alias(libs.plugins.navSafeArgs)
-    id ("kotlin-kapt")
+    id("kotlin-kapt")
     //id("com.google.devtools.ksp")
 }
 
@@ -41,7 +41,7 @@ android {
 
     tasks.withType<org.jetbrains.kotlin.gradle.tasks.KaptGenerateStubs>().configureEach {
         kotlinOptions {
-            jvmTarget="17"
+            jvmTarget = "17"
         }
     }
 
@@ -85,8 +85,8 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
-    implementation (libs.androidx.activity.ktx)
-    implementation (libs.androidx.recyclerview)
+    implementation(libs.androidx.activity.ktx)
+    implementation(libs.androidx.recyclerview)
 
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.fragment.ktx)
@@ -100,7 +100,7 @@ dependencies {
     //Hilt
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
-    implementation (libs.androidx.hilt.navigation.compose)
+    implementation(libs.androidx.hilt.navigation.compose)
 
     //Glide
     implementation(libs.glide)
@@ -108,27 +108,30 @@ dependencies {
 
     //Testing
     testImplementation(libs.junit)
-    testImplementation (libs.mockito.kotlin)
-    testImplementation (libs.mockito.inline)
+    testImplementation(libs.mockito.kotlin)
+    testImplementation(libs.mockito.inline)
+    testImplementation(libs.turbine)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.kotlinx.coroutines.core)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
 
     //Navigation
-    implementation (libs.androidx.navigation.compose)
+    implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
 
     //Location
-    implementation (libs.play.services.location)
+    implementation(libs.play.services.location)
 
     //Retrofit
-    implementation (libs.retrofit)
-    implementation (libs.converter.gson)
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
 
     //OkHttp
-    implementation (libs.okhttp)
-    implementation (libs.logging.interceptor)
+    implementation(libs.okhttp)
+    implementation(libs.logging.interceptor)
 
     //Room
     kapt(libs.androidx.room.compiler)
@@ -136,11 +139,11 @@ dependencies {
     implementation(libs.androidx.room.ktx)
 
     //Paging
-    api (libs.androidx.paging.runtime.ktx)
-    implementation (libs.androidx.room.paging)
+    api(libs.androidx.paging.runtime.ktx)
+    implementation(libs.androidx.room.paging)
 
     //Compose
-    implementation (libs.androidx.paging.compose)
+    implementation(libs.androidx.paging.compose)
     implementation(libs.androidx.material.icons.extended)
 
     //Coil

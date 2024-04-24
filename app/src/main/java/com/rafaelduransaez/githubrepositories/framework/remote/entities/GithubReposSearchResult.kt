@@ -2,14 +2,13 @@ package com.rafaelduransaez.githubrepositories.framework.remote.entities
 
 import com.google.gson.annotations.SerializedName
 
-data class RemoteReposResult(
+data class GithubReposRemoteEntityResponse(
     val incomplete_results: Boolean,
-    @SerializedName("items") val repos: List<RemoteRepo>,
+    @SerializedName("items") val repos: List<GithubRepoRemoteEntity>,
     val total_count: Int
 )
 
-
-data class RemoteRepo(
+data class GithubRepoRemoteEntity(
     val allow_forking: Boolean,
     val archive_url: String,
     val archived: Boolean,
@@ -26,7 +25,7 @@ data class RemoteRepo(
     val created_at: String,
     val default_branch: String,
     val deployments_url: String,
-    val description: String,
+    val description: String?,
     val disabled: Boolean,
     val downloads_url: String,
     val events_url: String,
@@ -55,9 +54,9 @@ data class RemoteRepo(
     val issues_url: String,
     val keys_url: String,
     val labels_url: String,
-    val language: String,
+    val language: String?,
     val languages_url: String,
-    val license: License,
+    val license: GithubRepoRemoteLicenseEntity,
     val merges_url: String,
     val milestones_url: String,
     val mirror_url: Any,
@@ -66,7 +65,7 @@ data class RemoteRepo(
     val notifications_url: String,
     val open_issues: Int,
     val open_issues_count: Int,
-    val owner: RemoteOwner,
+    val owner: GithubRepoRemoteOwnerEntity,
     val private: Boolean,
     val pulls_url: String,
     val pushed_at: String,
@@ -92,7 +91,7 @@ data class RemoteRepo(
     val web_commit_signoff_required: Boolean
 )
 
-data class License(
+data class GithubRepoRemoteLicenseEntity(
     val key: String,
     val name: String,
     val node_id: String,
@@ -100,7 +99,7 @@ data class License(
     val url: String
 )
 
-data class RemoteOwner(
+data class GithubRepoRemoteOwnerEntity(
     @SerializedName("avatar_url") val avatarUrl: String,
     val events_url: String,
     val followers_url: String,

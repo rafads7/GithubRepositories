@@ -1,6 +1,6 @@
 package com.rafaelduransaez.usecases
 
-import com.rafaelduransaez.data.GithubRepository
+import com.rafaelduransaez.data.repositories.GithubRepository
 import javax.inject.Inject
 
 class GetRepoDetailByIdUseCase @Inject constructor(

@@ -7,11 +7,10 @@ import androidx.paging.PagingConfig
 import androidx.room.Room
 import com.rafaelduransaez.githubrepositories.GithubRepositoriesApp
 import com.rafaelduransaez.githubrepositories.R
-import com.rafaelduransaez.githubrepositories.framework.database.GithubReposDatabase
-import com.rafaelduransaez.githubrepositories.framework.database.entities.RepoEntity
-import com.rafaelduransaez.githubrepositories.framework.database.entities.RepoUser
-import com.rafaelduransaez.githubrepositories.framework.mediator.ReposRemoteMediator
-import com.rafaelduransaez.githubrepositories.framework.remote.RepositoriesService
+import com.rafaelduransaez.githubrepositories.framework.local.database.GithubReposDatabase
+import com.rafaelduransaez.githubrepositories.framework.local.database.entities.RepoEntity
+import com.rafaelduransaez.githubrepositories.framework.mediator.GithubReposRemoteMediator
+import com.rafaelduransaez.githubrepositories.framework.remote.GithubReposService
 import com.rafaelduransaez.githubrepositories.utils.Constants
 import dagger.Module
 import dagger.Provides
@@ -60,7 +59,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideService(@ApiUrl apiUrl: String, okHttpClient: OkHttpClient): RepositoriesService {
+    fun provideService(@ApiUrl apiUrl: String, okHttpClient: OkHttpClient): GithubReposService {
 
         return Retrofit.Builder()
             .baseUrl(apiUrl)
@@ -73,10 +72,10 @@ object AppModule {
     @OptIn(ExperimentalPagingApi::class)
     @Provides
     @Singleton
-    fun provideReposPager(database: GithubReposDatabase, apiService: RepositoriesService): Pager<Int, RepoEntity> =
+    fun provideReposPager(database: GithubReposDatabase, apiService: GithubReposService): Pager<Int, RepoEntity> =
         Pager(
-            config = PagingConfig(RepositoriesService.per_page.toInt()),
-            remoteMediator = ReposRemoteMediator(database, apiService),
+            config = PagingConfig(GithubReposService.per_page.toInt()),
+            remoteMediator = GithubReposRemoteMediator(database, apiService),
             pagingSourceFactory = { database.reposDao().pagingRepos() }
         )
 

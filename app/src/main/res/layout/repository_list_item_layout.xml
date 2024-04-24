@@ -19,7 +19,7 @@
         android:layout_margin="8dp"
         android:elevation="2dp">
 
-        <com.rafaelduransaez.githubrepositories.ui.screen.list.RepositorySimpleView
+        <com.rafaelduransaez.githubrepositories.ui.classical.list.RepositorySimpleView
             android:id="@+id/repository"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

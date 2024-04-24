@@ -26,7 +26,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import com.rafaelduransaez.domain.RepositoryDetail
 import com.rafaelduransaez.githubrepositories.ui.compose.ui.components.toAnnotatedString
-import com.rafaelduransaez.githubrepositories.ui.screen.list.RepositoriesViewModel
+import com.rafaelduransaez.githubrepositories.ui.classical.list.RepositoriesViewModel
 
 @Composable
 fun FavouritesReposScreen(

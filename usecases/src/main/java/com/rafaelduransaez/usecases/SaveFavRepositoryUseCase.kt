@@ -1,6 +1,6 @@
 package com.rafaelduransaez.usecases
 
-import com.rafaelduransaez.data.GithubRepository
+import com.rafaelduransaez.data.repositories.GithubRepository
 import com.rafaelduransaez.domain.RepositoryDetail
 import javax.inject.Inject
 

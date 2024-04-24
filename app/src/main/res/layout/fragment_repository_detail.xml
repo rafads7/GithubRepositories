@@ -7,7 +7,7 @@
 
         <variable
             name="state"
-            type="com.rafaelduransaez.githubrepositories.ui.screen.detail.DetailState" />
+            type="com.rafaelduransaez.githubrepositories.ui.classical.detail.DetailState" />
         <variable
             name="repo"
             type="com.rafaelduransaez.domain.RepositoryDetail" />
@@ -65,7 +65,7 @@
                 app:visible="@{error == null}"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-                    <com.rafaelduransaez.githubrepositories.ui.screen.detail.RepositoryDetailedView
+                    <com.rafaelduransaez.githubrepositories.ui.classical.detail.RepositoryDetailedView
                         android:id="@+id/repository"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

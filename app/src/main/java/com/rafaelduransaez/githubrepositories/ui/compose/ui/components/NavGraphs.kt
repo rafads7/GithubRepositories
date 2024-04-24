@@ -16,7 +16,7 @@ import com.rafaelduransaez.githubrepositories.ui.compose.ui.screens.RepoDetailSc
 import com.rafaelduransaez.githubrepositories.ui.compose.ui.screens.ReposListScreen
 import com.rafaelduransaez.githubrepositories.ui.compose.utils.NavArgs
 import com.rafaelduransaez.githubrepositories.ui.compose.utils.Routes
-import com.rafaelduransaez.githubrepositories.ui.screen.list.RepositoriesViewModel
+import com.rafaelduransaez.githubrepositories.ui.classical.list.RepositoriesViewModel
 
 @Composable
 fun AppNavGraph(
