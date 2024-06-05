@@ -1,6 +1,6 @@
 package com.rafaelduransaez.domain
 
-data class Repository(
+data class RepoModel(
     val id: Int = 0,
     val name: String = "",
     val description: String = "",

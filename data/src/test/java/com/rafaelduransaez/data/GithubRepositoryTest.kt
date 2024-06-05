@@ -2,15 +2,15 @@ package com.rafaelduransaez.data
 
 import androidx.paging.PagingData
 import com.rafaelduransaez.data.datasources.GithubReposLocalDataSource
-import com.rafaelduransaez.data.datasources.GithubReposMediatorDataSource
+import com.rafaelduransaez.data.datasources.PagerDataSource
 import com.rafaelduransaez.data.mockEntities.buildMockRepo
 import com.rafaelduransaez.data.mockEntities.buildMockRepoDetail
 import com.rafaelduransaez.data.mockEntities.buildMockUserDetail
 import com.rafaelduransaez.data.repositories.GithubRepository
 import com.rafaelduransaez.domain.Error
-import com.rafaelduransaez.domain.Repository
-import com.rafaelduransaez.domain.RepositoryDetail
-import com.rafaelduransaez.domain.UserDetail
+import com.rafaelduransaez.domain.RepoModel
+import com.rafaelduransaez.domain.RepoDetailModel
+import com.rafaelduransaez.domain.UserDetailModel
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.runBlocking
 import org.junit.After
@@ -27,12 +27,12 @@ import org.mockito.kotlin.whenever
 class GithubRepositoryTest {
 
     private val repoLocalDataSource: GithubReposLocalDataSource = mock()
-    private val repoMediatorDataSource: GithubReposMediatorDataSource = mock()
-    private val pagedRepos: PagingData<Repository> = mock()
+    private val repoMediatorDataSource: PagerDataSource = mock()
+    private val pagedRepos: PagingData<RepoModel> = mock()
 
     private lateinit var repo: GithubRepository
-    private lateinit var mockRepoDetail: RepositoryDetail
-    private lateinit var mockUserDetail: UserDetail
+    private lateinit var mockRepoDetail: RepoDetailModel
+    private lateinit var mockUserDetail: UserDetailModel
 
     @Before
     fun setUp() {

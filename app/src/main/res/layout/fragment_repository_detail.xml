@@ -10,7 +10,7 @@
             type="com.rafaelduransaez.githubrepositories.ui.classical.detail.DetailState" />
         <variable
             name="repo"
-            type="com.rafaelduransaez.domain.RepositoryDetail" />
+            type="com.rafaelduransaez.domain.RepoDetailModel" />
         <variable
             name="error"
             type="com.rafaelduransaez.domain.Error" />

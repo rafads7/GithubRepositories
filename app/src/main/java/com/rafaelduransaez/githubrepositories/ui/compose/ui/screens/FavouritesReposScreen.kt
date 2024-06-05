@@ -24,7 +24,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
-import com.rafaelduransaez.domain.RepositoryDetail
+import com.rafaelduransaez.domain.RepoDetailModel
 import com.rafaelduransaez.githubrepositories.ui.compose.ui.components.toAnnotatedString
 import com.rafaelduransaez.githubrepositories.ui.classical.list.RepositoriesViewModel
 
@@ -58,7 +58,7 @@ fun FavouritesReposScreen(
 
 @Composable
 fun FavRepoItem(
-    repo: RepositoryDetail,
+    repo: RepoDetailModel,
     modifier: Modifier = Modifier,
     onRepoClicked: (Int) -> Unit
 ) {

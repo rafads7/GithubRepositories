@@ -12,21 +12,21 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.google.android.material.appbar.CollapsingToolbarLayout
-import com.rafaelduransaez.domain.Repository
-import com.rafaelduransaez.domain.RepositoryDetail
+import com.rafaelduransaez.domain.RepoModel
+import com.rafaelduransaez.domain.RepoDetailModel
 import com.rafaelduransaez.githubrepositories.ui.classical.detail.RepositoryDetailedView
 import com.rafaelduransaez.githubrepositories.ui.classical.list.RepositorySimpleView
 
 
 @BindingAdapter("repository")
-fun RepositorySimpleView.setRepo(repository: Repository?) {
-    if (repository != null) {
-        setRepo(repository)
+fun RepositorySimpleView.setRepo(repoModel: RepoModel?) {
+    if (repoModel != null) {
+        setRepo(repoModel)
     }
 }
 
 @BindingAdapter("repository")
-fun RepositoryDetailedView.setRepo(repository: RepositoryDetail?) {
+fun RepositoryDetailedView.setRepo(repository: RepoDetailModel?) {
     if (repository != null) {
         setRepo(repository)
     }

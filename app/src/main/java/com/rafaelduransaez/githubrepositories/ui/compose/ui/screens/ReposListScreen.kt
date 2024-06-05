@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.itemKey
-import com.rafaelduransaez.domain.Repository
+import com.rafaelduransaez.domain.RepoModel
 import com.rafaelduransaez.githubrepositories.ui.compose.ui.components.ErrorMessage
 import com.rafaelduransaez.githubrepositories.ui.compose.ui.components.IconComponent
 import com.rafaelduransaez.githubrepositories.ui.compose.ui.components.LoadingNextPageItem
@@ -33,7 +33,7 @@ const val MAX_CHAR = 200
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun ReposListScreen(
-    repos: LazyPagingItems<Repository>,
+    repos: LazyPagingItems<RepoModel>,
     onRepoClicked: (Int) -> Unit
 ) {
     LazyColumn {
@@ -49,7 +49,7 @@ fun ReposListScreen(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RepoItem(
-    repo: Repository,
+    repo: RepoModel,
     onRepoClicked: () -> Unit = {}
 ) {
 
@@ -78,7 +78,7 @@ fun RepoItem(
 }
 
 private fun LazyListScope.listRepos(
-    repos: LazyPagingItems<Repository>,
+    repos: LazyPagingItems<RepoModel>,
     onRepoClicked: (Int) -> Unit
 ) {
     items(count = repos.itemCount, key = repos.itemKey { it.id }) { index ->
@@ -91,7 +91,7 @@ private fun LazyListScope.listRepos(
     }
 }
 
-private fun LazyListScope.handleAppendState(repos: LazyPagingItems<Repository>) {
+private fun LazyListScope.handleAppendState(repos: LazyPagingItems<RepoModel>) {
     when (val appendState = repos.loadState.append) {
         is LoadState.Loading -> {
             item { LoadingNextPageItem(modifier = Modifier.fillMaxWidth()) }
@@ -112,7 +112,7 @@ private fun LazyListScope.handleAppendState(repos: LazyPagingItems<Repository>) 
     }
 }
 
-private fun LazyListScope.handleRefreshState(repos: LazyPagingItems<Repository>) {
+private fun LazyListScope.handleRefreshState(repos: LazyPagingItems<RepoModel>) {
     when (val refreshState = repos.loadState.refresh) {
         is LoadState.Loading -> {
             item { PageLoader(modifier = Modifier.fillParentMaxSize()) }

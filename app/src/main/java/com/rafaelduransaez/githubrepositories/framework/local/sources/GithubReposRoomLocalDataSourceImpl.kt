@@ -3,7 +3,7 @@ package com.rafaelduransaez.githubrepositories.framework.local.sources
 import androidx.room.Transaction
 import com.rafaelduransaez.data.datasources.GithubReposLocalDataSource
 import com.rafaelduransaez.domain.Error
-import com.rafaelduransaez.domain.RepositoryDetail
+import com.rafaelduransaez.domain.RepoDetailModel
 import com.rafaelduransaez.githubrepositories.framework.local.database.dao.FavouriteRepoDao
 import com.rafaelduransaez.githubrepositories.framework.local.database.dao.ReposDao
 import com.rafaelduransaez.githubrepositories.utils.toFavouriteRepo
@@ -18,14 +18,14 @@ class GithubReposRoomLocalDataSourceImpl @Inject constructor(
     private val favouriteRepoDao: FavouriteRepoDao
 ) : GithubReposLocalDataSource {
 
-    override fun getRepoDetailById(id: Int): Flow<RepositoryDetail> =
+    override fun getRepoDetailById(id: Int): Flow<RepoDetailModel> =
         repoDao.getRepoDetail(id).map { it.toRepositoryDetail() }
 
-    override fun getFavouriteRepositories(): Flow<List<RepositoryDetail>> =
+    override fun getFavouriteRepositories(): Flow<List<RepoDetailModel>> =
         repoDao.getFavouriteRepos().map { repos -> repos.map { it.toRepositoryDetail() } }
 
     @Transaction
-    override suspend fun updateFavRepo(repo: RepositoryDetail): Error? {
+    override suspend fun updateFavRepo(repo: RepoDetailModel): Error? {
 
         return try {
             repoDao.update(repo.id, repo.favourite)

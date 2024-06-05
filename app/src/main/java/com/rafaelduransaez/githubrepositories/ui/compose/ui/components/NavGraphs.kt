@@ -10,7 +10,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
-import com.rafaelduransaez.domain.Repository
+import com.rafaelduransaez.domain.RepoModel
 import com.rafaelduransaez.githubrepositories.ui.compose.ui.screens.FavouritesReposScreen
 import com.rafaelduransaez.githubrepositories.ui.compose.ui.screens.RepoDetailScreen
 import com.rafaelduransaez.githubrepositories.ui.compose.ui.screens.ReposListScreen
@@ -60,7 +60,7 @@ fun AppNavGraph(
 @Composable
 fun RepositoriesNavGraph(
     bottomNavBarController: NavHostController,
-    repos: LazyPagingItems<Repository>,
+    repos: LazyPagingItems<RepoModel>,
     minimizedGrid: Boolean = false,
     onAppNavigateTo: (String) -> Unit
 ) {

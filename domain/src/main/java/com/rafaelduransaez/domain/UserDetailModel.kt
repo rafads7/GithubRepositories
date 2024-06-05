@@ -1,6 +1,6 @@
 package com.rafaelduransaez.domain
 
-data class UserDetail(
+data class UserDetailModel(
     val userName: String,
     val avatarUrl: String
 )

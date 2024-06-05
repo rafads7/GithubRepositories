@@ -5,9 +5,9 @@ import android.content.Context
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import com.rafaelduransaez.domain.Error
-import com.rafaelduransaez.domain.Repository
-import com.rafaelduransaez.domain.RepositoryDetail
-import com.rafaelduransaez.domain.UserDetail
+import com.rafaelduransaez.domain.RepoModel
+import com.rafaelduransaez.domain.RepoDetailModel
+import com.rafaelduransaez.domain.UserDetailModel
 import com.rafaelduransaez.githubrepositories.R
 import com.rafaelduransaez.githubrepositories.framework.local.database.entities.FavouriteRepoEntity
 import com.rafaelduransaez.githubrepositories.framework.local.database.entities.RepoEntity
@@ -20,7 +20,7 @@ import java.io.IOException
 fun GithubRepoRemoteOwnerEntity.toUserEntity() = UserEntity(id, avatarUrl, login, repos_url, type, url)
 
 fun RepoEntity.toRepository() =
-    Repository(id, name, description.orEmpty(), starsCount, forksCount, language.orEmpty(), favourite)
+    RepoModel(id, name, description.orEmpty(), starsCount, forksCount, language.orEmpty(), favourite)
 
 fun RepoEntity.toFavouriteRepo() =
     FavouriteRepoEntity(
@@ -34,10 +34,10 @@ fun RepoEntity.toFavouriteRepo() =
         ownerId = ownerId
     )
 
-fun RepoUserEntity.toRepositoryDetail() = RepositoryDetail(
+fun RepoUserEntity.toRepositoryDetail() = RepoDetailModel(
     repo.id, repo.name, repo.description, repo.starsCount, repo.forksCount, repo.language, repo.url,
     favourite = repo.favourite,
-    owner = UserDetail(user.userName, user.avatarUrl)
+    owner = UserDetailModel(user.userName, user.avatarUrl)
 )
 
 fun String.truncate(limit: Int): String {

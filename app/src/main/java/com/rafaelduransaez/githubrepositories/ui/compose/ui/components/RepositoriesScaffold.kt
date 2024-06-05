@@ -35,7 +35,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.paging.compose.LazyPagingItems
-import com.rafaelduransaez.domain.Repository
+import com.rafaelduransaez.domain.RepoModel
 import com.rafaelduransaez.githubrepositories.R
 import com.rafaelduransaez.githubrepositories.ui.compose.utils.Routes
 
@@ -44,7 +44,7 @@ import com.rafaelduransaez.githubrepositories.ui.compose.utils.Routes
 @Composable
 fun RepositoriesScaffold(
     bottomNavBarController: NavHostController = rememberNavController(),
-    repos: LazyPagingItems<Repository>,
+    repos: LazyPagingItems<RepoModel>,
     onAppNavigateTo: (String) -> Unit
 ) {
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
