@@ -1,7 +1,7 @@
-package com.rafaelduransaez.data.datasources
+package com.rafaelduransaez.domain.sources
 
 import androidx.paging.PagingData
-import com.rafaelduransaez.domain.RepoModel
+import com.rafaelduransaez.domain.models.RepoModel
 import kotlinx.coroutines.flow.Flow
 
 interface GithubReposMediatorDataSource

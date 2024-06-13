@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.itemKey
-import com.rafaelduransaez.domain.RepoModel
+import com.rafaelduransaez.domain.models.RepoModel
 import com.rafaelduransaez.githubrepositories.ui.compose.ui.components.ErrorMessage
 import com.rafaelduransaez.githubrepositories.ui.compose.ui.components.IconComponent
 import com.rafaelduransaez.githubrepositories.ui.compose.ui.components.LoadingNextPageItem

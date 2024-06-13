@@ -1,10 +1,10 @@
 package com.rafaelduransaez.data.mockEntities
 
 import com.rafaelduransaez.data.repositories.GithubRepository
-import com.rafaelduransaez.data.datasources.GithubReposLocalDataSource
-import com.rafaelduransaez.data.datasources.GithubReposMediatorDataSource
-import com.rafaelduransaez.domain.RepoDetailModel
-import com.rafaelduransaez.domain.UserDetailModel
+import com.rafaelduransaez.domain.sources.GithubReposLocalDataSource
+import com.rafaelduransaez.domain.sources.GithubReposMediatorDataSource
+import com.rafaelduransaez.domain.models.RepoDetailModel
+import com.rafaelduransaez.domain.models.UserDetailModel
 import org.mockito.Mockito
 
 fun buildMockRepoDetail() = RepoDetailModel(

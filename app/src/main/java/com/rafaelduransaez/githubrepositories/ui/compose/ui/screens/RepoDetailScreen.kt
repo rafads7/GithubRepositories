@@ -39,8 +39,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
-import com.rafaelduransaez.domain.Error
-import com.rafaelduransaez.domain.RepoDetailModel
+import com.rafaelduransaez.domain.models.Error
+import com.rafaelduransaez.domain.models.RepoDetailModel
 import com.rafaelduransaez.githubrepositories.R
 import com.rafaelduransaez.githubrepositories.ui.compose.ui.components.IconComponent
 import com.rafaelduransaez.githubrepositories.ui.compose.ui.components.RepoDetailScreenNavActions

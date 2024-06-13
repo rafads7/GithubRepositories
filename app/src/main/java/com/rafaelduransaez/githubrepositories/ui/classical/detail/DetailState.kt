@@ -3,7 +3,7 @@ package com.rafaelduransaez.githubrepositories.ui.classical.detail
 import android.content.Context
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.rafaelduransaez.domain.Error
+import com.rafaelduransaez.domain.models.Error
 import com.rafaelduransaez.githubrepositories.R
 import com.rafaelduransaez.githubrepositories.ui.common.navigateTo
 import com.rafaelduransaez.githubrepositories.ui.common.toast

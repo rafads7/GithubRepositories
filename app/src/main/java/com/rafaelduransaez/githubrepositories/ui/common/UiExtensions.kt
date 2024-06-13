@@ -21,8 +21,8 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.paging.compose.LazyPagingItems
 import androidx.recyclerview.widget.DiffUtil
 import com.bumptech.glide.Glide
-import com.rafaelduransaez.domain.Error
-import com.rafaelduransaez.domain.RepoModel
+import com.rafaelduransaez.domain.models.Error
+import com.rafaelduransaez.domain.models.RepoModel
 import com.rafaelduransaez.githubrepositories.ui.compose.ui.components.Property
 import com.rafaelduransaez.githubrepositories.ui.compose.ui.screens.MAX_CHAR
 import com.rafaelduransaez.githubrepositories.utils.toError

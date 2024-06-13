@@ -4,7 +4,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.rafaelduransaez.domain.RepoModel
+import com.rafaelduransaez.domain.models.RepoModel
 import com.rafaelduransaez.githubrepositories.R
 import com.rafaelduransaez.githubrepositories.databinding.RepositoryListItemLayoutBinding
 import com.rafaelduransaez.githubrepositories.di.ColorArray

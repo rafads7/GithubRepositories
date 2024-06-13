@@ -1,8 +1,8 @@
 package com.rafaelduransaez.data.repositories
 
-import com.rafaelduransaez.data.datasources.GithubReposLocalDataSource
-import com.rafaelduransaez.data.datasources.GithubReposMediatorDataSource
-import com.rafaelduransaez.domain.RepoDetailModel
+import com.rafaelduransaez.domain.sources.GithubReposLocalDataSource
+import com.rafaelduransaez.domain.sources.GithubReposMediatorDataSource
+import com.rafaelduransaez.domain.models.RepoDetailModel
 import javax.inject.Inject
 
 class GithubRepository @Inject constructor(

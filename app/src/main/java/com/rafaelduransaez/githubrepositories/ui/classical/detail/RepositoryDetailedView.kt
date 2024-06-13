@@ -6,7 +6,7 @@ import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.text.bold
 import androidx.core.text.buildSpannedString
-import com.rafaelduransaez.domain.RepoDetailModel
+import com.rafaelduransaez.domain.models.RepoDetailModel
 
 class RepositoryDetailedView @JvmOverloads constructor(
     context: Context,

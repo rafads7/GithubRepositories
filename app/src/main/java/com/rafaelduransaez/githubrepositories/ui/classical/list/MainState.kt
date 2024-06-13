@@ -4,8 +4,8 @@ import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import com.rafaelduransaez.domain.Error
-import com.rafaelduransaez.domain.RepoModel
+import com.rafaelduransaez.domain.models.Error
+import com.rafaelduransaez.domain.models.RepoModel
 import com.rafaelduransaez.githubrepositories.utils.toString
 
 

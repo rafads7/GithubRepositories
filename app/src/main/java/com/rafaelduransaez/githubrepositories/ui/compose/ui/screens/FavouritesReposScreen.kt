@@ -24,7 +24,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
-import com.rafaelduransaez.domain.RepoDetailModel
+import com.rafaelduransaez.domain.models.RepoDetailModel
 import com.rafaelduransaez.githubrepositories.ui.compose.ui.components.toAnnotatedString
 import com.rafaelduransaez.githubrepositories.ui.classical.list.RepositoriesViewModel
 

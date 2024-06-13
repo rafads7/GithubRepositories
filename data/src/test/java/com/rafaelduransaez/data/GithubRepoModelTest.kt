@@ -1,16 +1,16 @@
 package com.rafaelduransaez.data
 
 import androidx.paging.PagingData
-import com.rafaelduransaez.data.datasources.GithubReposLocalDataSource
-import com.rafaelduransaez.data.datasources.GithubReposMediatorDataSource
+import com.rafaelduransaez.domain.sources.GithubReposLocalDataSource
+import com.rafaelduransaez.domain.sources.GithubReposMediatorDataSource
 import com.rafaelduransaez.data.mockEntities.buildMockRepo
 import com.rafaelduransaez.data.mockEntities.buildMockRepoDetail
 import com.rafaelduransaez.data.mockEntities.buildMockUserDetail
 import com.rafaelduransaez.data.repositories.GithubRepository
-import com.rafaelduransaez.domain.Error
-import com.rafaelduransaez.domain.RepoModel
-import com.rafaelduransaez.domain.RepoDetailModel
-import com.rafaelduransaez.domain.UserDetailModel
+import com.rafaelduransaez.domain.models.Error
+import com.rafaelduransaez.domain.models.RepoModel
+import com.rafaelduransaez.domain.models.RepoDetailModel
+import com.rafaelduransaez.domain.models.UserDetailModel
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.runBlocking
 import org.junit.After

@@ -1,7 +1,7 @@
 package com.rafaelduransaez.githubrepositories.di
 
-import com.rafaelduransaez.data.datasources.GithubReposLocalDataSource
-import com.rafaelduransaez.data.datasources.GithubReposMediatorDataSource
+import com.rafaelduransaez.domain.sources.GithubReposLocalDataSource
+import com.rafaelduransaez.domain.sources.GithubReposMediatorDataSource
 import com.rafaelduransaez.githubrepositories.framework.local.sources.GithubReposRoomLocalDataSourceImpl
 import com.rafaelduransaez.githubrepositories.framework.mediator.GithubReposMediatorDataSourceImpl
 import dagger.Binds

@@ -1,9 +1,9 @@
 package com.rafaelduransaez.githubrepositories.framework.local.sources
 
 import androidx.room.Transaction
-import com.rafaelduransaez.data.datasources.GithubReposLocalDataSource
-import com.rafaelduransaez.domain.Error
-import com.rafaelduransaez.domain.RepoDetailModel
+import com.rafaelduransaez.domain.sources.GithubReposLocalDataSource
+import com.rafaelduransaez.domain.models.Error
+import com.rafaelduransaez.domain.models.RepoDetailModel
 import com.rafaelduransaez.githubrepositories.framework.local.database.dao.FavouriteRepoDao
 import com.rafaelduransaez.githubrepositories.framework.local.database.dao.ReposDao
 import com.rafaelduransaez.githubrepositories.utils.toFavouriteRepo

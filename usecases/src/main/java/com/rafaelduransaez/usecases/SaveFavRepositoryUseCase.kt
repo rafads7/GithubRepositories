@@ -1,7 +1,7 @@
 package com.rafaelduransaez.usecases
 
 import com.rafaelduransaez.data.repositories.GithubRepository
-import com.rafaelduransaez.domain.RepoDetailModel
+import com.rafaelduransaez.domain.models.RepoDetailModel
 import javax.inject.Inject
 
 class UpdateFavReposUseCase @Inject constructor(

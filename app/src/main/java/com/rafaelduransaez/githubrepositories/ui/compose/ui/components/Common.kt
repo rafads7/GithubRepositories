@@ -11,7 +11,7 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.sp
-import com.rafaelduransaez.domain.RepoDetailModel
+import com.rafaelduransaez.domain.models.RepoDetailModel
 
 @Composable
 fun IconComponent(

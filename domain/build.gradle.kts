@@ -14,4 +14,9 @@ kotlin {
 
 dependencies{
     implementation (libs.converter.gson)
+
+    implementation (libs.javax.inject)
+    implementation (libs.kotlinx.coroutines.android)
+    implementation (libs.kotlinx.coroutines.core)
+    implementation(libs.androidx.paging.common.ktx)
 }

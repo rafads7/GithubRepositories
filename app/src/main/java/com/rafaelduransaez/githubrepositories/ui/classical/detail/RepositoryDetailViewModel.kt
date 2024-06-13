@@ -2,8 +2,8 @@ package com.rafaelduransaez.githubrepositories.ui.classical.detail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.rafaelduransaez.domain.Error
-import com.rafaelduransaez.domain.RepoDetailModel
+import com.rafaelduransaez.domain.models.Error
+import com.rafaelduransaez.domain.models.RepoDetailModel
 import com.rafaelduransaez.githubrepositories.di.RepoId
 import com.rafaelduransaez.githubrepositories.utils.toError
 import com.rafaelduransaez.usecases.GetRepoDetailByIdUseCase

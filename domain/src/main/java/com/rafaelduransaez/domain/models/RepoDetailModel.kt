@@ -1,4 +1,4 @@
-package com.rafaelduransaez.domain
+package com.rafaelduransaez.domain.models
 
 data class RepoDetailModel(
     val id: Int,

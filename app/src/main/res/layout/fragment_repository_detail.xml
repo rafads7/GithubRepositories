@@ -10,10 +10,10 @@
             type="com.rafaelduransaez.githubrepositories.ui.classical.detail.DetailState" />
         <variable
             name="repo"
-            type="com.rafaelduransaez.domain.RepoDetailModel" />
+            type="com.rafaelduransaez.domain.models.RepoDetailModel" />
         <variable
             name="error"
-            type="com.rafaelduransaez.domain.Error" />
+            type="com.rafaelduransaez.domain.models.Error" />
     </data>
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout

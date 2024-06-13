@@ -3,7 +3,7 @@ package com.rafaelduransaez.githubrepositories.ui.classical.list
 import android.content.Context
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
-import com.rafaelduransaez.domain.RepoModel
+import com.rafaelduransaez.domain.models.RepoModel
 import com.rafaelduransaez.githubrepositories.ui.common.toAnnotatedString
 
 class RepositorySimpleView @JvmOverloads constructor(

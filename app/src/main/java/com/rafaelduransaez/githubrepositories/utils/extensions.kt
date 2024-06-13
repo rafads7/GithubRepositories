@@ -4,10 +4,10 @@ import android.content.ActivityNotFoundException
 import android.content.Context
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
-import com.rafaelduransaez.domain.Error
-import com.rafaelduransaez.domain.RepoModel
-import com.rafaelduransaez.domain.RepoDetailModel
-import com.rafaelduransaez.domain.UserDetailModel
+import com.rafaelduransaez.domain.models.Error
+import com.rafaelduransaez.domain.models.RepoModel
+import com.rafaelduransaez.domain.models.RepoDetailModel
+import com.rafaelduransaez.domain.models.UserDetailModel
 import com.rafaelduransaez.githubrepositories.R
 import com.rafaelduransaez.githubrepositories.framework.local.database.entities.FavouriteRepoEntity
 import com.rafaelduransaez.githubrepositories.framework.local.database.entities.RepoEntity

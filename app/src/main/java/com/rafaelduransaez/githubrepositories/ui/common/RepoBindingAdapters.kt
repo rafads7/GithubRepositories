@@ -12,8 +12,8 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.google.android.material.appbar.CollapsingToolbarLayout
-import com.rafaelduransaez.domain.RepoModel
-import com.rafaelduransaez.domain.RepoDetailModel
+import com.rafaelduransaez.domain.models.RepoModel
+import com.rafaelduransaez.domain.models.RepoDetailModel
 import com.rafaelduransaez.githubrepositories.ui.classical.detail.RepositoryDetailedView
 import com.rafaelduransaez.githubrepositories.ui.classical.list.RepositorySimpleView
 
