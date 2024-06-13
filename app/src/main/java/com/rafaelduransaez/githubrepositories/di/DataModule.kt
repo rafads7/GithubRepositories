@@ -2,6 +2,9 @@ package com.rafaelduransaez.githubrepositories.di
 
 import com.rafaelduransaez.data.datasources.GithubReposLocalDataSource
 import com.rafaelduransaez.data.datasources.GithubReposMediatorDataSource
+import com.rafaelduransaez.data.repositories.GithubReposRepositoryImpl
+import com.rafaelduransaez.data.repositories.PagedGithubReposRepository
+import com.rafaelduransaez.domain.repositories.GithubReposRepository
 import com.rafaelduransaez.githubrepositories.framework.local.sources.GithubReposRoomLocalDataSourceImpl
 import com.rafaelduransaez.githubrepositories.framework.mediator.GithubReposMediatorDataSourceImpl
 import dagger.Binds
@@ -14,8 +17,17 @@ import dagger.hilt.components.SingletonComponent
 abstract class DataModule {
 
     @Binds
-    abstract fun bindMediatorDataSource(remoteDataSource: GithubReposMediatorDataSourceImpl): GithubReposMediatorDataSource
+    abstract fun bindGithubReposRepository(repo: GithubReposRepositoryImpl): GithubReposRepository
 
     @Binds
-    abstract fun bindLocalDataSource(localDataSource: GithubReposRoomLocalDataSourceImpl): GithubReposLocalDataSource
+    abstract fun bindPagedGithubReposRepository(repo: GithubReposRepositoryImpl)
+            : PagedGithubReposRepository
+
+    @Binds
+    abstract fun bindMediatorDataSource(remoteDataSource: GithubReposMediatorDataSourceImpl)
+            : GithubReposMediatorDataSource
+
+    @Binds
+    abstract fun bindLocalDataSource(localDataSource: GithubReposRoomLocalDataSourceImpl)
+            : GithubReposLocalDataSource
 }

@@ -2,7 +2,7 @@ package com.rafaelduransaez.githubrepositories.ui.classical.detail
 
 import com.rafaelduransaez.githubrepositories.CoroutinesTestRule
 import com.rafaelduransaez.usecases.GetRepoDetailByIdUseCase
-import com.rafaelduransaez.usecases.UpdateFavReposUseCase
+import com.rafaelduransaez.usecases.SaveFavRepositoryUseCase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Rule
 import org.mockito.Mockito.mock
@@ -11,7 +11,7 @@ import org.mockito.Mockito.mock
 class RepositoryDetailViewModelTest {
 
     private var getRepoDetailByIdUseCase: GetRepoDetailByIdUseCase = mock()
-    private var updateFavReposUseCase: UpdateFavReposUseCase = mock()
+    private var updateFavReposUseCase: SaveFavRepositoryUseCase = mock()
 
     private lateinit var viewModel: RepositoryDetailViewModel
 

@@ -7,7 +7,7 @@ import com.rafaelduransaez.domain.models.RepoDetailModel
 import com.rafaelduransaez.githubrepositories.di.RepoId
 import com.rafaelduransaez.githubrepositories.utils.toError
 import com.rafaelduransaez.usecases.GetRepoDetailByIdUseCase
-import com.rafaelduransaez.usecases.UpdateFavReposUseCase
+import com.rafaelduransaez.usecases.SaveFavRepositoryUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -21,7 +21,7 @@ import javax.inject.Inject
 class RepositoryDetailViewModel @Inject constructor(
     @RepoId private val repoId: Int,
     private val getRepoDetailByIdUseCase: GetRepoDetailByIdUseCase,
-    private val updateFavReposUseCase: UpdateFavReposUseCase
+    private val updateFavReposUseCase: SaveFavRepositoryUseCase
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(UiState())
