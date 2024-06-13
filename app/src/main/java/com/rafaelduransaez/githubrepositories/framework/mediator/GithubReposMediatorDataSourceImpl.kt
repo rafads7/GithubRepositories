@@ -3,7 +3,7 @@ package com.rafaelduransaez.githubrepositories.framework.mediator
 import androidx.paging.Pager
 import androidx.paging.PagingData
 import androidx.paging.map
-import com.rafaelduransaez.domain.sources.GithubReposMediatorDataSource
+import com.rafaelduransaez.data.datasources.GithubReposMediatorDataSource
 import com.rafaelduransaez.domain.models.RepoModel
 import com.rafaelduransaez.githubrepositories.framework.local.database.entities.RepoEntity
 import com.rafaelduransaez.githubrepositories.utils.toRepository

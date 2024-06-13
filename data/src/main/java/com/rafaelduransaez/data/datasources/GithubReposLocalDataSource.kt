@@ -1,4 +1,4 @@
-package com.rafaelduransaez.domain.sources
+package com.rafaelduransaez.data.datasources
 
 import com.rafaelduransaez.domain.models.Error
 import com.rafaelduransaez.domain.models.RepoDetailModel

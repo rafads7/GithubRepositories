@@ -1,12 +1,12 @@
 package com.rafaelduransaez.data
 
 import androidx.paging.PagingData
-import com.rafaelduransaez.domain.sources.GithubReposLocalDataSource
-import com.rafaelduransaez.domain.sources.GithubReposMediatorDataSource
+import com.rafaelduransaez.data.datasources.GithubReposLocalDataSource
+import com.rafaelduransaez.data.datasources.GithubReposMediatorDataSource
 import com.rafaelduransaez.data.mockEntities.buildMockRepo
 import com.rafaelduransaez.data.mockEntities.buildMockRepoDetail
 import com.rafaelduransaez.data.mockEntities.buildMockUserDetail
-import com.rafaelduransaez.data.repositories.GithubRepository
+import com.rafaelduransaez.data.repositories.GithubReposRepositoryImpl
 import com.rafaelduransaez.domain.models.Error
 import com.rafaelduransaez.domain.models.RepoModel
 import com.rafaelduransaez.domain.models.RepoDetailModel
@@ -30,7 +30,7 @@ class GithubRepoModelTest {
     private val repoMediatorDataSource: GithubReposMediatorDataSource = mock()
     private val pagedRepos: PagingData<RepoModel> = mock()
 
-    private lateinit var repo: GithubRepository
+    private lateinit var repo: GithubReposRepositoryImpl
     private lateinit var mockRepoDetail: RepoDetailModel
     private lateinit var mockUserDetail: UserDetailModel
 

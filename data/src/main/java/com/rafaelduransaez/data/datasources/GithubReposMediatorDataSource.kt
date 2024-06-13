@@ -1,4 +1,4 @@
-package com.rafaelduransaez.domain.sources
+package com.rafaelduransaez.data.datasources
 
 import androidx.paging.PagingData
 import com.rafaelduransaez.domain.models.RepoModel

@@ -1,8 +1,8 @@
 package com.rafaelduransaez.githubrepositories.entities
 
-import com.rafaelduransaez.data.repositories.GithubRepository
-import com.rafaelduransaez.domain.sources.GithubReposLocalDataSource
-import com.rafaelduransaez.domain.sources.GithubReposMediatorDataSource
+import com.rafaelduransaez.data.repositories.GithubReposRepositoryImpl
+import com.rafaelduransaez.data.datasources.GithubReposLocalDataSource
+import com.rafaelduransaez.data.datasources.GithubReposMediatorDataSource
 import com.rafaelduransaez.domain.models.RepoDetailModel
 import com.rafaelduransaez.domain.models.UserDetailModel
 import com.rafaelduransaez.githubrepositories.framework.local.database.entities.RepoEntity
@@ -35,4 +35,4 @@ val mockUserEntity: UserEntity = UserEntity(1, "", "", "", "", "")
 fun buildMockRepo(
     localDS: GithubReposLocalDataSource = Mockito.mock(),
     remoteMediatorDS: GithubReposMediatorDataSource = Mockito.mock()
-) = GithubRepository(localDS, remoteMediatorDS)
+) = GithubReposRepositoryImpl(localDS, remoteMediatorDS)
