@@ -3,7 +3,7 @@ package com.rafaelduransaez.githubrepositories.ui.classical.detail
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rafaelduransaez.domain.Error
-import com.rafaelduransaez.domain.RepositoryDetail
+import com.rafaelduransaez.domain.RepoDetailModel
 import com.rafaelduransaez.githubrepositories.di.RepoId
 import com.rafaelduransaez.githubrepositories.utils.toError
 import com.rafaelduransaez.usecases.GetRepoDetailByIdUseCase
@@ -53,7 +53,7 @@ class RepositoryDetailViewModel @Inject constructor(
     }
 
     data class UiState(
-        val repo: RepositoryDetail? = null,
+        val repo: RepoDetailModel? = null,
         val error: Error? = null,
         val actionError: Error? = null
     )

@@ -22,7 +22,7 @@ import androidx.paging.compose.LazyPagingItems
 import androidx.recyclerview.widget.DiffUtil
 import com.bumptech.glide.Glide
 import com.rafaelduransaez.domain.Error
-import com.rafaelduransaez.domain.Repository
+import com.rafaelduransaez.domain.RepoModel
 import com.rafaelduransaez.githubrepositories.ui.compose.ui.components.Property
 import com.rafaelduransaez.githubrepositories.ui.compose.ui.screens.MAX_CHAR
 import com.rafaelduransaez.githubrepositories.utils.toError
@@ -104,13 +104,13 @@ fun <T> LifecycleOwner.launchAndCollect(
 fun <T : Any> LazyPagingItems<T>.isEmpty() = itemCount == 0
 
 @Composable
-fun Repository.toComposableAnnotatedString(maxChar: Int = MAX_CHAR) = buildAnnotatedString {
+fun RepoModel.toComposableAnnotatedString(maxChar: Int = MAX_CHAR) = buildAnnotatedString {
     Property(name = "Name", value = name)
     Property(name = "Description", value = description.truncate(maxChar))
     Property(name = "Stars count", value = starsCount.toString())
 }
 
-fun Repository.toAnnotatedString(maxChar: Int = MAX_CHAR) = buildAnnotatedString {
+fun RepoModel.toAnnotatedString(maxChar: Int = MAX_CHAR) = buildAnnotatedString {
 
     append("Name: ")
     appendLine(name)

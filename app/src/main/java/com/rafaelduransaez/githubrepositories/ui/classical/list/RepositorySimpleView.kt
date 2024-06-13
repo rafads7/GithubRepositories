@@ -3,7 +3,7 @@ package com.rafaelduransaez.githubrepositories.ui.classical.list
 import android.content.Context
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
-import com.rafaelduransaez.domain.Repository
+import com.rafaelduransaez.domain.RepoModel
 import com.rafaelduransaez.githubrepositories.ui.common.toAnnotatedString
 
 class RepositorySimpleView @JvmOverloads constructor(
@@ -16,7 +16,7 @@ class RepositorySimpleView @JvmOverloads constructor(
         private const val MAX_CHAR = 200
     }
 
-    fun setRepo(repo: Repository) = repo.apply {
+    fun setRepo(repo: RepoModel) = repo.apply {
         text = toAnnotatedString(MAX_CHAR)
     }
 }

@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.rafaelduransaez.domain.Error
-import com.rafaelduransaez.domain.Repository
+import com.rafaelduransaez.domain.RepoModel
 import com.rafaelduransaez.githubrepositories.utils.toString
 
 
@@ -16,7 +16,7 @@ class MainState(
 ) {
     fun errorToMessage(error: Error) = error.toString(context)
 
-    fun onRepoClicked(it: Repository) {
+    fun onRepoClicked(it: RepoModel) {
         navController.navigate(RepositoriesFragmentDirections.toDetail(it.id))
     }
 }

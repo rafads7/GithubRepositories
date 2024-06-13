@@ -1,6 +1,6 @@
 package com.rafaelduransaez.domain
 
-data class RepositoryDetail(
+data class RepoDetailModel(
     val id: Int,
     val name: String = "",
     val description: String = "",
@@ -9,5 +9,5 @@ data class RepositoryDetail(
     val language: String = "",
     val url: String,
     val favourite: Boolean = false,
-    val owner: UserDetail
+    val owner: UserDetailModel
 )

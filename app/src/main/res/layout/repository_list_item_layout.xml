@@ -7,7 +7,7 @@
         <import type="android.view.View"/>
         <variable
             name="repo"
-            type="com.rafaelduransaez.domain.Repository" />
+            type="com.rafaelduransaez.domain.RepoModel" />
     </data>
 
     <androidx.cardview.widget.CardView

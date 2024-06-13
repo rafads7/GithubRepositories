@@ -11,7 +11,7 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.sp
-import com.rafaelduransaez.domain.RepositoryDetail
+import com.rafaelduransaez.domain.RepoDetailModel
 
 @Composable
 fun IconComponent(
@@ -38,7 +38,7 @@ fun AnnotatedString.Builder.Property(name: String, value: String, end: Boolean =
 }
 
 @Composable
-fun RepositoryDetail.toAnnotatedString() = buildAnnotatedString {
+fun RepoDetailModel.toAnnotatedString() = buildAnnotatedString {
     Property(name = "Description", value = description)
     Property(name = "Stars count", value = starsCount.toString())
     Property(name = "Forks count", value = forksCount.toString())

@@ -1,20 +1,11 @@
 package com.rafaelduransaez.githubrepositories.ui.classical.detail
 
-import com.rafaelduransaez.domain.Error.*
-import com.rafaelduransaez.domain.RepositoryDetail
 import com.rafaelduransaez.githubrepositories.CoroutinesTestRule
 import com.rafaelduransaez.usecases.GetRepoDetailByIdUseCase
 import com.rafaelduransaez.usecases.UpdateFavReposUseCase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.flowOf
-import org.junit.Assert.*
-import org.junit.Before
 import org.junit.Rule
-import org.junit.Test
 import org.mockito.Mockito.mock
-import org.mockito.kotlin.whenever
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class RepositoryDetailViewModelTest {

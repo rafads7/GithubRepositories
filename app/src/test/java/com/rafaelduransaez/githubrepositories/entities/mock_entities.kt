@@ -3,14 +3,14 @@ package com.rafaelduransaez.githubrepositories.entities
 import com.rafaelduransaez.data.repositories.GithubRepository
 import com.rafaelduransaez.data.datasources.GithubReposLocalDataSource
 import com.rafaelduransaez.data.datasources.GithubReposMediatorDataSource
-import com.rafaelduransaez.domain.RepositoryDetail
-import com.rafaelduransaez.domain.UserDetail
+import com.rafaelduransaez.domain.RepoDetailModel
+import com.rafaelduransaez.domain.UserDetailModel
 import com.rafaelduransaez.githubrepositories.framework.local.database.entities.RepoEntity
 import com.rafaelduransaez.githubrepositories.framework.local.database.entities.RepoUserEntity
 import com.rafaelduransaez.githubrepositories.framework.local.database.entities.UserEntity
 import org.mockito.Mockito
 
-fun buildMockRepoDetail() = RepositoryDetail(
+fun buildMockRepoDetail() = RepoDetailModel(
     id = 1,
     name = "Mock name",
     description = "Mock description",
@@ -22,7 +22,7 @@ fun buildMockRepoDetail() = RepositoryDetail(
     owner = buildMockUserDetail()
 )
 
-fun buildMockUserDetail() = UserDetail("Mock username", "Mock avatarUrl")
+fun buildMockUserDetail() = UserDetailModel("Mock username", "Mock avatarUrl")
 
 fun buildMockRepoUser(repo: RepoEntity = mockRepoEntity, user: UserEntity = mockUserEntity) =
     RepoUserEntity(repo, user)

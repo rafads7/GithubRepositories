@@ -40,7 +40,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import com.rafaelduransaez.domain.Error
-import com.rafaelduransaez.domain.RepositoryDetail
+import com.rafaelduransaez.domain.RepoDetailModel
 import com.rafaelduransaez.githubrepositories.R
 import com.rafaelduransaez.githubrepositories.ui.compose.ui.components.IconComponent
 import com.rafaelduransaez.githubrepositories.ui.compose.ui.components.RepoDetailScreenNavActions
@@ -131,7 +131,7 @@ fun ErrorBody(
 }
 
 @Composable
-fun Body(modifier: Modifier, repo: RepositoryDetail) {
+fun Body(modifier: Modifier, repo: RepoDetailModel) {
     Column(modifier = modifier) {
         with(repo) {
             Text(text = toAnnotatedString())

@@ -2,7 +2,7 @@ package com.rafaelduransaez.data.repositories
 
 import com.rafaelduransaez.data.datasources.GithubReposLocalDataSource
 import com.rafaelduransaez.data.datasources.GithubReposMediatorDataSource
-import com.rafaelduransaez.domain.RepositoryDetail
+import com.rafaelduransaez.domain.RepoDetailModel
 import javax.inject.Inject
 
 class GithubRepository @Inject constructor(
@@ -15,6 +15,6 @@ class GithubRepository @Inject constructor(
 
     fun getRepoDetailById(id: Int) = localDataSource.getRepoDetailById(id)
 
-    suspend fun updateFavRepo(repo: RepositoryDetail) = localDataSource.updateFavRepo(repo)
+    suspend fun updateFavRepo(repo: RepoDetailModel) = localDataSource.updateFavRepo(repo)
 
 }
