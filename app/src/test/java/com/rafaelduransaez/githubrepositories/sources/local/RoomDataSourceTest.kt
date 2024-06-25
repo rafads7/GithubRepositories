@@ -1,11 +1,11 @@
-package com.rafaelduransaez.githubrepositories.framework.local
+package com.rafaelduransaez.githubrepositories.sources.local
 
 import com.rafaelduransaez.githubrepositories.entities.buildMockRepoDetail
 import com.rafaelduransaez.githubrepositories.entities.buildMockRepoUser
 import com.rafaelduransaez.githubrepositories.entities.mockRepoEntity
-import com.rafaelduransaez.githubrepositories.framework.local.database.dao.FavouriteRepoDao
-import com.rafaelduransaez.githubrepositories.framework.local.database.dao.ReposDao
-import com.rafaelduransaez.githubrepositories.framework.local.sources.GithubReposRoomLocalDataSourceImpl
+import com.rafaelduransaez.githubrepositories.sources.local.database.dao.FavouriteRepoDao
+import com.rafaelduransaez.githubrepositories.sources.local.database.dao.ReposDao
+import com.rafaelduransaez.githubrepositories.sources.local.sources.GithubReposRoomLocalDataSourceImpl
 import com.rafaelduransaez.githubrepositories.utils.toFavouriteRepo
 import com.rafaelduransaez.githubrepositories.utils.toRepositoryDetail
 import kotlinx.coroutines.flow.first

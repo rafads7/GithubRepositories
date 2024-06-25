@@ -1,10 +1,10 @@
-package com.rafaelduransaez.githubrepositories.framework.local.database.dao
+package com.rafaelduransaez.githubrepositories.sources.local.database.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.rafaelduransaez.githubrepositories.framework.local.database.entities.KeyEntity
+import com.rafaelduransaez.githubrepositories.sources.local.database.entities.KeyEntity
 
 @Dao
 interface RemoteKeyDao {

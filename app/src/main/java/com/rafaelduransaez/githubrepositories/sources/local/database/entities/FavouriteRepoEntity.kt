@@ -1,4 +1,4 @@
-package com.rafaelduransaez.githubrepositories.framework.local.database.entities
+package com.rafaelduransaez.githubrepositories.sources.local.database.entities
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

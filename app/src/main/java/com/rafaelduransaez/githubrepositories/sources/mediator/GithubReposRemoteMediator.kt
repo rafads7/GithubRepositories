@@ -1,4 +1,4 @@
-package com.rafaelduransaez.githubrepositories.framework.mediator
+package com.rafaelduransaez.githubrepositories.sources.mediator
 
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
@@ -6,13 +6,13 @@ import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.Transaction
 import androidx.room.withTransaction
-import com.rafaelduransaez.githubrepositories.framework.local.database.GithubReposDatabase
-import com.rafaelduransaez.githubrepositories.framework.local.database.entities.KeyEntity
-import com.rafaelduransaez.githubrepositories.framework.local.database.entities.RepoEntity
-import com.rafaelduransaez.githubrepositories.framework.local.mapper.toKeyEntityList
-import com.rafaelduransaez.githubrepositories.framework.remote.GithubReposService
-import com.rafaelduransaez.githubrepositories.framework.remote.mapper.toRepoEntityList
-import com.rafaelduransaez.githubrepositories.framework.remote.mapper.toUserEntityList
+import com.rafaelduransaez.githubrepositories.sources.local.database.GithubReposDatabase
+import com.rafaelduransaez.githubrepositories.sources.local.database.entities.KeyEntity
+import com.rafaelduransaez.githubrepositories.sources.local.database.entities.RepoEntity
+import com.rafaelduransaez.githubrepositories.sources.local.mapper.toKeyEntityList
+import com.rafaelduransaez.githubrepositories.sources.remote.GithubReposService
+import com.rafaelduransaez.githubrepositories.sources.remote.mapper.toRepoEntityList
+import com.rafaelduransaez.githubrepositories.sources.remote.mapper.toUserEntityList
 import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject

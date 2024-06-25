@@ -1,8 +1,8 @@
-package com.rafaelduransaez.githubrepositories.framework.remote.mapper
+package com.rafaelduransaez.githubrepositories.sources.remote.mapper
 
-import com.rafaelduransaez.githubrepositories.framework.local.database.entities.RepoEntity
-import com.rafaelduransaez.githubrepositories.framework.remote.entities.GithubRepoRemoteEntity
-import com.rafaelduransaez.githubrepositories.framework.remote.entities.GithubReposRemoteEntityResponse
+import com.rafaelduransaez.githubrepositories.sources.local.database.entities.RepoEntity
+import com.rafaelduransaez.githubrepositories.sources.remote.entities.GithubRepoRemoteEntity
+import com.rafaelduransaez.githubrepositories.sources.remote.entities.GithubReposRemoteEntityResponse
 import com.rafaelduransaez.githubrepositories.utils.toUserEntity
 
 fun GithubReposRemoteEntityResponse.toRepoEntityList() =

@@ -9,11 +9,11 @@ import com.rafaelduransaez.domain.models.RepoModel
 import com.rafaelduransaez.domain.models.RepoDetailModel
 import com.rafaelduransaez.domain.models.UserDetailModel
 import com.rafaelduransaez.githubrepositories.R
-import com.rafaelduransaez.githubrepositories.framework.local.database.entities.FavouriteRepoEntity
-import com.rafaelduransaez.githubrepositories.framework.local.database.entities.RepoEntity
-import com.rafaelduransaez.githubrepositories.framework.local.database.entities.RepoUserEntity
-import com.rafaelduransaez.githubrepositories.framework.local.database.entities.UserEntity
-import com.rafaelduransaez.githubrepositories.framework.remote.entities.GithubRepoRemoteOwnerEntity
+import com.rafaelduransaez.githubrepositories.sources.local.database.entities.FavouriteRepoEntity
+import com.rafaelduransaez.githubrepositories.sources.local.database.entities.RepoEntity
+import com.rafaelduransaez.githubrepositories.sources.local.database.entities.RepoUserEntity
+import com.rafaelduransaez.githubrepositories.sources.local.database.entities.UserEntity
+import com.rafaelduransaez.githubrepositories.sources.remote.entities.GithubRepoRemoteOwnerEntity
 import retrofit2.HttpException
 import java.io.IOException
 

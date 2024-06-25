@@ -1,4 +1,4 @@
-package com.rafaelduransaez.githubrepositories.framework.remote.entities
+package com.rafaelduransaez.githubrepositories.sources.remote.entities
 
 import com.google.gson.annotations.SerializedName
 

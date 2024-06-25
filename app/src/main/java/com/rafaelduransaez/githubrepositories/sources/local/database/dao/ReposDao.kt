@@ -1,4 +1,4 @@
-package com.rafaelduransaez.githubrepositories.framework.local.database.dao
+package com.rafaelduransaez.githubrepositories.sources.local.database.dao
 
 import androidx.paging.PagingSource
 import androidx.room.Dao
@@ -6,8 +6,8 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
-import com.rafaelduransaez.githubrepositories.framework.local.database.entities.RepoEntity
-import com.rafaelduransaez.githubrepositories.framework.local.database.entities.RepoUserEntity
+import com.rafaelduransaez.githubrepositories.sources.local.database.entities.RepoEntity
+import com.rafaelduransaez.githubrepositories.sources.local.database.entities.RepoUserEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao

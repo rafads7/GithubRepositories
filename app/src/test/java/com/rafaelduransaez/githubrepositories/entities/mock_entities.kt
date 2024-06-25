@@ -5,9 +5,9 @@ import com.rafaelduransaez.data.datasources.GithubReposLocalDataSource
 import com.rafaelduransaez.data.datasources.GithubReposMediatorDataSource
 import com.rafaelduransaez.domain.models.RepoDetailModel
 import com.rafaelduransaez.domain.models.UserDetailModel
-import com.rafaelduransaez.githubrepositories.framework.local.database.entities.RepoEntity
-import com.rafaelduransaez.githubrepositories.framework.local.database.entities.RepoUserEntity
-import com.rafaelduransaez.githubrepositories.framework.local.database.entities.UserEntity
+import com.rafaelduransaez.githubrepositories.sources.local.database.entities.RepoEntity
+import com.rafaelduransaez.githubrepositories.sources.local.database.entities.RepoUserEntity
+import com.rafaelduransaez.githubrepositories.sources.local.database.entities.UserEntity
 import org.mockito.Mockito
 
 fun buildMockRepoDetail() = RepoDetailModel(

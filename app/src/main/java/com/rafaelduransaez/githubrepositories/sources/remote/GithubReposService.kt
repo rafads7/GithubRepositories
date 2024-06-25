@@ -1,6 +1,6 @@
-package com.rafaelduransaez.githubrepositories.framework.remote
+package com.rafaelduransaez.githubrepositories.sources.remote
 
-import com.rafaelduransaez.githubrepositories.framework.remote.entities.GithubReposRemoteEntityResponse
+import com.rafaelduransaez.githubrepositories.sources.remote.entities.GithubReposRemoteEntityResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 

@@ -7,10 +7,10 @@ import androidx.paging.PagingConfig
 import androidx.room.Room
 import com.rafaelduransaez.githubrepositories.GithubRepositoriesApp
 import com.rafaelduransaez.githubrepositories.R
-import com.rafaelduransaez.githubrepositories.framework.local.database.GithubReposDatabase
-import com.rafaelduransaez.githubrepositories.framework.local.database.entities.RepoEntity
-import com.rafaelduransaez.githubrepositories.framework.mediator.GithubReposRemoteMediator
-import com.rafaelduransaez.githubrepositories.framework.remote.GithubReposService
+import com.rafaelduransaez.githubrepositories.sources.local.database.GithubReposDatabase
+import com.rafaelduransaez.githubrepositories.sources.local.database.entities.RepoEntity
+import com.rafaelduransaez.githubrepositories.sources.mediator.GithubReposRemoteMediator
+import com.rafaelduransaez.githubrepositories.sources.remote.GithubReposService
 import com.rafaelduransaez.githubrepositories.utils.Constants
 import dagger.Module
 import dagger.Provides

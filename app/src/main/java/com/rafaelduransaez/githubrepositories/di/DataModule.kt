@@ -5,8 +5,8 @@ import com.rafaelduransaez.data.datasources.GithubReposMediatorDataSource
 import com.rafaelduransaez.data.repositories.GithubReposRepositoryImpl
 import com.rafaelduransaez.data.repositories.PagedGithubReposRepository
 import com.rafaelduransaez.domain.repositories.GithubReposRepository
-import com.rafaelduransaez.githubrepositories.framework.local.sources.GithubReposRoomLocalDataSourceImpl
-import com.rafaelduransaez.githubrepositories.framework.mediator.GithubReposMediatorDataSourceImpl
+import com.rafaelduransaez.githubrepositories.sources.local.sources.GithubReposRoomLocalDataSourceImpl
+import com.rafaelduransaez.githubrepositories.sources.mediator.GithubReposMediatorDataSourceImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
