@@ -21,7 +21,6 @@ import org.mockito.Mockito.verify
 import org.mockito.junit.MockitoJUnitRunner
 import org.mockito.kotlin.whenever
 
-@RunWith(MockitoJUnitRunner::class)
 class RoomDataSourceTest {
 
     private lateinit var roomDataSource: GithubReposRoomLocalDataSourceImpl

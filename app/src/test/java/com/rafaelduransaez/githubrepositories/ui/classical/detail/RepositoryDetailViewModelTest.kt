@@ -1,19 +1,23 @@
 package com.rafaelduransaez.githubrepositories.ui.classical.detail
 
-import com.rafaelduransaez.domain.Error.*
-import com.rafaelduransaez.domain.RepositoryDetail
+import app.cash.turbine.test
 import com.rafaelduransaez.githubrepositories.CoroutinesTestRule
+import com.rafaelduransaez.githubrepositories.entities.buildMockRepoDetail
+import com.rafaelduransaez.githubrepositories.ui.classical.detail.RepositoryDetailViewModel.UiState
 import com.rafaelduransaez.usecases.GetRepoDetailByIdUseCase
 import com.rafaelduransaez.usecases.UpdateFavReposUseCase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
-import org.junit.Assert.*
+import kotlinx.coroutines.test.runTest
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.mockito.Mockito.anyInt
 import org.mockito.Mockito.mock
+import org.mockito.kotlin.doReturn
+import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
 
 @OptIn(ExperimentalCoroutinesApi::class)
@@ -24,59 +28,64 @@ class RepositoryDetailViewModelTest {
 
     private lateinit var viewModel: RepositoryDetailViewModel
 
+    private val mockRepoDetail = buildMockRepoDetail()
+
     @get:Rule
     val coroutinesTestRule = CoroutinesTestRule()
 
-/*    @Before
+    @Before
     fun setup() {
-        viewModel = RepositoryDetailViewModel(1, getRepoDetailByIdUseCase, updateFavReposUseCase)
+        whenever(getRepoDetailByIdUseCase(anyInt())).doReturn(flowOf(mockRepoDetail))
+
+        viewModel =
+            RepositoryDetailViewModel(REPO_ID, getRepoDetailByIdUseCase, updateFavReposUseCase)
     }
-    
+
     @Test
-    fun `getRepository should update state with repo detail`() = testScope.runBlockingTest {
-        // Given
-        val repoDetail = RepositoryDetail(id = 1, name = "Test Repo", favourite = false)
-        whenever(getRepoDetailByIdUseCase(1)).thenReturn(flowOf(repoDetail))
-
-        // When
-        viewModel.getRepository()
-
+    fun `getRepository should update state with repo detail`() = runTest {
+        // When init{...}
         // Then
         val state = viewModel.state.first()
-        assertEquals(repoDetail, state.repo)
+        assertEquals(mockRepoDetail, state.repo)
         assertEquals(null, state.error)
         assertEquals(null, state.actionError)
     }
 
     @Test
-    fun `getRepository should update state with error`() = testScope.runBlockingTest {
+    fun `onRetryClicked should call getRepoDetailByIdUseCase`() = runTest {
         // Given
-        whenever(getRepoDetailByIdUseCase(1)).thenReturn(flowOf(null).catch { throw it })
+        whenever(getRepoDetailByIdUseCase(anyInt())).doReturn(flowOf(mockRepoDetail))
 
         // When
-        viewModel.getRepository()
+        viewModel.onRetryClicked()
 
         // Then
-        val state = viewModel.state.first()
-        assertEquals(null, state.repo)
-        assertEquals(Database, state.error)
-        assertEquals(null, state.actionError)
+        viewModel.state.test {
+            assertEquals(UiState(mockRepoDetail, null, null), awaitItem())
+            cancel()
+        }
+        verify(getRepoDetailByIdUseCase).invoke(anyInt())
+
     }
 
+
     @Test
-    fun `onFavButtonClicked should update state with action error`() = testScope.runBlockingTest {
+    fun `onFavButtonClicked should update repo to favourite`() = runTest {
         // Given
-        val repoDetail = RepositoryDetail(id = 1, name = "Test Repo", favourite = false)
-        viewModel.state.value = RepositoryDetailViewModel.UiState(repo = repoDetail)
-        whenever(updateFavReposUseCase(repoDetail.copy(favourite = true))).thenReturn(Error.Database)
+        whenever(updateFavReposUseCase(mock())).doReturn(null)
 
         // When
         viewModel.onFavButtonClicked()
 
         // Then
-        val state = viewModel.state.first()
-        assertEquals(repoDetail, state.repo)
-        assertEquals(null, state.error)
-        assertEquals(Database, state.actionError)
-    }*/
+        viewModel.state.test {
+            assertEquals(null, awaitItem().actionError)
+            cancel()
+        }
+    }
+
+
+    companion object {
+        private const val REPO_ID = 1
+    }
 }

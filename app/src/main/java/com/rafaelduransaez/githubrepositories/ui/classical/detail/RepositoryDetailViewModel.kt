@@ -39,7 +39,7 @@ class RepositoryDetailViewModel @Inject constructor(
         }
     }
 
-    fun onFavButtonClicked() {
+    internal fun onFavButtonClicked() {
         _state.value.repo?.let { repo ->
             viewModelScope.launch {
                 val error = updateFavReposUseCase(repo.copy(favourite = !repo.favourite))
@@ -48,7 +48,7 @@ class RepositoryDetailViewModel @Inject constructor(
         }
     }
 
-    fun onRetryClicked() {
+    internal fun onRetryClicked() {
         getRepository()
     }
 

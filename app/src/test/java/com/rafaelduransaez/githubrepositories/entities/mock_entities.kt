@@ -3,6 +3,7 @@ package com.rafaelduransaez.githubrepositories.entities
 import com.rafaelduransaez.data.repositories.GithubRepository
 import com.rafaelduransaez.data.datasources.GithubReposLocalDataSource
 import com.rafaelduransaez.data.datasources.GithubReposMediatorDataSource
+import com.rafaelduransaez.domain.Repository
 import com.rafaelduransaez.domain.RepositoryDetail
 import com.rafaelduransaez.domain.UserDetail
 import com.rafaelduransaez.githubrepositories.framework.local.database.entities.RepoEntity
@@ -36,3 +37,13 @@ fun buildMockRepo(
     localDS: GithubReposLocalDataSource = Mockito.mock(),
     remoteMediatorDS: GithubReposMediatorDataSource = Mockito.mock()
 ) = GithubRepository(localDS, remoteMediatorDS)
+
+fun buildMockRepository() = Repository(
+    id = 0,
+    name = "",
+    description = "",
+    starsCount = 0,
+    forksCount = 0,
+    language = "",
+    favourite = false
+)

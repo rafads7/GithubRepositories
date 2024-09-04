@@ -20,4 +20,10 @@ dependencies {
     implementation (libs.javax.inject)
     implementation (libs.kotlinx.coroutines.android)
     implementation (libs.kotlinx.coroutines.core)
+
+    //Test
+    testImplementation(libs.junit)
+    testImplementation (libs.mockito.kotlin)
+    testImplementation (libs.mockito.inline)
+    testImplementation (libs.kotlinx.coroutines.test)
 }

@@ -12,18 +12,16 @@ import com.rafaelduransaez.domain.Repository
 import com.rafaelduransaez.domain.RepositoryDetail
 import com.rafaelduransaez.domain.UserDetail
 import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.runTest
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
-import org.junit.runner.RunWith
 import org.mockito.Mockito.mock
 import org.mockito.Mockito.verify
-import org.mockito.junit.MockitoJUnitRunner
+import org.mockito.kotlin.doReturn
 import org.mockito.kotlin.whenever
 
-@RunWith(MockitoJUnitRunner::class)
 class GithubRepositoryTest {
 
     private val repoLocalDataSource: GithubReposLocalDataSource = mock()
@@ -45,9 +43,9 @@ class GithubRepositoryTest {
     fun tearDown() = Unit
 
     @Test
-    fun `when getRepoDetailById is called, local data source is called`() = runBlocking {
+    fun `when getRepoDetailById is called, local data source is called`() = runTest {
         val repoDetail =  flowOf(mockRepoDetail)
-        whenever(repoLocalDataSource.getRepoDetailById(mockRepoDetail.id)).thenReturn(repoDetail)
+        whenever(repoLocalDataSource.getRepoDetailById(mockRepoDetail.id)).doReturn(repoDetail)
 
         val result = repo.getRepoDetailById(mockRepoDetail.id)
 
@@ -56,9 +54,9 @@ class GithubRepositoryTest {
     }
 
     @Test
-    fun `when getFavouriteRepositories is called, local data source is called`() = runBlocking {
+    fun `when getFavouriteRepositories is called, local data source is called`() = runTest {
         val favRepos =  flowOf(listOf(mockRepoDetail))
-        whenever(repoLocalDataSource.getFavouriteRepositories()).thenReturn(favRepos)
+        whenever(repoLocalDataSource.getFavouriteRepositories()).doReturn(favRepos)
 
         val result = repo.getFavouriteRepositories()
 
@@ -67,9 +65,9 @@ class GithubRepositoryTest {
     }
 
     @Test
-    fun `when getPagedBestRatedRepositories is called, local data source is called`() = runBlocking {
+    fun `when getPagedBestRatedRepositories is called, local data source is called`() = runTest {
         val repos =  flowOf(pagedRepos)
-        whenever(repoMediatorDataSource.reposPager()).thenReturn(repos)
+        whenever(repoMediatorDataSource.reposPager()).doReturn(repos)
 
         val result = repo.getPagedBestRatedRepositories()
 
@@ -78,8 +76,8 @@ class GithubRepositoryTest {
     }
 
     @Test
-    fun `when updateFavRepo is called, local data source is called`() = runBlocking {
-        whenever(repoLocalDataSource.updateFavRepo(mockRepoDetail)).thenReturn(null)
+    fun `when updateFavRepo is called, local data source is called`() = runTest {
+        whenever(repoLocalDataSource.updateFavRepo(mockRepoDetail)).doReturn(null)
 
         val result = repo.updateFavRepo(mockRepoDetail)
 
@@ -88,8 +86,8 @@ class GithubRepositoryTest {
     }
 
     @Test
-    fun `when updateFavRepo fails, returns Error`() = runBlocking {
-        whenever(repoLocalDataSource.updateFavRepo(mockRepoDetail)).thenReturn(Error.Database)
+    fun `when updateFavRepo fails, returns Error`() = runTest {
+        whenever(repoLocalDataSource.updateFavRepo(mockRepoDetail)).doReturn(Error.Database)
 
         val result = repo.updateFavRepo(mockRepoDetail)
 
