@@ -13,15 +13,9 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface ReposDao {
 
-    @Query("SELECT * FROM repositories")
-    fun pagingSource(): PagingSource<Int, RepoEntity>
-
     @Transaction
     @Query("SELECT * FROM repositories")
     fun pagingRepos(): PagingSource<Int, RepoEntity>
-
-    @Query("SELECT * FROM repositories WHERE :query")
-    fun pagingSource(query: String): PagingSource<Int, RepoEntity>
 
     @Query("SELECT * FROM repositories WHERE id = :id")
     fun get(id: Int): Flow<RepoEntity>
@@ -41,7 +35,7 @@ interface ReposDao {
     suspend fun upsert(repos: List<RepoEntity>): List<Long>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun upsert(repos: RepoEntity): Long
+    suspend fun upsert(repo: RepoEntity): Long
 
     @Query("UPDATE repositories SET favourite = :favourite WHERE id = :id")
     suspend fun update(id: Int, favourite: Boolean): Int

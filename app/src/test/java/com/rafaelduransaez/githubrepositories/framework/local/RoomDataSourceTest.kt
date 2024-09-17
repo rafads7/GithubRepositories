@@ -1,8 +1,8 @@
 package com.rafaelduransaez.githubrepositories.framework.local
 
 import com.rafaelduransaez.githubrepositories.entities.buildMockRepoDetail
-import com.rafaelduransaez.githubrepositories.entities.buildMockRepoUser
 import com.rafaelduransaez.githubrepositories.entities.mockRepoEntity
+import com.rafaelduransaez.githubrepositories.entities.mockRepoUserEntity
 import com.rafaelduransaez.githubrepositories.framework.local.database.dao.FavouriteRepoDao
 import com.rafaelduransaez.githubrepositories.framework.local.database.dao.ReposDao
 import com.rafaelduransaez.githubrepositories.framework.local.sources.GithubReposRoomLocalDataSourceImpl
@@ -38,7 +38,7 @@ class RoomDataSourceTest {
     @Test
     fun `getRepoDetailById should return RepositoryDetail`() = runBlocking {
         val mockRepoDetail = buildMockRepoDetail()
-        val mockRepoUser = buildMockRepoUser()
+        val mockRepoUser = mockRepoUserEntity
         whenever(mockRepoDao.getRepoDetail(mockRepoDetail.id)).thenReturn(flowOf(mockRepoUser))
 
         val result = roomDataSource.getRepoDetailById(mockRepoDetail.id)
@@ -49,7 +49,7 @@ class RoomDataSourceTest {
 
     @Test
     fun `getFavouriteRepositories should return RepositoryDetail`() = runBlocking {
-        val mockRepoUsers = listOf(buildMockRepoUser())
+        val mockRepoUsers = listOf(mockRepoUserEntity)
         whenever(mockRepoDao.getFavouriteRepos()).thenReturn(flowOf(mockRepoUsers))
 
         val result = roomDataSource.getFavouriteRepositories()

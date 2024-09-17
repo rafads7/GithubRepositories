@@ -1,17 +1,13 @@
 package com.rafaelduransaez.githubrepositories
 
 import androidx.paging.PagingData
-import androidx.paging.testing.asSnapshot
 import app.cash.turbine.test
-import com.rafaelduransaez.domain.Repository
-import com.rafaelduransaez.githubrepositories.entities.buildMockRepo
 import com.rafaelduransaez.githubrepositories.entities.buildMockRepoDetail
 import com.rafaelduransaez.githubrepositories.entities.buildMockRepository
 import com.rafaelduransaez.githubrepositories.ui.classical.list.RepositoriesViewModel
 import com.rafaelduransaez.usecases.GetFavouriteReposUseCase
 import com.rafaelduransaez.usecases.GetPagedBestRatedReposUseCase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
 import org.junit.After

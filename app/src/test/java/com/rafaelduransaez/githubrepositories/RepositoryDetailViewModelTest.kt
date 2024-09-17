@@ -1,8 +1,8 @@
-package com.rafaelduransaez.githubrepositories.ui.classical.detail
+package com.rafaelduransaez.githubrepositories
 
 import app.cash.turbine.test
-import com.rafaelduransaez.githubrepositories.CoroutinesTestRule
 import com.rafaelduransaez.githubrepositories.entities.buildMockRepoDetail
+import com.rafaelduransaez.githubrepositories.ui.classical.detail.RepositoryDetailViewModel
 import com.rafaelduransaez.githubrepositories.ui.classical.detail.RepositoryDetailViewModel.UiState
 import com.rafaelduransaez.usecases.GetRepoDetailByIdUseCase
 import com.rafaelduransaez.usecases.UpdateFavReposUseCase

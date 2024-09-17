@@ -1,15 +1,32 @@
 package com.rafaelduransaez.githubrepositories.entities
 
-import com.rafaelduransaez.data.repositories.GithubRepository
-import com.rafaelduransaez.data.datasources.GithubReposLocalDataSource
-import com.rafaelduransaez.data.datasources.GithubReposMediatorDataSource
 import com.rafaelduransaez.domain.Repository
 import com.rafaelduransaez.domain.RepositoryDetail
 import com.rafaelduransaez.domain.UserDetail
+import com.rafaelduransaez.githubrepositories.framework.local.database.entities.FavouriteRepoEntity
 import com.rafaelduransaez.githubrepositories.framework.local.database.entities.RepoEntity
 import com.rafaelduransaez.githubrepositories.framework.local.database.entities.RepoUserEntity
 import com.rafaelduransaez.githubrepositories.framework.local.database.entities.UserEntity
-import org.mockito.Mockito
+import com.rafaelduransaez.githubrepositories.utils.toRepositoryDetail
+
+val mockRepoEntity = RepoEntity(
+    1, 1, "name", "desc", 1, 1,
+    "language", "url", 1, false
+)
+
+val mockRepoEntityFav = mockRepoEntity.copy(id = 2, favourite = true)
+
+val mockUserEntity = UserEntity(1, "", "", "", "", "")
+
+val mockRepoUserEntity = RepoUserEntity(mockRepoEntity, mockUserEntity)
+
+val mockRepoUserEntityFav = RepoUserEntity(mockRepoEntityFav, mockUserEntity)
+
+val mockFavouriteRepoEntity = FavouriteRepoEntity(
+    10, "name", "desc", 1, 1, "language", "url", 1
+)
+
+val mockRepoDetail = mockRepoUserEntity.toRepositoryDetail()
 
 fun buildMockRepoDetail() = RepositoryDetail(
     id = 1,
@@ -24,19 +41,6 @@ fun buildMockRepoDetail() = RepositoryDetail(
 )
 
 fun buildMockUserDetail() = UserDetail("Mock username", "Mock avatarUrl")
-
-fun buildMockRepoUser(repo: RepoEntity = mockRepoEntity, user: UserEntity = mockUserEntity) =
-    RepoUserEntity(repo, user)
-
-val mockRepoEntity: RepoEntity = RepoEntity(
-    1, 1, "name", "desc", 1, 1,
-    "language", "url", 1, false
-)
-val mockUserEntity: UserEntity = UserEntity(1, "", "", "", "", "")
-fun buildMockRepo(
-    localDS: GithubReposLocalDataSource = Mockito.mock(),
-    remoteMediatorDS: GithubReposMediatorDataSource = Mockito.mock()
-) = GithubRepository(localDS, remoteMediatorDS)
 
 fun buildMockRepository() = Repository(
     id = 0,
