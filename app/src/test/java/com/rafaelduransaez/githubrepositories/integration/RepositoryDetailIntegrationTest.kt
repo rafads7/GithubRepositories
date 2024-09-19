@@ -1,9 +1,10 @@
 package com.rafaelduransaez.githubrepositories.integration
 
 import app.cash.turbine.test
+import com.rafaelduransaez.apptestshared.fakeRepository
 import com.rafaelduransaez.githubrepositories.CoroutinesTestRule
-import com.rafaelduransaez.githubrepositories.entities.mockRepoDetail
-import com.rafaelduransaez.githubrepositories.entities.mockRepoEntity
+import com.rafaelduransaez.apptestshared.mockRepoDetail
+import com.rafaelduransaez.apptestshared.mockRepoEntity
 import com.rafaelduransaez.githubrepositories.ui.classical.detail.RepositoryDetailViewModel
 import com.rafaelduransaez.usecases.GetRepoDetailByIdUseCase
 import com.rafaelduransaez.usecases.UpdateFavReposUseCase

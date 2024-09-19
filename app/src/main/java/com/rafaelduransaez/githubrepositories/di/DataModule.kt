@@ -14,8 +14,10 @@ import dagger.hilt.components.SingletonComponent
 abstract class DataModule {
 
     @Binds
-    abstract fun bindMediatorDataSource(remoteDataSource: GithubReposMediatorDataSourceImpl): GithubReposMediatorDataSource
+    abstract fun bindMediatorDataSource(remoteDataSource: GithubReposMediatorDataSourceImpl)
+            : GithubReposMediatorDataSource
 
     @Binds
-    abstract fun bindLocalDataSource(localDataSource: GithubReposRoomLocalDataSourceImpl): GithubReposLocalDataSource
+    abstract fun bindLocalDataSource(localDataSource: GithubReposRoomLocalDataSourceImpl)
+            : GithubReposLocalDataSource
 }

@@ -1,20 +1,11 @@
-package com.rafaelduransaez.githubrepositories.integration
+package com.rafaelduransaez.apptestshared
 
 import androidx.paging.PagingData
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.rafaelduransaez.data.datasources.GithubReposLocalDataSource
 import com.rafaelduransaez.data.datasources.GithubReposMediatorDataSource
 import com.rafaelduransaez.data.repositories.GithubRepository
-import com.rafaelduransaez.domain.Error
 import com.rafaelduransaez.domain.Repository
-import com.rafaelduransaez.domain.RepositoryDetail
-import com.rafaelduransaez.githubrepositories.entities.buildMockRepository
-import com.rafaelduransaez.githubrepositories.entities.mockFavouriteRepoEntity
-import com.rafaelduransaez.githubrepositories.entities.mockRepoEntity
-import com.rafaelduransaez.githubrepositories.entities.mockRepoEntityFav
-import com.rafaelduransaez.githubrepositories.entities.mockRepoUserEntity
-import com.rafaelduransaez.githubrepositories.entities.mockRepoUserEntityFav
 import com.rafaelduransaez.githubrepositories.framework.local.database.dao.FavouriteRepoDao
 import com.rafaelduransaez.githubrepositories.framework.local.database.dao.ReposDao
 import com.rafaelduransaez.githubrepositories.framework.local.database.entities.FavouriteRepoEntity
@@ -26,6 +17,17 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.update
 
+
+val fakeReposDao = FakeRepoDao(
+    repos = listOf(mockRepoEntity, mockRepoEntityFav),
+    detailedRepos = listOf(mockRepoUserEntity, mockRepoUserEntityFav)
+)
+val fakeFavReposDao = FakeFavReposDao(listOf(mockFavouriteRepoEntity))
+
+val fakeRepository = GithubRepository(
+    localDataSource = GithubReposRoomLocalDataSourceImpl(fakeReposDao, fakeFavReposDao),
+    mediatorDataSource = FakeMediatorDataSource(listOf(buildMockRepository()))
+)
 
 class FakeRepoDao(
     repos: List<RepoEntity> = emptyList(),
@@ -90,6 +92,10 @@ class FakeRepoDao(
         return favRepos.size
     }
 
+    override suspend fun count(): Int {
+        return inMemoryRepos.value.size
+    }
+
 }
 
 class FakeFavReposDao(repos: List<FavouriteRepoEntity>) : FavouriteRepoDao {
@@ -140,13 +146,3 @@ class FakePagingSource<T : Any>(private val data: List<T>) : PagingSource<Int, T
     }
 }
 
-val fakeReposDao = FakeRepoDao(
-    repos = listOf(mockRepoEntity, mockRepoEntityFav),
-    detailedRepos = listOf(mockRepoUserEntity, mockRepoUserEntityFav)
-)
-val fakeFavReposDao = FakeFavReposDao(listOf(mockFavouriteRepoEntity))
-
-val fakeRepository = GithubRepository(
-    localDataSource = GithubReposRoomLocalDataSourceImpl(fakeReposDao, fakeFavReposDao),
-    mediatorDataSource = FakeMediatorDataSource(listOf(buildMockRepository()))
-)

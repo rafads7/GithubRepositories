@@ -1,4 +1,4 @@
-package com.rafaelduransaez.githubrepositories.entities
+package com.rafaelduransaez.apptestshared
 
 import com.rafaelduransaez.domain.Repository
 import com.rafaelduransaez.domain.RepositoryDetail

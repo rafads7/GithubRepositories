@@ -19,7 +19,7 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.rafaelduransaez.githubrepositories.di.HiltTestRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -79,6 +79,8 @@ dependencies {
     implementation(project(mapOf("path" to ":domain")))
     implementation(project(mapOf("path" to ":data")))
     implementation(project(mapOf("path" to ":usecases")))
+    testImplementation(project(mapOf("path" to ":appTestShared")))
+    androidTestImplementation(project(mapOf("path" to ":appTestShared")))
 
     implementation(libs.androidx.legacy.support.v4)
     implementation(libs.androidx.lifecycle.livedata.ktx)
@@ -114,8 +116,16 @@ dependencies {
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.kotlinx.coroutines.core)
     testImplementation(libs.androidx.paging.testing)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+    testImplementation(libs.androidx.runner)
+    testImplementation(libs.androidx.rules)
+    androidTestImplementation(libs.hilt.android.testing)
+    androidTestImplementation(libs.androidx.junit.ktx)
+    androidTestImplementation(libs.androidx.espresso.contrib)
+    androidTestImplementation(libs.kotlinx.coroutines.test)
+    androidTestImplementation(libs.mockwebserver)
+    androidTestImplementation(libs.androidx.paging.testing)
+    androidTestImplementation(libs.turbine)
+    kaptAndroidTest(libs.hilt.android.compiler)
 
 
     //Navigation

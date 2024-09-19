@@ -1,8 +1,8 @@
 package com.rafaelduransaez.githubrepositories.framework.local
 
-import com.rafaelduransaez.githubrepositories.entities.buildMockRepoDetail
-import com.rafaelduransaez.githubrepositories.entities.mockRepoEntity
-import com.rafaelduransaez.githubrepositories.entities.mockRepoUserEntity
+import com.rafaelduransaez.apptestshared.buildMockRepoDetail
+import com.rafaelduransaez.apptestshared.mockRepoEntity
+import com.rafaelduransaez.apptestshared.mockRepoUserEntity
 import com.rafaelduransaez.githubrepositories.framework.local.database.dao.FavouriteRepoDao
 import com.rafaelduransaez.githubrepositories.framework.local.database.dao.ReposDao
 import com.rafaelduransaez.githubrepositories.framework.local.sources.GithubReposRoomLocalDataSourceImpl
@@ -15,10 +15,8 @@ import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
-import org.junit.runner.RunWith
 import org.mockito.Mockito.mock
 import org.mockito.Mockito.verify
-import org.mockito.junit.MockitoJUnitRunner
 import org.mockito.kotlin.whenever
 
 class RoomDataSourceTest {
@@ -78,21 +76,4 @@ class RoomDataSourceTest {
             verify(mockFavouriteRepoDao).delete(repo.githubId)
         }
     }
-
-    //Not working
-    /*@Test
-    fun `updateFavRepo should return ErrorDatabase on failed update`() = runBlocking {
-        // Given
-        val repoId = 1
-        val fav = true
-        val repo = mockRepoEntity.copy(favourite = !fav)
-        whenever(mockRepoDao.get(anyInt())).thenReturn(flowOf(repo))
-        whenever(mockRepoDao.update(repoId, fav)).doThrow(RuntimeException())
-
-        // When
-        val result = roomDataSource.updateFavRepo(buildMockRepoDetail())
-
-        // Then
-        assertEquals(Error.Database, result)
-    }*/
 }

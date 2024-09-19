@@ -1,14 +1,16 @@
 package com.rafaelduransaez.githubrepositories
 
 import androidx.paging.PagingData
+import androidx.paging.testing.asSnapshot
 import app.cash.turbine.test
-import com.rafaelduransaez.githubrepositories.entities.buildMockRepoDetail
-import com.rafaelduransaez.githubrepositories.entities.buildMockRepository
+import com.rafaelduransaez.apptestshared.buildMockRepoDetail
+import com.rafaelduransaez.apptestshared.buildMockRepository
 import com.rafaelduransaez.githubrepositories.ui.classical.list.RepositoriesViewModel
 import com.rafaelduransaez.usecases.GetFavouriteReposUseCase
 import com.rafaelduransaez.usecases.GetPagedBestRatedReposUseCase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.runTest
 import org.junit.After
 import org.junit.Assert.assertEquals
@@ -51,13 +53,15 @@ class RepositoriesViewModelTest {
     @After
     fun tearDown() = Unit
 
-    //Could not manage to make it work...
+    //Could not manage to make it work with Flow<PagingData<T>>.cachedIn...
 
-/*  @Test
+  @Test
     fun `getPagedBestRatedReposUseCase is called in constructor`() = runTest{
 
         //val data = viewModel.bestRatedRepos.asSnapshot()
         //assertEquals(mockRepoList, data)
+
+        advanceUntilIdle()
 
         viewModel.bestRatedRepos.test {
             val data = viewModel.bestRatedRepos.asSnapshot()
@@ -67,7 +71,7 @@ class RepositoriesViewModelTest {
 
         verify(pagedUseCase).invoke()
     }
-*/
+
 
     @Test
     fun `getFavouriteReposUseCase is called in constructor`() = runTest {

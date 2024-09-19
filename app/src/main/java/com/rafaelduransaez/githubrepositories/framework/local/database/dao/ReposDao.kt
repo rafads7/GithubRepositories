@@ -53,4 +53,7 @@ interface ReposDao {
     )
     suspend fun updateFavoriteStatus(reposGithubIds: List<Int>): Int
 
+    @Query("SELECT COUNT(*) FROM repositories")
+    suspend fun count(): Int
+
 }

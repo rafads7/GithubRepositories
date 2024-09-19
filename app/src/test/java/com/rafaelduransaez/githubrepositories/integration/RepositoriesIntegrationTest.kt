@@ -1,14 +1,18 @@
 package com.rafaelduransaez.githubrepositories.integration
 
 import app.cash.turbine.test
+import com.rafaelduransaez.apptestshared.FakeFavReposDao
+import com.rafaelduransaez.apptestshared.FakeMediatorDataSource
+import com.rafaelduransaez.apptestshared.FakeRepoDao
 import com.rafaelduransaez.data.repositories.GithubRepository
 import com.rafaelduransaez.githubrepositories.CoroutinesTestRule
-import com.rafaelduransaez.githubrepositories.entities.buildMockRepository
-import com.rafaelduransaez.githubrepositories.entities.mockFavouriteRepoEntity
-import com.rafaelduransaez.githubrepositories.entities.mockRepoEntity
-import com.rafaelduransaez.githubrepositories.entities.mockRepoEntityFav
-import com.rafaelduransaez.githubrepositories.entities.mockRepoUserEntity
-import com.rafaelduransaez.githubrepositories.entities.mockRepoUserEntityFav
+import com.rafaelduransaez.apptestshared.buildMockRepository
+import com.rafaelduransaez.apptestshared.fakeRepository
+import com.rafaelduransaez.apptestshared.mockFavouriteRepoEntity
+import com.rafaelduransaez.apptestshared.mockRepoEntity
+import com.rafaelduransaez.apptestshared.mockRepoEntityFav
+import com.rafaelduransaez.apptestshared.mockRepoUserEntity
+import com.rafaelduransaez.apptestshared.mockRepoUserEntityFav
 import com.rafaelduransaez.githubrepositories.framework.local.sources.GithubReposRoomLocalDataSourceImpl
 import com.rafaelduransaez.githubrepositories.ui.classical.list.RepositoriesViewModel
 import com.rafaelduransaez.usecases.GetFavouriteReposUseCase
@@ -26,10 +30,15 @@ class RepositoriesIntegrationTest {
     @get:Rule
     val coroutinesTestRule = CoroutinesTestRule()
 
-
-    //Do not know why this test is not emitting any values, so it is failing...
     @Test
     fun `paged repos are loaded from remote source`() = runTest {
+
+        //
+        //Do not know why this test is not emitting any values, so it is failing...
+        // Same error than in Instrumentation test: kotlinx.coroutines.test.UncompletedCoroutinesError:
+        // After waiting for 10s, the test coroutine is not completing, there were active child jobs:
+        // [ScopeCoroutine{Active}@360356a]
+        //
 
         val viewModel = buildReposViewModel()
 
@@ -42,19 +51,8 @@ class RepositoriesIntegrationTest {
 
     private fun buildReposViewModel(): RepositoriesViewModel {
 
-        val fakeReposDao = FakeRepoDao(
-            repos = listOf(mockRepoEntity, mockRepoEntityFav),
-            detailedRepos = listOf(mockRepoUserEntity, mockRepoUserEntityFav)
-        )
-        val fakeFavReposDao = FakeFavReposDao(listOf(mockFavouriteRepoEntity))
-
-        val repository = GithubRepository(
-            localDataSource = GithubReposRoomLocalDataSourceImpl(fakeReposDao, fakeFavReposDao),
-            mediatorDataSource = FakeMediatorDataSource(listOf(buildMockRepository()))
-        )
-
-        val favUseCase = GetFavouriteReposUseCase(repository)
-        val pagedUseCase = GetPagedBestRatedReposUseCase(repository)
+        val favUseCase = GetFavouriteReposUseCase(fakeRepository)
+        val pagedUseCase = GetPagedBestRatedReposUseCase(fakeRepository)
 
         return RepositoriesViewModel(
             getPagedBestRatedReposUseCase = pagedUseCase,

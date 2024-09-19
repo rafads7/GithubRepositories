@@ -1,4 +1,4 @@
-package com.rafaelduransaez.githubrepositories
+package com.rafaelduransaez.apptestshared
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.rafaelduransaez.githubrepositories", appContext.packageName)
+        assertEquals("com.rafaelduransaez.apptestshared.test", appContext.packageName)
     }
 }
