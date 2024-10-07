@@ -1,18 +1,20 @@
 package com.rafaelduransaez.githubrepositories
 
 import androidx.recyclerview.widget.RecyclerView
+import androidx.test.core.app.ActivityScenario
+import androidx.test.core.app.ActivityScenario.ActivityAction
+import androidx.test.espresso.Espresso
+import androidx.test.espresso.Espresso.getIdlingResources
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.IdlingRegistry
-import androidx.test.espresso.ViewAssertion
 import androidx.test.espresso.action.ViewActions.click
-import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition
 import androidx.test.espresso.matcher.ViewMatchers.hasDescendant
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.rules.ActivityScenarioRule
+import androidx.test.ext.junit.rules.activityScenarioRule
 import com.rafaelduransaez.githubrepositories.ui.classical.MainActivity
 import com.rafaelduransaez.githubrepositories.utils.MockWebServerRule
 import com.rafaelduransaez.githubrepositories.utils.OkHttp3IdlingResource
@@ -28,6 +30,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import javax.inject.Inject
+
 
 @HiltAndroidTest
 class MainInstrumentationTest {
@@ -49,6 +52,11 @@ class MainInstrumentationTest {
         mockWebServerRule.server.enqueue(MockResponse().fromJson("repos.json"))
         hiltRule.inject()
 
+/*       activityRule.scenario.onActivity {
+            val mIdlingResource = IdlingRegistry.getInstance().resources.asIterable().first()
+            IdlingRegistry.getInstance().register(mIdlingResource)
+        }*/
+
         val resource = OkHttp3IdlingResource.create("OkHttp", okHttpClient)
         IdlingRegistry.getInstance().register(resource)
     }
@@ -63,7 +71,7 @@ class MainInstrumentationTest {
             actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click())
         )
 
-        onView(withId(R.id.action_button)).check(matches(hasDescendant(withText(R.string.str_go_to_github))))
+        onView(withId(R.id.action_button)).check(matches(withText(R.string.str_go_to_github)))
     }
 
 }

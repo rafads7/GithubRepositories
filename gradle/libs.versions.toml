@@ -6,7 +6,7 @@ coilCompose = "2.5.0"
 compiler = "4.15.1"
 compose-bom = "2024.02.01"
 core-ktx = "1.12.0"
-espresso-contrib = "3.5.1"
+espresso = "3.6.1"
 fragmentVersion = "1.6.2"
 glide = "4.16.0"
 hiltAndroidPlugin = "2.48"
@@ -39,6 +39,7 @@ retrofitVersion = "2.9.0"
 roomVersion = "2.6.1"
 rules = "1.6.1"
 runner = "1.6.2"
+tracing = "1.0.0"
 turbine = "1.0.0"
 appcompat = "1.6.1"
 material = "1.12.0"
@@ -55,7 +56,9 @@ androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 androidx-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
 androidx-compose-ui-tooling-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4" }
 androidx-compose-material3 = { module = "androidx.compose.material3:material3" }
-androidx-espresso-contrib = { module = "androidx.test.espresso:espresso-contrib", version.ref = "espresso-contrib" }
+androidx-espresso-contrib = { module = "androidx.test.espresso:espresso-contrib", version.ref = "espresso" }
+androidx-espresso-idling-concurrent = { module = "androidx.test.espresso.idling:idling-concurrent", version.ref = "espresso" }
+androidx-espresso-idling-resource = { module = "androidx.test.espresso:espresso-idling-resource", version.ref = "espresso" }
 androidx-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "fragmentVersion" }
 androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
 androidx-junit-ktx = { module = "androidx.test.ext:junit-ktx", version.ref = "androidx-junit-ktx" }
@@ -79,6 +82,8 @@ androidx-room-paging = { module = "androidx.room:room-paging", version.ref = "ro
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomVersion" }
 androidx-rules = { module = "androidx.test:rules", version.ref = "rules" }
 androidx-runner = { module = "androidx.test:runner", version.ref = "runner" }
+androidx-tracing = { module = "androidx.tracing:tracing", version.ref = "tracing" }
+androidx-tracing-ktx = { module = "androidx.tracing:tracing-ktx", version.ref = "tracing" }
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose" }
 compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "compiler" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofitVersion" }

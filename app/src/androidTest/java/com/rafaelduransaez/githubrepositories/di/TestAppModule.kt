@@ -60,10 +60,10 @@ object TestAppModule {
     fun provideOkHttpClient(authInterceptor: AuthInterceptor): OkHttpClient =
         HttpLoggingInterceptor().run {
             level = HttpLoggingInterceptor.Level.BODY
-            (OkHttpClient.Builder()
+            OkHttpClient.Builder()
                 .addInterceptor(this)
                 .addInterceptor(authInterceptor)
-                .build())
+                .build()
         }
 
     @Provides
