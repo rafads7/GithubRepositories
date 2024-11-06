@@ -4,18 +4,18 @@ plugins {
     alias(libs.plugins.kotlinAndroid)
     alias(libs.plugins.hiltAndroid)
     alias(libs.plugins.navSafeArgs)
+    alias(libs.plugins.ksp)
     id("kotlin-kapt")
-    //id("com.google.devtools.ksp")
 }
 
 android {
     namespace = "com.rafaelduransaez.githubrepositories"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.rafaelduransaez.githubrepositories"
         minSdk = 24
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -35,27 +35,18 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
     }
 
-    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KaptGenerateStubs>().configureEach {
-        kotlinOptions {
-            jvmTarget = "17"
-        }
-    }
-
-    /*
-    //Just in case to use ksp instead of kapt
     tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
         kotlinOptions {
-            jvmTarget = "1.8"
+            jvmTarget="21"
         }
     }
-     */
 
     kotlinOptions {
-        jvmTarget = "17"
+        jvmTarget = "21"
     }
 
     buildFeatures {
@@ -64,7 +55,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.2"
+        kotlinCompilerExtensionVersion = "1.5.14"
     }
     packaging {
         resources {
@@ -101,12 +92,14 @@ dependencies {
 
     //Hilt
     implementation(libs.hilt.android)
-    kapt(libs.hilt.android.compiler)
+    ksp(libs.hilt.android.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
+    implementation(libs.dagger)
+    ksp(libs.dagger.compiler)
 
     //Glide
     implementation(libs.glide)
-    kapt(libs.compiler)
+    ksp(libs.glide.compiler)
 
     //Testing
     testImplementation(libs.junit)
@@ -129,8 +122,7 @@ dependencies {
     androidTestImplementation(libs.mockwebserver)
     androidTestImplementation(libs.androidx.paging.testing)
     androidTestImplementation(libs.turbine)
-    kaptAndroidTest(libs.hilt.android.compiler)
-
+    kspAndroidTest(libs.hilt.android.compiler)
 
     //Navigation
     implementation(libs.androidx.navigation.compose)
@@ -149,7 +141,7 @@ dependencies {
     implementation(libs.logging.interceptor)
 
     //Room
-    kapt(libs.androidx.room.compiler)
+    ksp(libs.androidx.room.compiler)
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
 
@@ -163,10 +155,6 @@ dependencies {
 
     //Coil
     implementation(libs.coil.compose)
-
-    //Serialization
-    //implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.1")
-
 }
 
 // Allow references to generated code

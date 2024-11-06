@@ -1,47 +1,48 @@
 [versions]
-activityKtx = "1.8.1"
-agp = "8.2.1"
-androidx-junit-ktx = "1.1.5"
+activityKtx = "1.9.3"
+agp = "8.7.2"
+androidx-junit-ktx = "1.2.1"
 coilCompose = "2.5.0"
 compiler = "4.15.1"
-compose-bom = "2024.02.01"
-core-ktx = "1.12.0"
+compose-bom = "2024.10.01"
+core-ktx = "1.15.0"
 espresso = "3.6.1"
-fragmentVersion = "1.6.2"
+fragmentVersion = "1.8.5"
 glide = "4.16.0"
-hiltAndroidPlugin = "2.48"
+hiltAndroidPlugin = "2.49"
 hiltNavigationCompose = "1.2.0"
-hiltVersion = "2.48.1"
+hiltVersion = "2.49"
 javaxInject = "1"
 junit = "4.13.2"
-kotlin = "1.8.10"
+kotlin = "1.9.24"
+ksp = "1.9.0-1.0.12"
 kotlinxCoroutinesCore = "1.7.3"
 kotlinxCoroutinesAndroid = "1.7.3"
 kotlinxCoroutinesTest = "1.7.3"
 legacy-support-v4 = "1.0.0"
-lifecycle-livedata-ktx = "2.7.0"
-lifecycleVersion = "2.7.0"
-materialIconsExtended = "1.5.4"
+lifecycle-livedata-ktx = "2.8.7"
+lifecycleVersion = "2.8.7"
+materialIconsExtended = "1.7.5"
 mockitoInline = "5.2.0"
 mockitoKotlin = "5.2.1"
 mockwebserver = "4.12.0"
-navSafeArgs = "2.7.7"
-navVersion = "2.7.7"
+navSafeArgs = "2.8.3"
+navVersion = "2.8.3"
 okhttpVersion = "4.12.0"
-pagingCommonKtx = "3.2.1"
-pagingCompose = "3.2.1"
-pagingRuntimeKtx = "3.2.1"
-pagingTesting = "3.2.1"
+pagingCommonKtx = "3.3.2"
+pagingCompose = "3.3.2"
+pagingRuntimeKtx = "3.3.2"
+pagingTesting = "3.3.2"
 paletteKtx = "1.0.0"
-playServicesLocation = "21.1.0"
+playServicesLocation = "21.3.0"
 recyclerview = "1.3.2"
 retrofitVersion = "2.9.0"
 roomVersion = "2.6.1"
 rules = "1.6.1"
 runner = "1.6.2"
-tracing = "1.0.0"
+tracing = "1.2.0"
 turbine = "1.0.0"
-appcompat = "1.6.1"
+appcompat = "1.7.0"
 material = "1.12.0"
 
 [libraries]
@@ -85,9 +86,11 @@ androidx-runner = { module = "androidx.test:runner", version.ref = "runner" }
 androidx-tracing = { module = "androidx.tracing:tracing", version.ref = "tracing" }
 androidx-tracing-ktx = { module = "androidx.tracing:tracing-ktx", version.ref = "tracing" }
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose" }
-compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "compiler" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofitVersion" }
+dagger = { module = "com.google.dagger:dagger", version.ref = "hiltVersion" }
+dagger-compiler = { module = "com.google.dagger:dagger-compiler", version.ref = "hiltVersion" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
+glide-compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "compiler" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltVersion" }
 hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hiltVersion" }
 hilt-android-testing = { module = "com.google.dagger:hilt-android-testing", version.ref = "hiltVersion" }
@@ -113,4 +116,5 @@ androidLibrary = { id = "com.android.library" , version.ref = "agp" }
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 hiltAndroid= {id = "com.google.dagger.hilt.android", version.ref = "hiltAndroidPlugin"}
 kotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin"}
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp"}
 navSafeArgs = { id = "androidx.navigation.safeargs.kotlin", version.ref = "navSafeArgs"}
