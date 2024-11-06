@@ -113,8 +113,9 @@ material = { group = "com.google.android.material", name = "material", version.r
 [plugins]
 androidGradle = { id = "com.android.application", version.ref = "agp"}
 androidLibrary = { id = "com.android.library" , version.ref = "agp" }
+hiltAndroid = { id = "com.google.dagger.hilt.android", version.ref = "hiltAndroidPlugin"}
+kapt = { id = "kotlin-kapt" }
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-hiltAndroid= {id = "com.google.dagger.hilt.android", version.ref = "hiltAndroidPlugin"}
 kotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin"}
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp"}
 navSafeArgs = { id = "androidx.navigation.safeargs.kotlin", version.ref = "navSafeArgs"}
